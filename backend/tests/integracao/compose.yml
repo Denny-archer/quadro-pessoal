@@ -1,0 +1,50 @@
+name: coffito-organizacao-teste
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: teste
+      POSTGRES_PASSWORD: teste-somente-local
+      POSTGRES_DB: rh_test
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U teste -d rh_test"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  rh:
+    build: ../../..
+    image: coffito/quadro-pessoal:organizacao-teste
+    environment:
+      DATABASE_URL: postgresql://teste:teste-somente-local@db:5432/rh_test
+      JWT_SECRET: teste-isolado-chave-de-sessao-com-mais-de-trinta-e-dois-caracteres
+      COOKIE_SEGURO: 'false'
+      WEB_CONCURRENCY: '2'
+    ports:
+      - '127.0.0.1:18002:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+  testes:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coffito/rh-organizacao-testes:local
+    environment:
+      DATABASE_URL: postgresql://teste:teste-somente-local@db:5432/rh_test
+      JWT_SECRET: teste-isolado-chave-de-sessao-com-mais-de-trinta-e-dois-caracteres
+      COOKIE_SEGURO: 'false'
+      RH_TEST_DB: '1'
+      TEST_PG_URL: postgresql+psycopg2://teste:teste-somente-local@db:5432/ponto_integracao_test
+    volumes:
+      - ../../..:/rh:ro
+      - ${PONTO_API_DIR:?informe o caminho absoluto de sistema-ponto/api}:/ponto:ro
+      - ./verificar_integracao.py:/testes/verificar_integracao.py:ro
+    working_dir: /rh/backend
+    command: ["python", "-m", "pytest", "-q", "-p", "no:cacheprovider", "tests"]
+    depends_on:
+      db:
+        condition: service_healthy
+      rh:
+        condition: service_healthy

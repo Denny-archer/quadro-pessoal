@@ -1,0 +1,74 @@
+/* gráfico anual */
+.chart svg {
+  width:100%;
+  height:auto;
+  display:block
+}
+
+.chart .axis {
+  fill:var(--muted);
+  font:11px var(--f-mono)
+}
+
+.chart .grid {
+  stroke:var(--line);
+  stroke-width:1
+}
+
+table.data {
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px
+}
+
+.data th {
+  text-align:left;
+  font-size:11.5px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+  padding:8px 10px;
+  border-bottom:1px solid var(--line-strong);
+  white-space:nowrap
+}
+
+.data td {
+  padding:9px 10px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top
+}
+
+.data td.r,.data th.r {
+  text-align:right
+}
+
+.data tbody tr:hover {
+  background:var(--sunk)
+}
+
+.data tbody tr.click {
+  cursor:pointer
+}
+
+.data .muted {
+  color:var(--muted)
+}
+
+.bar-mini {
+  display:inline-block;
+  width:60px;
+  height:6px;
+  border-radius:3px;
+  background:var(--line);
+  vertical-align:middle;
+  margin-left:8px;
+  overflow:hidden
+}
+
+.bar-mini i {
+  display:block;
+  height:100%;
+  background:var(--c-ferias)
+}
+.grafico-alvo { fill: transparent; }

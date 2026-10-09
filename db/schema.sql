@@ -173,3 +173,78 @@ CREATE INDEX IF NOT EXISTS auditoria_em_idx ON auditoria (em DESC);
 CREATE INDEX IF NOT EXISTS auditoria_registro_idx ON auditoria (tabela, registro_id);
 
 INSERT INTO schema_versao (versao) VALUES (1) ON CONFLICT DO NOTHING;
+
+-- =====================================================================
+-- v2 — Integração com o sistema de ponto
+-- =====================================================================
+
+-- Chaves de API dos sistemas integrados (guarda só o SHA-256 da chave)
+CREATE TABLE IF NOT EXISTS integracao_chaves (
+  id          bigserial PRIMARY KEY,
+  nome        text NOT NULL,                         -- ex.: "Sistema de ponto - produção"
+  prefixo     text NOT NULL,                         -- primeiros caracteres, para identificar na tela
+  hash        text NOT NULL UNIQUE,                  -- sha256 hex da chave completa
+  escopo      text NOT NULL DEFAULT 'ponto' CHECK (escopo IN ('ponto')),
+  ativo       boolean NOT NULL DEFAULT true,
+  criado_por  bigint REFERENCES usuarios(id) ON DELETE SET NULL,
+  criado_em   timestamptz NOT NULL DEFAULT now(),
+  ultimo_uso  timestamptz
+);
+
+-- Batidas recebidas do ponto (uma linha por marcação; idempotente por id_externo)
+CREATE TABLE IF NOT EXISTS ponto_marcacoes (
+  id             bigserial PRIMARY KEY,
+  id_externo     text NOT NULL UNIQUE,               -- id da marcação no sistema de ponto
+  matricula      text NOT NULL,
+  funcionario_id text REFERENCES funcionarios(id) ON DELETE SET NULL,  -- NULL = matrícula não cadastrada no RH
+  momento        timestamptz NOT NULL,
+  tipo           text NOT NULL DEFAULT 'auto'
+                 CHECK (tipo IN ('entrada','saida','saida_intervalo','retorno_intervalo','auto')),
+  local          text NOT NULL DEFAULT 'presencial' CHECK (local IN ('presencial','remoto')),
+  cancelada      boolean NOT NULL DEFAULT false,     -- marcação desconsiderada/ajustada no ponto
+  origem         text,                               -- relógio, app, web, ajuste...
+  recebido_em    timestamptz NOT NULL DEFAULT now(),
+  atualizado_em  timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS ponto_marcacoes_func_idx ON ponto_marcacoes (funcionario_id, momento);
+CREATE INDEX IF NOT EXISTS ponto_marcacoes_momento_idx ON ponto_marcacoes (momento);
+CREATE INDEX IF NOT EXISTS ponto_marcacoes_matricula_idx ON ponto_marcacoes (matricula) WHERE funcionario_id IS NULL;
+
+INSERT INTO schema_versao (versao) VALUES (2) ON CONFLICT DO NOTHING;
+
+-- v3 — sessões, limite compartilhado e resumos oficiais do sistema de ponto
+ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS sessao_versao integer NOT NULL DEFAULT 0;
+CREATE TABLE IF NOT EXISTS login_tentativas (
+  id bigserial PRIMARY KEY,
+  ip text NOT NULL,
+  momento timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS login_tentativas_ip_idx ON login_tentativas (ip, momento);
+CREATE INDEX IF NOT EXISTS login_tentativas_momento_idx ON login_tentativas (momento);
+
+CREATE TABLE IF NOT EXISTS ponto_vinculos (
+  sistema text NOT NULL,
+  colaborador_id text NOT NULL,
+  funcionario_id text NOT NULL REFERENCES funcionarios(id) ON DELETE CASCADE,
+  PRIMARY KEY (sistema, colaborador_id),
+  UNIQUE (sistema, funcionario_id)
+);
+CREATE TABLE IF NOT EXISTS ponto_resumos (
+  sistema text NOT NULL,
+  colaborador_id text NOT NULL,
+  data date NOT NULL,
+  versao bigint NOT NULL CHECK (versao > 0),
+  matricula text NOT NULL,
+  funcionario_id text REFERENCES funcionarios(id) ON DELETE SET NULL,
+  dados jsonb NOT NULL,
+  recebido_em timestamptz NOT NULL DEFAULT now(),
+  PRIMARY KEY (sistema, colaborador_id, data)
+);
+CREATE INDEX IF NOT EXISTS ponto_resumos_func_idx ON ponto_resumos (funcionario_id, data);
+CREATE TABLE IF NOT EXISTS ponto_sincronizacao (
+  sistema text PRIMARY KEY,
+  sinal_em timestamptz NOT NULL DEFAULT now(),
+  pendentes integer NOT NULL DEFAULT 0 CHECK (pendentes >= 0),
+  ultima_entrega timestamptz
+);
+INSERT INTO schema_versao (versao) VALUES (3) ON CONFLICT DO NOTHING;

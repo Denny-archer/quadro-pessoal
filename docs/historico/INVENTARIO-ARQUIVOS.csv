@@ -1,0 +1,1169 @@
+﻿Origem,Destino,Responsabilidade,Versionamento,Situação
+.dockerignore,.dockerignore,Lista de inclusão do contexto Docker de execução,Versionar,Existente
+.env,.env,Configuração de ambiente; segredos reais somente locais,Ignorar e preservar no disco,Existente
+.env.example,.env.example,Exemplo de configuração sem credenciais reais,Versionar,Existente
+.gitignore,.gitignore,"Regras de proteção de segredos, dados locais, caches e artefatos gerados",Versionar,Existente
+app/__init__.py,backend/app/__init__.py,Declaração de pacote Python,Versionar,Existente
+app/auth.py,backend/app/api/auth.py;backend/app/core/seguranca.py;backend/app/schemas/auth.py,"Contrato HTTP, autenticação e validação de acesso",Versionar,Existente
+app/cli.py,backend/app/cli.py,"Comandos de schema, administração, carga e exportação JSON",Versionar,Existente
+app/config.py,backend/app/core/config.py,Infraestrutura e helpers compartilhados,Versionar,Existente
+app/db.py,backend/app/core/db.py;backend/app/core/paths.py,Infraestrutura e helpers compartilhados,Versionar,Existente
+app/importacao/__init__.py,backend/app/importacao/__init__.py,Declaração de pacote Python,Versionar,Existente
+app/importacao/leitor.py,backend/app/importacao/leitor.py,"Leitura, normalização e validação de planilhas",Versionar,Existente
+app/importacao/modelos.py,backend/app/importacao/modelos.py,"Leitura, normalização e validação de planilhas",Versionar,Existente
+app/importacao/normaliza.py,backend/app/importacao/normaliza.py,"Leitura, normalização e validação de planilhas",Versionar,Existente
+app/importacao/validacao.py,backend/app/importacao/validacao.py,"Leitura, normalização e validação de planilhas",Versionar,Existente
+app/main.py,backend/app/main.py,"Inicialização FastAPI, middleware, rotas e publicação dos assets",Versionar,Existente
+app/mapping.py,backend/app/services/mapping.py,"Persistência, regras ou auditoria compartilhada",Versionar,Existente
+app/presenca.py,backend/app/services/presenca.py,"Persistência, regras ou auditoria compartilhada",Versionar,Existente
+app/privacidade.py,backend/app/core/privacidade.py,Infraestrutura e helpers compartilhados,Versionar,Existente
+app/resumos_ponto.py,backend/app/services/ponto.py,"Recebimento, versionamento e persistência de resumos do ponto",Versionar,Existente
+app/routes_dados.py,backend/app/api/dados.py;backend/app/services/dados.py;backend/app/services/auditoria.py,"Contrato HTTP, autenticação e validação de acesso",Versionar,Existente
+app/routes_importacao.py,backend/app/api/importacao.py,"Contrato HTTP, autenticação e validação de acesso",Versionar,Existente
+app/routes_integracao.py,backend/app/api/ponto.py;backend/app/schemas/ponto.py,"Contrato HTTP, autenticação e validação de acesso",Versionar,Existente
+app/routes_usuarios.py,backend/app/api/usuarios.py;backend/app/schemas/usuarios.py,"Contrato HTTP, autenticação e validação de acesso",Versionar,Existente
+backups/pre-revisao-20261007-213517.dump,backups/pre-revisao-20261007-213517.dump,Backup local do banco,Ignorar e preservar no disco,Existente
+backups/quadro-20261007.dump,backups/quadro-20261007.dump,Backup local do banco,Ignorar e preservar no disco,Existente
+backups/quadro-20261008.dump,backups/quadro-20261008.dump,Backup local do banco,Ignorar e preservar no disco,Existente
+backups/quadro-20261009.dump,backups/quadro-20261009.dump,Backup local do banco,Ignorar e preservar no disco,Existente
+backups/quadro-inicial-20261006.dump,backups/quadro-inicial-20261006.dump,Backup local do banco,Ignorar e preservar no disco,Existente
+db/schema.sql,db/schema.sql,DDL versionado; schema v3 sem alteração,Versionar,Existente
+docker-compose.yml,docker-compose.yml,"Serviços de aplicação, PostgreSQL e backup, preservando o volume",Versionar,Existente
+Dockerfile,Dockerfile,Construção da imagem de aplicação sem privilégios,Versionar,Existente
+docs/COFFITO Pass de Pessoal.md,docs/README.md (consolidado),"Documentação técnica, operacional ou histórico",Consolidar documento duplicado,Existente
+docs/DOCUMENTACAO-TI.md,docs/operacao/DOCUMENTACAO-TI.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
+docs/ESQUEMA-BANCO (1).md,docs/README.md (consolidado),"Documentação técnica, operacional ou histórico",Consolidar documento duplicado,Existente
+docs/ESQUEMA-BANCO.md,docs/banco/ESQUEMA-BANCO.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
+docs/IMPORTACAO-PLANILHAS.md,docs/importacao/IMPORTACAO-PLANILHAS.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
+docs/INTEGRACAO-PONTO.md,docs/integracao/INTEGRACAO-PONTO.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
+docs/integracao-rh-ponto.svg,docs/banco/diagramas/integracao-rh-ponto.svg,Diagrama versionado do banco ou integração,Versionar,Existente
+docs/modelagem-rh.svg,docs/banco/diagramas/modelagem-rh.svg,Diagrama versionado do banco ou integração,Versionar,Existente
+docs/modelos/modelo-funcionarios.csv,docs/importacao/modelos/modelo-funcionarios.csv,Modelo oficial de planilha sem dados pessoais,Versionar,Existente
+docs/modelos/modelo-funcionarios.xlsx,docs/importacao/modelos/modelo-funcionarios.xlsx,Modelo oficial de planilha sem dados pessoais,Versionar,Existente
+docs/modelos/modelo-lancamentos.csv,docs/importacao/modelos/modelo-lancamentos.csv,Modelo oficial de planilha sem dados pessoais,Versionar,Existente
+docs/modelos/modelo-lancamentos.xlsx,docs/importacao/modelos/modelo-lancamentos.xlsx,Modelo oficial de planilha sem dados pessoais,Versionar,Existente
+docs/REVISAO-2026-10-07.md,docs/historico/REVISAO-2026-10-07.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
+ops/backup.sh,ops/backup.sh,Rotina operacional de backup,Versionar,Existente
+public/img/logo-dark.webp,frontend/assets/images/logo-dark.webp,Imagem da identidade visual,Versionar,Existente
+public/img/logo-light.webp,frontend/assets/images/logo-light.webp,Imagem da identidade visual,Versionar,Existente
+public/importacao.html,frontend/importacao.html,Estrutura e documentação das planilhas,Versionar,Existente
+public/index.html,frontend/index.html;frontend/styles/;frontend/scripts/core/;frontend/scripts/features/,Documento HTML ou configuração dos testes JavaScript,Versionar,Existente
+public/js/api.js,frontend/scripts/core/api.js,Infraestrutura ou cálculos comuns do painel,Versionar,Existente
+public/js/importacao.js,frontend/scripts/importacao.js,Inicialização ou comportamento de página,Versionar,Existente
+public/js/login.js,frontend/scripts/login.js,Inicialização ou comportamento de página,Versionar,Existente
+public/js/painel-extra.js,"frontend/scripts/features/ (conta, usuários e importação);frontend/styles/features/administracao.css","Conta, usuários e importação; estilos de administração",Versionar,Existente
+public/js/painel.js,frontend/scripts/main.js;frontend/scripts/core/;frontend/scripts/features/,Painel dividido em módulos ES por funcionalidade e infraestrutura,Versionar,Existente
+public/js/presenca.js,frontend/scripts/features/presenca.js;frontend/styles/features/presenca.css,Funcionalidade do painel: presenca,Versionar,Existente
+public/login.html,frontend/login.html,Formulário de autenticação,Versionar,Existente
+README.md,README.md,"Configuração do projeto, execução, Git ou documentação inicial",Versionar,Existente
+requirements-dev.txt,backend/requirements-dev.txt,Dependências Python para execução ou desenvolvimento,Versionar,Existente
+requirements.txt,backend/requirements.txt,Dependências Python para execução ou desenvolvimento,Versionar,Existente
+seed/config/beneficios.json,seed/config/beneficios.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/config/remuneracao.json,seed/config/remuneracao.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-001.json,seed/funcionarios/c-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-002.json,seed/funcionarios/c-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-004.json,seed/funcionarios/c-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-005.json,seed/funcionarios/c-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-006.json,seed/funcionarios/c-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-007.json,seed/funcionarios/c-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-008.json,seed/funcionarios/c-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-009.json,seed/funcionarios/c-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-010.json,seed/funcionarios/c-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-011.json,seed/funcionarios/c-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-012.json,seed/funcionarios/c-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-013.json,seed/funcionarios/c-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-014.json,seed/funcionarios/c-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-015.json,seed/funcionarios/c-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-016.json,seed/funcionarios/c-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-017.json,seed/funcionarios/c-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-018.json,seed/funcionarios/c-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-019.json,seed/funcionarios/c-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-020.json,seed/funcionarios/c-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-021.json,seed/funcionarios/c-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-022.json,seed/funcionarios/c-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-023.json,seed/funcionarios/c-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-024.json,seed/funcionarios/c-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-025.json,seed/funcionarios/c-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-026.json,seed/funcionarios/c-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-027.json,seed/funcionarios/c-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-028.json,seed/funcionarios/c-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/c-029.json,seed/funcionarios/c-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-002.json,seed/funcionarios/p-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-003.json,seed/funcionarios/p-003.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-004.json,seed/funcionarios/p-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-005.json,seed/funcionarios/p-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-006.json,seed/funcionarios/p-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-007.json,seed/funcionarios/p-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-008.json,seed/funcionarios/p-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-009.json,seed/funcionarios/p-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-010.json,seed/funcionarios/p-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-011.json,seed/funcionarios/p-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-012.json,seed/funcionarios/p-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-013.json,seed/funcionarios/p-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-014.json,seed/funcionarios/p-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-015.json,seed/funcionarios/p-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-016.json,seed/funcionarios/p-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-017.json,seed/funcionarios/p-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-018.json,seed/funcionarios/p-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-019.json,seed/funcionarios/p-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-020.json,seed/funcionarios/p-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-021.json,seed/funcionarios/p-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-022.json,seed/funcionarios/p-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-023.json,seed/funcionarios/p-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-024.json,seed/funcionarios/p-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-025.json,seed/funcionarios/p-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-026.json,seed/funcionarios/p-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-027.json,seed/funcionarios/p-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-028.json,seed/funcionarios/p-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-029.json,seed/funcionarios/p-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-030.json,seed/funcionarios/p-030.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-031.json,seed/funcionarios/p-031.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-032.json,seed/funcionarios/p-032.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-033.json,seed/funcionarios/p-033.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-034.json,seed/funcionarios/p-034.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-035.json,seed/funcionarios/p-035.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-036.json,seed/funcionarios/p-036.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-037.json,seed/funcionarios/p-037.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-038.json,seed/funcionarios/p-038.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-039.json,seed/funcionarios/p-039.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-040.json,seed/funcionarios/p-040.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-041.json,seed/funcionarios/p-041.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-042.json,seed/funcionarios/p-042.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-043.json,seed/funcionarios/p-043.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-044.json,seed/funcionarios/p-044.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-045.json,seed/funcionarios/p-045.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-046.json,seed/funcionarios/p-046.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-047.json,seed/funcionarios/p-047.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-048.json,seed/funcionarios/p-048.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-049.json,seed/funcionarios/p-049.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-050.json,seed/funcionarios/p-050.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-051.json,seed/funcionarios/p-051.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-052.json,seed/funcionarios/p-052.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-053.json,seed/funcionarios/p-053.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-054.json,seed/funcionarios/p-054.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-055.json,seed/funcionarios/p-055.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-056.json,seed/funcionarios/p-056.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-057.json,seed/funcionarios/p-057.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-058.json,seed/funcionarios/p-058.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-059.json,seed/funcionarios/p-059.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-060.json,seed/funcionarios/p-060.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-061.json,seed/funcionarios/p-061.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-062.json,seed/funcionarios/p-062.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-063.json,seed/funcionarios/p-063.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-064.json,seed/funcionarios/p-064.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-065.json,seed/funcionarios/p-065.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-066.json,seed/funcionarios/p-066.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-067.json,seed/funcionarios/p-067.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-068.json,seed/funcionarios/p-068.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-069.json,seed/funcionarios/p-069.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-070.json,seed/funcionarios/p-070.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-071.json,seed/funcionarios/p-071.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-072.json,seed/funcionarios/p-072.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-073.json,seed/funcionarios/p-073.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/p-074.json,seed/funcionarios/p-074.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/funcionarios/v8toubwdd8ehbvliaehp.json,seed/funcionarios/v8toubwdd8ehbvliaehp.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-001.json,seed/ocorrencias/abn-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-002.json,seed/ocorrencias/abn-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-003.json,seed/ocorrencias/abn-003.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-004.json,seed/ocorrencias/abn-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-005.json,seed/ocorrencias/abn-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-006.json,seed/ocorrencias/abn-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-007.json,seed/ocorrencias/abn-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-008.json,seed/ocorrencias/abn-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-009.json,seed/ocorrencias/abn-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-010.json,seed/ocorrencias/abn-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-011.json,seed/ocorrencias/abn-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-012.json,seed/ocorrencias/abn-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-013.json,seed/ocorrencias/abn-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-014.json,seed/ocorrencias/abn-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-015.json,seed/ocorrencias/abn-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-016.json,seed/ocorrencias/abn-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-017.json,seed/ocorrencias/abn-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-018.json,seed/ocorrencias/abn-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-019.json,seed/ocorrencias/abn-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-020.json,seed/ocorrencias/abn-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-021.json,seed/ocorrencias/abn-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-022.json,seed/ocorrencias/abn-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-023.json,seed/ocorrencias/abn-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-024.json,seed/ocorrencias/abn-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-025.json,seed/ocorrencias/abn-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-026.json,seed/ocorrencias/abn-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-027.json,seed/ocorrencias/abn-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-028.json,seed/ocorrencias/abn-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-029.json,seed/ocorrencias/abn-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-030.json,seed/ocorrencias/abn-030.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-031.json,seed/ocorrencias/abn-031.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-032.json,seed/ocorrencias/abn-032.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-033.json,seed/ocorrencias/abn-033.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-034.json,seed/ocorrencias/abn-034.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-035.json,seed/ocorrencias/abn-035.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-036.json,seed/ocorrencias/abn-036.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-037.json,seed/ocorrencias/abn-037.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-038.json,seed/ocorrencias/abn-038.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-039.json,seed/ocorrencias/abn-039.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-040.json,seed/ocorrencias/abn-040.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-041.json,seed/ocorrencias/abn-041.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-042.json,seed/ocorrencias/abn-042.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-043.json,seed/ocorrencias/abn-043.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-044.json,seed/ocorrencias/abn-044.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-045.json,seed/ocorrencias/abn-045.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-046.json,seed/ocorrencias/abn-046.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-047.json,seed/ocorrencias/abn-047.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-048.json,seed/ocorrencias/abn-048.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-049.json,seed/ocorrencias/abn-049.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-050.json,seed/ocorrencias/abn-050.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-051.json,seed/ocorrencias/abn-051.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-052.json,seed/ocorrencias/abn-052.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-053.json,seed/ocorrencias/abn-053.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-054.json,seed/ocorrencias/abn-054.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-055.json,seed/ocorrencias/abn-055.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-056.json,seed/ocorrencias/abn-056.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-057.json,seed/ocorrencias/abn-057.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-058.json,seed/ocorrencias/abn-058.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-059.json,seed/ocorrencias/abn-059.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-060.json,seed/ocorrencias/abn-060.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-061.json,seed/ocorrencias/abn-061.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-062.json,seed/ocorrencias/abn-062.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-063.json,seed/ocorrencias/abn-063.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-064.json,seed/ocorrencias/abn-064.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-065.json,seed/ocorrencias/abn-065.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-066.json,seed/ocorrencias/abn-066.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-067.json,seed/ocorrencias/abn-067.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-068.json,seed/ocorrencias/abn-068.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-069.json,seed/ocorrencias/abn-069.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-070.json,seed/ocorrencias/abn-070.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-071.json,seed/ocorrencias/abn-071.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-072.json,seed/ocorrencias/abn-072.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-073.json,seed/ocorrencias/abn-073.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-074.json,seed/ocorrencias/abn-074.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-075.json,seed/ocorrencias/abn-075.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-076.json,seed/ocorrencias/abn-076.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-077.json,seed/ocorrencias/abn-077.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-078.json,seed/ocorrencias/abn-078.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-079.json,seed/ocorrencias/abn-079.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-080.json,seed/ocorrencias/abn-080.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-081.json,seed/ocorrencias/abn-081.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-082.json,seed/ocorrencias/abn-082.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-083.json,seed/ocorrencias/abn-083.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-084.json,seed/ocorrencias/abn-084.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-085.json,seed/ocorrencias/abn-085.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-086.json,seed/ocorrencias/abn-086.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-087.json,seed/ocorrencias/abn-087.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-088.json,seed/ocorrencias/abn-088.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-089.json,seed/ocorrencias/abn-089.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-090.json,seed/ocorrencias/abn-090.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-091.json,seed/ocorrencias/abn-091.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-092.json,seed/ocorrencias/abn-092.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-093.json,seed/ocorrencias/abn-093.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-094.json,seed/ocorrencias/abn-094.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-095.json,seed/ocorrencias/abn-095.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-096.json,seed/ocorrencias/abn-096.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-097.json,seed/ocorrencias/abn-097.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-098.json,seed/ocorrencias/abn-098.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-099.json,seed/ocorrencias/abn-099.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-100.json,seed/ocorrencias/abn-100.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-101.json,seed/ocorrencias/abn-101.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-102.json,seed/ocorrencias/abn-102.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-103.json,seed/ocorrencias/abn-103.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-104.json,seed/ocorrencias/abn-104.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-105.json,seed/ocorrencias/abn-105.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-106.json,seed/ocorrencias/abn-106.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-107.json,seed/ocorrencias/abn-107.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-108.json,seed/ocorrencias/abn-108.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-109.json,seed/ocorrencias/abn-109.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-110.json,seed/ocorrencias/abn-110.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-111.json,seed/ocorrencias/abn-111.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-112.json,seed/ocorrencias/abn-112.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-113.json,seed/ocorrencias/abn-113.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-114.json,seed/ocorrencias/abn-114.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-115.json,seed/ocorrencias/abn-115.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-116.json,seed/ocorrencias/abn-116.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-117.json,seed/ocorrencias/abn-117.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-118.json,seed/ocorrencias/abn-118.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-119.json,seed/ocorrencias/abn-119.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-120.json,seed/ocorrencias/abn-120.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-121.json,seed/ocorrencias/abn-121.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-122.json,seed/ocorrencias/abn-122.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-123.json,seed/ocorrencias/abn-123.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-124.json,seed/ocorrencias/abn-124.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-125.json,seed/ocorrencias/abn-125.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-126.json,seed/ocorrencias/abn-126.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-127.json,seed/ocorrencias/abn-127.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-128.json,seed/ocorrencias/abn-128.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-129.json,seed/ocorrencias/abn-129.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-130.json,seed/ocorrencias/abn-130.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-131.json,seed/ocorrencias/abn-131.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-132.json,seed/ocorrencias/abn-132.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-133.json,seed/ocorrencias/abn-133.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-134.json,seed/ocorrencias/abn-134.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-135.json,seed/ocorrencias/abn-135.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-136.json,seed/ocorrencias/abn-136.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-137.json,seed/ocorrencias/abn-137.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-138.json,seed/ocorrencias/abn-138.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-139.json,seed/ocorrencias/abn-139.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-140.json,seed/ocorrencias/abn-140.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-141.json,seed/ocorrencias/abn-141.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-142.json,seed/ocorrencias/abn-142.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-143.json,seed/ocorrencias/abn-143.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-144.json,seed/ocorrencias/abn-144.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-145.json,seed/ocorrencias/abn-145.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-146.json,seed/ocorrencias/abn-146.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-147.json,seed/ocorrencias/abn-147.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-148.json,seed/ocorrencias/abn-148.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-149.json,seed/ocorrencias/abn-149.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-150.json,seed/ocorrencias/abn-150.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-151.json,seed/ocorrencias/abn-151.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-152.json,seed/ocorrencias/abn-152.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-153.json,seed/ocorrencias/abn-153.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-154.json,seed/ocorrencias/abn-154.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-155.json,seed/ocorrencias/abn-155.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-156.json,seed/ocorrencias/abn-156.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-157.json,seed/ocorrencias/abn-157.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-158.json,seed/ocorrencias/abn-158.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-159.json,seed/ocorrencias/abn-159.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-160.json,seed/ocorrencias/abn-160.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-161.json,seed/ocorrencias/abn-161.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-162.json,seed/ocorrencias/abn-162.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-163.json,seed/ocorrencias/abn-163.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-164.json,seed/ocorrencias/abn-164.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-165.json,seed/ocorrencias/abn-165.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-166.json,seed/ocorrencias/abn-166.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-167.json,seed/ocorrencias/abn-167.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-168.json,seed/ocorrencias/abn-168.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-169.json,seed/ocorrencias/abn-169.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-170.json,seed/ocorrencias/abn-170.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-171.json,seed/ocorrencias/abn-171.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-172.json,seed/ocorrencias/abn-172.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-173.json,seed/ocorrencias/abn-173.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-174.json,seed/ocorrencias/abn-174.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-175.json,seed/ocorrencias/abn-175.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-176.json,seed/ocorrencias/abn-176.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-177.json,seed/ocorrencias/abn-177.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-178.json,seed/ocorrencias/abn-178.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-179.json,seed/ocorrencias/abn-179.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-180.json,seed/ocorrencias/abn-180.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-181.json,seed/ocorrencias/abn-181.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-182.json,seed/ocorrencias/abn-182.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-183.json,seed/ocorrencias/abn-183.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-184.json,seed/ocorrencias/abn-184.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-185.json,seed/ocorrencias/abn-185.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn-186.json,seed/ocorrencias/abn-186.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/abn26-001.json,seed/ocorrencias/abn26-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-001.json,seed/ocorrencias/ates-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-002.json,seed/ocorrencias/ates-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-003.json,seed/ocorrencias/ates-003.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-004.json,seed/ocorrencias/ates-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-005.json,seed/ocorrencias/ates-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-006.json,seed/ocorrencias/ates-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-007.json,seed/ocorrencias/ates-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-008.json,seed/ocorrencias/ates-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-009.json,seed/ocorrencias/ates-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-010.json,seed/ocorrencias/ates-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-011.json,seed/ocorrencias/ates-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-012.json,seed/ocorrencias/ates-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-013.json,seed/ocorrencias/ates-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-014.json,seed/ocorrencias/ates-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-015.json,seed/ocorrencias/ates-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-016.json,seed/ocorrencias/ates-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-017.json,seed/ocorrencias/ates-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-018.json,seed/ocorrencias/ates-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-019.json,seed/ocorrencias/ates-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-020.json,seed/ocorrencias/ates-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-021.json,seed/ocorrencias/ates-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-022.json,seed/ocorrencias/ates-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-023.json,seed/ocorrencias/ates-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-024.json,seed/ocorrencias/ates-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-025.json,seed/ocorrencias/ates-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-026.json,seed/ocorrencias/ates-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-027.json,seed/ocorrencias/ates-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-028.json,seed/ocorrencias/ates-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-029.json,seed/ocorrencias/ates-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-030.json,seed/ocorrencias/ates-030.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-031.json,seed/ocorrencias/ates-031.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-032.json,seed/ocorrencias/ates-032.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-033.json,seed/ocorrencias/ates-033.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-034.json,seed/ocorrencias/ates-034.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-035.json,seed/ocorrencias/ates-035.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-036.json,seed/ocorrencias/ates-036.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-037.json,seed/ocorrencias/ates-037.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-038.json,seed/ocorrencias/ates-038.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-039.json,seed/ocorrencias/ates-039.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-040.json,seed/ocorrencias/ates-040.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-041.json,seed/ocorrencias/ates-041.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-042.json,seed/ocorrencias/ates-042.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-043.json,seed/ocorrencias/ates-043.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-044.json,seed/ocorrencias/ates-044.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-045.json,seed/ocorrencias/ates-045.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-046.json,seed/ocorrencias/ates-046.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-047.json,seed/ocorrencias/ates-047.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-048.json,seed/ocorrencias/ates-048.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-049.json,seed/ocorrencias/ates-049.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-050.json,seed/ocorrencias/ates-050.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-051.json,seed/ocorrencias/ates-051.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-052.json,seed/ocorrencias/ates-052.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-053.json,seed/ocorrencias/ates-053.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-054.json,seed/ocorrencias/ates-054.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-055.json,seed/ocorrencias/ates-055.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-056.json,seed/ocorrencias/ates-056.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-057.json,seed/ocorrencias/ates-057.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-058.json,seed/ocorrencias/ates-058.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-059.json,seed/ocorrencias/ates-059.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-060.json,seed/ocorrencias/ates-060.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-061.json,seed/ocorrencias/ates-061.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-062.json,seed/ocorrencias/ates-062.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-063.json,seed/ocorrencias/ates-063.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-064.json,seed/ocorrencias/ates-064.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-065.json,seed/ocorrencias/ates-065.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-066.json,seed/ocorrencias/ates-066.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-067.json,seed/ocorrencias/ates-067.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-068.json,seed/ocorrencias/ates-068.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-069.json,seed/ocorrencias/ates-069.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-070.json,seed/ocorrencias/ates-070.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-071.json,seed/ocorrencias/ates-071.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-072.json,seed/ocorrencias/ates-072.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-073.json,seed/ocorrencias/ates-073.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-074.json,seed/ocorrencias/ates-074.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-075.json,seed/ocorrencias/ates-075.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-076.json,seed/ocorrencias/ates-076.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-077.json,seed/ocorrencias/ates-077.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-078.json,seed/ocorrencias/ates-078.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-079.json,seed/ocorrencias/ates-079.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-080.json,seed/ocorrencias/ates-080.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-081.json,seed/ocorrencias/ates-081.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-082.json,seed/ocorrencias/ates-082.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-083.json,seed/ocorrencias/ates-083.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-084.json,seed/ocorrencias/ates-084.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-085.json,seed/ocorrencias/ates-085.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-086.json,seed/ocorrencias/ates-086.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-087.json,seed/ocorrencias/ates-087.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-088.json,seed/ocorrencias/ates-088.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-089.json,seed/ocorrencias/ates-089.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-090.json,seed/ocorrencias/ates-090.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-091.json,seed/ocorrencias/ates-091.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-092.json,seed/ocorrencias/ates-092.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-093.json,seed/ocorrencias/ates-093.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-094.json,seed/ocorrencias/ates-094.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-095.json,seed/ocorrencias/ates-095.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-096.json,seed/ocorrencias/ates-096.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-097.json,seed/ocorrencias/ates-097.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-098.json,seed/ocorrencias/ates-098.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-099.json,seed/ocorrencias/ates-099.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-100.json,seed/ocorrencias/ates-100.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-101.json,seed/ocorrencias/ates-101.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-102.json,seed/ocorrencias/ates-102.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-103.json,seed/ocorrencias/ates-103.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-104.json,seed/ocorrencias/ates-104.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-105.json,seed/ocorrencias/ates-105.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-106.json,seed/ocorrencias/ates-106.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-107.json,seed/ocorrencias/ates-107.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-108.json,seed/ocorrencias/ates-108.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-109.json,seed/ocorrencias/ates-109.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-110.json,seed/ocorrencias/ates-110.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-111.json,seed/ocorrencias/ates-111.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-112.json,seed/ocorrencias/ates-112.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-113.json,seed/ocorrencias/ates-113.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-114.json,seed/ocorrencias/ates-114.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-115.json,seed/ocorrencias/ates-115.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-116.json,seed/ocorrencias/ates-116.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-117.json,seed/ocorrencias/ates-117.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-118.json,seed/ocorrencias/ates-118.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-119.json,seed/ocorrencias/ates-119.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-120.json,seed/ocorrencias/ates-120.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-121.json,seed/ocorrencias/ates-121.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-122.json,seed/ocorrencias/ates-122.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-123.json,seed/ocorrencias/ates-123.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-124.json,seed/ocorrencias/ates-124.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-125.json,seed/ocorrencias/ates-125.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-126.json,seed/ocorrencias/ates-126.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-127.json,seed/ocorrencias/ates-127.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-128.json,seed/ocorrencias/ates-128.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-129.json,seed/ocorrencias/ates-129.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-130.json,seed/ocorrencias/ates-130.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-131.json,seed/ocorrencias/ates-131.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-132.json,seed/ocorrencias/ates-132.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-133.json,seed/ocorrencias/ates-133.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-134.json,seed/ocorrencias/ates-134.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-135.json,seed/ocorrencias/ates-135.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-136.json,seed/ocorrencias/ates-136.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-137.json,seed/ocorrencias/ates-137.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-138.json,seed/ocorrencias/ates-138.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-139.json,seed/ocorrencias/ates-139.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-140.json,seed/ocorrencias/ates-140.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-141.json,seed/ocorrencias/ates-141.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-142.json,seed/ocorrencias/ates-142.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-143.json,seed/ocorrencias/ates-143.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-144.json,seed/ocorrencias/ates-144.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-145.json,seed/ocorrencias/ates-145.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-146.json,seed/ocorrencias/ates-146.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-147.json,seed/ocorrencias/ates-147.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-148.json,seed/ocorrencias/ates-148.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-149.json,seed/ocorrencias/ates-149.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-150.json,seed/ocorrencias/ates-150.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-151.json,seed/ocorrencias/ates-151.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-152.json,seed/ocorrencias/ates-152.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-153.json,seed/ocorrencias/ates-153.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-154.json,seed/ocorrencias/ates-154.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-155.json,seed/ocorrencias/ates-155.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-156.json,seed/ocorrencias/ates-156.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-157.json,seed/ocorrencias/ates-157.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-158.json,seed/ocorrencias/ates-158.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-159.json,seed/ocorrencias/ates-159.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-160.json,seed/ocorrencias/ates-160.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-161.json,seed/ocorrencias/ates-161.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-162.json,seed/ocorrencias/ates-162.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-163.json,seed/ocorrencias/ates-163.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-164.json,seed/ocorrencias/ates-164.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-165.json,seed/ocorrencias/ates-165.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-166.json,seed/ocorrencias/ates-166.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-167.json,seed/ocorrencias/ates-167.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-168.json,seed/ocorrencias/ates-168.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-169.json,seed/ocorrencias/ates-169.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-170.json,seed/ocorrencias/ates-170.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-171.json,seed/ocorrencias/ates-171.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-172.json,seed/ocorrencias/ates-172.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-173.json,seed/ocorrencias/ates-173.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-174.json,seed/ocorrencias/ates-174.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-175.json,seed/ocorrencias/ates-175.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-176.json,seed/ocorrencias/ates-176.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-177.json,seed/ocorrencias/ates-177.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-178.json,seed/ocorrencias/ates-178.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-179.json,seed/ocorrencias/ates-179.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-180.json,seed/ocorrencias/ates-180.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-181.json,seed/ocorrencias/ates-181.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates-182.json,seed/ocorrencias/ates-182.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-001.json,seed/ocorrencias/ates26-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-002.json,seed/ocorrencias/ates26-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-003.json,seed/ocorrencias/ates26-003.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-004.json,seed/ocorrencias/ates26-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-005.json,seed/ocorrencias/ates26-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-006.json,seed/ocorrencias/ates26-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-007.json,seed/ocorrencias/ates26-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-008.json,seed/ocorrencias/ates26-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-009.json,seed/ocorrencias/ates26-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-010.json,seed/ocorrencias/ates26-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-011.json,seed/ocorrencias/ates26-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-012.json,seed/ocorrencias/ates26-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-013.json,seed/ocorrencias/ates26-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-014.json,seed/ocorrencias/ates26-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-015.json,seed/ocorrencias/ates26-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-016.json,seed/ocorrencias/ates26-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-017.json,seed/ocorrencias/ates26-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-018.json,seed/ocorrencias/ates26-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-019.json,seed/ocorrencias/ates26-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-020.json,seed/ocorrencias/ates26-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-021.json,seed/ocorrencias/ates26-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-022.json,seed/ocorrencias/ates26-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-023.json,seed/ocorrencias/ates26-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-024.json,seed/ocorrencias/ates26-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-025.json,seed/ocorrencias/ates26-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-026.json,seed/ocorrencias/ates26-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-027.json,seed/ocorrencias/ates26-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-028.json,seed/ocorrencias/ates26-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-029.json,seed/ocorrencias/ates26-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-030.json,seed/ocorrencias/ates26-030.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-031.json,seed/ocorrencias/ates26-031.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-032.json,seed/ocorrencias/ates26-032.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-033.json,seed/ocorrencias/ates26-033.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-034.json,seed/ocorrencias/ates26-034.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-035.json,seed/ocorrencias/ates26-035.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-036.json,seed/ocorrencias/ates26-036.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-037.json,seed/ocorrencias/ates26-037.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-038.json,seed/ocorrencias/ates26-038.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-039.json,seed/ocorrencias/ates26-039.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-040.json,seed/ocorrencias/ates26-040.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-041.json,seed/ocorrencias/ates26-041.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-042.json,seed/ocorrencias/ates26-042.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-043.json,seed/ocorrencias/ates26-043.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-044.json,seed/ocorrencias/ates26-044.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-045.json,seed/ocorrencias/ates26-045.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-046.json,seed/ocorrencias/ates26-046.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-047.json,seed/ocorrencias/ates26-047.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-048.json,seed/ocorrencias/ates26-048.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-049.json,seed/ocorrencias/ates26-049.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-050.json,seed/ocorrencias/ates26-050.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-051.json,seed/ocorrencias/ates26-051.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-052.json,seed/ocorrencias/ates26-052.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-053.json,seed/ocorrencias/ates26-053.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-054.json,seed/ocorrencias/ates26-054.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-055.json,seed/ocorrencias/ates26-055.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-056.json,seed/ocorrencias/ates26-056.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-057.json,seed/ocorrencias/ates26-057.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-058.json,seed/ocorrencias/ates26-058.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-059.json,seed/ocorrencias/ates26-059.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-060.json,seed/ocorrencias/ates26-060.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-061.json,seed/ocorrencias/ates26-061.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-062.json,seed/ocorrencias/ates26-062.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-063.json,seed/ocorrencias/ates26-063.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-064.json,seed/ocorrencias/ates26-064.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-065.json,seed/ocorrencias/ates26-065.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-066.json,seed/ocorrencias/ates26-066.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-067.json,seed/ocorrencias/ates26-067.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-068.json,seed/ocorrencias/ates26-068.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-069.json,seed/ocorrencias/ates26-069.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-070.json,seed/ocorrencias/ates26-070.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-071.json,seed/ocorrencias/ates26-071.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-072.json,seed/ocorrencias/ates26-072.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-073.json,seed/ocorrencias/ates26-073.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-074.json,seed/ocorrencias/ates26-074.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-075.json,seed/ocorrencias/ates26-075.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-076.json,seed/ocorrencias/ates26-076.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-077.json,seed/ocorrencias/ates26-077.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-078.json,seed/ocorrencias/ates26-078.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-079.json,seed/ocorrencias/ates26-079.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-080.json,seed/ocorrencias/ates26-080.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-081.json,seed/ocorrencias/ates26-081.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-082.json,seed/ocorrencias/ates26-082.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-083.json,seed/ocorrencias/ates26-083.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-084.json,seed/ocorrencias/ates26-084.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-085.json,seed/ocorrencias/ates26-085.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-086.json,seed/ocorrencias/ates26-086.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-087.json,seed/ocorrencias/ates26-087.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-088.json,seed/ocorrencias/ates26-088.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-089.json,seed/ocorrencias/ates26-089.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-090.json,seed/ocorrencias/ates26-090.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-091.json,seed/ocorrencias/ates26-091.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-092.json,seed/ocorrencias/ates26-092.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-093.json,seed/ocorrencias/ates26-093.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-094.json,seed/ocorrencias/ates26-094.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-095.json,seed/ocorrencias/ates26-095.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-096.json,seed/ocorrencias/ates26-096.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-097.json,seed/ocorrencias/ates26-097.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-098.json,seed/ocorrencias/ates26-098.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-099.json,seed/ocorrencias/ates26-099.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-100.json,seed/ocorrencias/ates26-100.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-101.json,seed/ocorrencias/ates26-101.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-102.json,seed/ocorrencias/ates26-102.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-103.json,seed/ocorrencias/ates26-103.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-104.json,seed/ocorrencias/ates26-104.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-105.json,seed/ocorrencias/ates26-105.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-106.json,seed/ocorrencias/ates26-106.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-107.json,seed/ocorrencias/ates26-107.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-108.json,seed/ocorrencias/ates26-108.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-109.json,seed/ocorrencias/ates26-109.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-110.json,seed/ocorrencias/ates26-110.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-111.json,seed/ocorrencias/ates26-111.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-112.json,seed/ocorrencias/ates26-112.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-113.json,seed/ocorrencias/ates26-113.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-114.json,seed/ocorrencias/ates26-114.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-115.json,seed/ocorrencias/ates26-115.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-116.json,seed/ocorrencias/ates26-116.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-117.json,seed/ocorrencias/ates26-117.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-118.json,seed/ocorrencias/ates26-118.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-119.json,seed/ocorrencias/ates26-119.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-120.json,seed/ocorrencias/ates26-120.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-121.json,seed/ocorrencias/ates26-121.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-122.json,seed/ocorrencias/ates26-122.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-123.json,seed/ocorrencias/ates26-123.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-124.json,seed/ocorrencias/ates26-124.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/ates26-125.json,seed/ocorrencias/ates26-125.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/bh26-001.json,seed/ocorrencias/bh26-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/bh26-002.json,seed/ocorrencias/bh26-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-001.json,seed/ocorrencias/fer-001.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-002.json,seed/ocorrencias/fer-002.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-003.json,seed/ocorrencias/fer-003.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-004.json,seed/ocorrencias/fer-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-005.json,seed/ocorrencias/fer-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-006.json,seed/ocorrencias/fer-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-007.json,seed/ocorrencias/fer-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-008.json,seed/ocorrencias/fer-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-009.json,seed/ocorrencias/fer-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-010.json,seed/ocorrencias/fer-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-011.json,seed/ocorrencias/fer-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-012.json,seed/ocorrencias/fer-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-013.json,seed/ocorrencias/fer-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-014.json,seed/ocorrencias/fer-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-015.json,seed/ocorrencias/fer-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-016.json,seed/ocorrencias/fer-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-017.json,seed/ocorrencias/fer-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-018.json,seed/ocorrencias/fer-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-019.json,seed/ocorrencias/fer-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-020.json,seed/ocorrencias/fer-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-021.json,seed/ocorrencias/fer-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-022.json,seed/ocorrencias/fer-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-023.json,seed/ocorrencias/fer-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-024.json,seed/ocorrencias/fer-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-025.json,seed/ocorrencias/fer-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-026.json,seed/ocorrencias/fer-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-027.json,seed/ocorrencias/fer-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-028.json,seed/ocorrencias/fer-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-029.json,seed/ocorrencias/fer-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-030.json,seed/ocorrencias/fer-030.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-031.json,seed/ocorrencias/fer-031.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-032.json,seed/ocorrencias/fer-032.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-033.json,seed/ocorrencias/fer-033.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-034.json,seed/ocorrencias/fer-034.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-035.json,seed/ocorrencias/fer-035.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-036.json,seed/ocorrencias/fer-036.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-037.json,seed/ocorrencias/fer-037.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-038.json,seed/ocorrencias/fer-038.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-039.json,seed/ocorrencias/fer-039.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-040.json,seed/ocorrencias/fer-040.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-041.json,seed/ocorrencias/fer-041.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-042.json,seed/ocorrencias/fer-042.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-043.json,seed/ocorrencias/fer-043.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-044.json,seed/ocorrencias/fer-044.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-045.json,seed/ocorrencias/fer-045.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-046.json,seed/ocorrencias/fer-046.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-047.json,seed/ocorrencias/fer-047.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-048.json,seed/ocorrencias/fer-048.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-049.json,seed/ocorrencias/fer-049.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-050.json,seed/ocorrencias/fer-050.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-051.json,seed/ocorrencias/fer-051.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-052.json,seed/ocorrencias/fer-052.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-053.json,seed/ocorrencias/fer-053.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-054.json,seed/ocorrencias/fer-054.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-055.json,seed/ocorrencias/fer-055.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-056.json,seed/ocorrencias/fer-056.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-057.json,seed/ocorrencias/fer-057.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-058.json,seed/ocorrencias/fer-058.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-059.json,seed/ocorrencias/fer-059.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-060.json,seed/ocorrencias/fer-060.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-061.json,seed/ocorrencias/fer-061.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-062.json,seed/ocorrencias/fer-062.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-063.json,seed/ocorrencias/fer-063.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-064.json,seed/ocorrencias/fer-064.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-065.json,seed/ocorrencias/fer-065.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-066.json,seed/ocorrencias/fer-066.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-067.json,seed/ocorrencias/fer-067.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-068.json,seed/ocorrencias/fer-068.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-069.json,seed/ocorrencias/fer-069.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-070.json,seed/ocorrencias/fer-070.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-071.json,seed/ocorrencias/fer-071.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-072.json,seed/ocorrencias/fer-072.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-073.json,seed/ocorrencias/fer-073.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-074.json,seed/ocorrencias/fer-074.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-075.json,seed/ocorrencias/fer-075.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-076.json,seed/ocorrencias/fer-076.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-077.json,seed/ocorrencias/fer-077.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-078.json,seed/ocorrencias/fer-078.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-079.json,seed/ocorrencias/fer-079.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-080.json,seed/ocorrencias/fer-080.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-081.json,seed/ocorrencias/fer-081.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-082.json,seed/ocorrencias/fer-082.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-083.json,seed/ocorrencias/fer-083.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-084.json,seed/ocorrencias/fer-084.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-085.json,seed/ocorrencias/fer-085.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-086.json,seed/ocorrencias/fer-086.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-087.json,seed/ocorrencias/fer-087.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-088.json,seed/ocorrencias/fer-088.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-089.json,seed/ocorrencias/fer-089.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-090.json,seed/ocorrencias/fer-090.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-091.json,seed/ocorrencias/fer-091.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-092.json,seed/ocorrencias/fer-092.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-093.json,seed/ocorrencias/fer-093.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-094.json,seed/ocorrencias/fer-094.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-095.json,seed/ocorrencias/fer-095.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-096.json,seed/ocorrencias/fer-096.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-097.json,seed/ocorrencias/fer-097.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-098.json,seed/ocorrencias/fer-098.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-099.json,seed/ocorrencias/fer-099.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-100.json,seed/ocorrencias/fer-100.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-101.json,seed/ocorrencias/fer-101.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-102.json,seed/ocorrencias/fer-102.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-103.json,seed/ocorrencias/fer-103.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-104.json,seed/ocorrencias/fer-104.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-105.json,seed/ocorrencias/fer-105.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-106.json,seed/ocorrencias/fer-106.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-107.json,seed/ocorrencias/fer-107.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-108.json,seed/ocorrencias/fer-108.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-109.json,seed/ocorrencias/fer-109.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-110.json,seed/ocorrencias/fer-110.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-111.json,seed/ocorrencias/fer-111.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-112.json,seed/ocorrencias/fer-112.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-113.json,seed/ocorrencias/fer-113.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-114.json,seed/ocorrencias/fer-114.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-115.json,seed/ocorrencias/fer-115.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-116.json,seed/ocorrencias/fer-116.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-117.json,seed/ocorrencias/fer-117.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-118.json,seed/ocorrencias/fer-118.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-119.json,seed/ocorrencias/fer-119.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-120.json,seed/ocorrencias/fer-120.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-121.json,seed/ocorrencias/fer-121.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-122.json,seed/ocorrencias/fer-122.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-123.json,seed/ocorrencias/fer-123.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-124.json,seed/ocorrencias/fer-124.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-125.json,seed/ocorrencias/fer-125.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-126.json,seed/ocorrencias/fer-126.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-127.json,seed/ocorrencias/fer-127.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-128.json,seed/ocorrencias/fer-128.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-129.json,seed/ocorrencias/fer-129.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-130.json,seed/ocorrencias/fer-130.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-131.json,seed/ocorrencias/fer-131.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/fer-132.json,seed/ocorrencias/fer-132.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-003.json,seed/ocorrencias/via-003.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-004.json,seed/ocorrencias/via-004.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-005.json,seed/ocorrencias/via-005.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-006.json,seed/ocorrencias/via-006.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-007.json,seed/ocorrencias/via-007.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-008.json,seed/ocorrencias/via-008.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-009.json,seed/ocorrencias/via-009.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-010.json,seed/ocorrencias/via-010.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-011.json,seed/ocorrencias/via-011.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-012.json,seed/ocorrencias/via-012.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-013.json,seed/ocorrencias/via-013.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-014.json,seed/ocorrencias/via-014.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-015.json,seed/ocorrencias/via-015.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-016.json,seed/ocorrencias/via-016.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-017.json,seed/ocorrencias/via-017.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-018.json,seed/ocorrencias/via-018.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-019.json,seed/ocorrencias/via-019.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-020.json,seed/ocorrencias/via-020.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-021.json,seed/ocorrencias/via-021.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-022.json,seed/ocorrencias/via-022.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-023.json,seed/ocorrencias/via-023.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-024.json,seed/ocorrencias/via-024.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-025.json,seed/ocorrencias/via-025.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-026.json,seed/ocorrencias/via-026.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-027.json,seed/ocorrencias/via-027.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-028.json,seed/ocorrencias/via-028.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-029.json,seed/ocorrencias/via-029.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-030.json,seed/ocorrencias/via-030.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-031.json,seed/ocorrencias/via-031.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-032.json,seed/ocorrencias/via-032.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-033.json,seed/ocorrencias/via-033.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-034.json,seed/ocorrencias/via-034.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-035.json,seed/ocorrencias/via-035.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-036.json,seed/ocorrencias/via-036.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-037.json,seed/ocorrencias/via-037.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-038.json,seed/ocorrencias/via-038.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-039.json,seed/ocorrencias/via-039.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-040.json,seed/ocorrencias/via-040.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-041.json,seed/ocorrencias/via-041.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-042.json,seed/ocorrencias/via-042.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-043.json,seed/ocorrencias/via-043.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-044.json,seed/ocorrencias/via-044.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-045.json,seed/ocorrencias/via-045.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-046.json,seed/ocorrencias/via-046.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-047.json,seed/ocorrencias/via-047.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-048.json,seed/ocorrencias/via-048.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-049.json,seed/ocorrencias/via-049.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-050.json,seed/ocorrencias/via-050.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-051.json,seed/ocorrencias/via-051.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-052.json,seed/ocorrencias/via-052.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-053.json,seed/ocorrencias/via-053.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-054.json,seed/ocorrencias/via-054.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-055.json,seed/ocorrencias/via-055.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-056.json,seed/ocorrencias/via-056.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-057.json,seed/ocorrencias/via-057.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-058.json,seed/ocorrencias/via-058.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-059.json,seed/ocorrencias/via-059.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-060.json,seed/ocorrencias/via-060.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-061.json,seed/ocorrencias/via-061.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-062.json,seed/ocorrencias/via-062.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-063.json,seed/ocorrencias/via-063.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-064.json,seed/ocorrencias/via-064.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-065.json,seed/ocorrencias/via-065.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-066.json,seed/ocorrencias/via-066.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-067.json,seed/ocorrencias/via-067.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-068.json,seed/ocorrencias/via-068.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-069.json,seed/ocorrencias/via-069.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-070.json,seed/ocorrencias/via-070.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-071.json,seed/ocorrencias/via-071.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-072.json,seed/ocorrencias/via-072.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-073.json,seed/ocorrencias/via-073.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-074.json,seed/ocorrencias/via-074.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-075.json,seed/ocorrencias/via-075.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-076.json,seed/ocorrencias/via-076.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-077.json,seed/ocorrencias/via-077.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-078.json,seed/ocorrencias/via-078.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-079.json,seed/ocorrencias/via-079.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-080.json,seed/ocorrencias/via-080.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-081.json,seed/ocorrencias/via-081.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-082.json,seed/ocorrencias/via-082.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-083.json,seed/ocorrencias/via-083.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-084.json,seed/ocorrencias/via-084.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-085.json,seed/ocorrencias/via-085.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-086.json,seed/ocorrencias/via-086.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-087.json,seed/ocorrencias/via-087.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-088.json,seed/ocorrencias/via-088.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-089.json,seed/ocorrencias/via-089.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-090.json,seed/ocorrencias/via-090.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-091.json,seed/ocorrencias/via-091.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-092.json,seed/ocorrencias/via-092.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-093.json,seed/ocorrencias/via-093.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-094.json,seed/ocorrencias/via-094.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-095.json,seed/ocorrencias/via-095.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-096.json,seed/ocorrencias/via-096.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-097.json,seed/ocorrencias/via-097.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-098.json,seed/ocorrencias/via-098.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-099.json,seed/ocorrencias/via-099.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-100.json,seed/ocorrencias/via-100.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-101.json,seed/ocorrencias/via-101.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-102.json,seed/ocorrencias/via-102.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-103.json,seed/ocorrencias/via-103.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-104.json,seed/ocorrencias/via-104.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-105.json,seed/ocorrencias/via-105.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-106.json,seed/ocorrencias/via-106.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-107.json,seed/ocorrencias/via-107.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-108.json,seed/ocorrencias/via-108.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-109.json,seed/ocorrencias/via-109.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-110.json,seed/ocorrencias/via-110.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-111.json,seed/ocorrencias/via-111.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-112.json,seed/ocorrencias/via-112.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-113.json,seed/ocorrencias/via-113.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-114.json,seed/ocorrencias/via-114.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-115.json,seed/ocorrencias/via-115.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-116.json,seed/ocorrencias/via-116.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-117.json,seed/ocorrencias/via-117.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-118.json,seed/ocorrencias/via-118.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-119.json,seed/ocorrencias/via-119.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-120.json,seed/ocorrencias/via-120.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-121.json,seed/ocorrencias/via-121.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-122.json,seed/ocorrencias/via-122.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-123.json,seed/ocorrencias/via-123.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-124.json,seed/ocorrencias/via-124.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-125.json,seed/ocorrencias/via-125.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-126.json,seed/ocorrencias/via-126.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-127.json,seed/ocorrencias/via-127.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-128.json,seed/ocorrencias/via-128.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-129.json,seed/ocorrencias/via-129.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-130.json,seed/ocorrencias/via-130.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-131.json,seed/ocorrencias/via-131.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-132.json,seed/ocorrencias/via-132.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-133.json,seed/ocorrencias/via-133.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-134.json,seed/ocorrencias/via-134.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-135.json,seed/ocorrencias/via-135.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-136.json,seed/ocorrencias/via-136.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-137.json,seed/ocorrencias/via-137.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-138.json,seed/ocorrencias/via-138.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-139.json,seed/ocorrencias/via-139.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-140.json,seed/ocorrencias/via-140.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-141.json,seed/ocorrencias/via-141.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-142.json,seed/ocorrencias/via-142.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-143.json,seed/ocorrencias/via-143.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-144.json,seed/ocorrencias/via-144.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-145.json,seed/ocorrencias/via-145.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-146.json,seed/ocorrencias/via-146.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-147.json,seed/ocorrencias/via-147.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-148.json,seed/ocorrencias/via-148.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-149.json,seed/ocorrencias/via-149.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-150.json,seed/ocorrencias/via-150.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-151.json,seed/ocorrencias/via-151.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-152.json,seed/ocorrencias/via-152.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-153.json,seed/ocorrencias/via-153.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-154.json,seed/ocorrencias/via-154.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-155.json,seed/ocorrencias/via-155.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-156.json,seed/ocorrencias/via-156.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-157.json,seed/ocorrencias/via-157.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-158.json,seed/ocorrencias/via-158.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-159.json,seed/ocorrencias/via-159.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-160.json,seed/ocorrencias/via-160.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-161.json,seed/ocorrencias/via-161.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-162.json,seed/ocorrencias/via-162.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-163.json,seed/ocorrencias/via-163.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-164.json,seed/ocorrencias/via-164.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-165.json,seed/ocorrencias/via-165.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-166.json,seed/ocorrencias/via-166.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-167.json,seed/ocorrencias/via-167.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-168.json,seed/ocorrencias/via-168.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-169.json,seed/ocorrencias/via-169.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-170.json,seed/ocorrencias/via-170.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-171.json,seed/ocorrencias/via-171.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-172.json,seed/ocorrencias/via-172.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-173.json,seed/ocorrencias/via-173.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-174.json,seed/ocorrencias/via-174.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-175.json,seed/ocorrencias/via-175.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-176.json,seed/ocorrencias/via-176.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-177.json,seed/ocorrencias/via-177.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-178.json,seed/ocorrencias/via-178.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-179.json,seed/ocorrencias/via-179.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-180.json,seed/ocorrencias/via-180.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-181.json,seed/ocorrencias/via-181.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-182.json,seed/ocorrencias/via-182.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-183.json,seed/ocorrencias/via-183.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-184.json,seed/ocorrencias/via-184.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-185.json,seed/ocorrencias/via-185.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-186.json,seed/ocorrencias/via-186.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-187.json,seed/ocorrencias/via-187.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-188.json,seed/ocorrencias/via-188.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-189.json,seed/ocorrencias/via-189.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-190.json,seed/ocorrencias/via-190.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-191.json,seed/ocorrencias/via-191.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-192.json,seed/ocorrencias/via-192.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-193.json,seed/ocorrencias/via-193.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-194.json,seed/ocorrencias/via-194.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-195.json,seed/ocorrencias/via-195.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-196.json,seed/ocorrencias/via-196.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-197.json,seed/ocorrencias/via-197.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-198.json,seed/ocorrencias/via-198.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-199.json,seed/ocorrencias/via-199.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-200.json,seed/ocorrencias/via-200.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-201.json,seed/ocorrencias/via-201.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-202.json,seed/ocorrencias/via-202.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-203.json,seed/ocorrencias/via-203.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-204.json,seed/ocorrencias/via-204.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-205.json,seed/ocorrencias/via-205.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-206.json,seed/ocorrencias/via-206.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-207.json,seed/ocorrencias/via-207.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-208.json,seed/ocorrencias/via-208.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-209.json,seed/ocorrencias/via-209.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-210.json,seed/ocorrencias/via-210.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-211.json,seed/ocorrencias/via-211.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-212.json,seed/ocorrencias/via-212.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-213.json,seed/ocorrencias/via-213.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-214.json,seed/ocorrencias/via-214.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-215.json,seed/ocorrencias/via-215.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-216.json,seed/ocorrencias/via-216.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-217.json,seed/ocorrencias/via-217.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-218.json,seed/ocorrencias/via-218.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-219.json,seed/ocorrencias/via-219.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-220.json,seed/ocorrencias/via-220.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-221.json,seed/ocorrencias/via-221.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-222.json,seed/ocorrencias/via-222.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-223.json,seed/ocorrencias/via-223.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-224.json,seed/ocorrencias/via-224.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-225.json,seed/ocorrencias/via-225.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-226.json,seed/ocorrencias/via-226.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-227.json,seed/ocorrencias/via-227.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-228.json,seed/ocorrencias/via-228.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-229.json,seed/ocorrencias/via-229.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-230.json,seed/ocorrencias/via-230.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-231.json,seed/ocorrencias/via-231.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-232.json,seed/ocorrencias/via-232.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-233.json,seed/ocorrencias/via-233.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-234.json,seed/ocorrencias/via-234.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-235.json,seed/ocorrencias/via-235.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-236.json,seed/ocorrencias/via-236.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-237.json,seed/ocorrencias/via-237.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-238.json,seed/ocorrencias/via-238.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-239.json,seed/ocorrencias/via-239.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-240.json,seed/ocorrencias/via-240.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-241.json,seed/ocorrencias/via-241.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-242.json,seed/ocorrencias/via-242.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-243.json,seed/ocorrencias/via-243.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-244.json,seed/ocorrencias/via-244.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-245.json,seed/ocorrencias/via-245.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-246.json,seed/ocorrencias/via-246.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-247.json,seed/ocorrencias/via-247.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-248.json,seed/ocorrencias/via-248.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-249.json,seed/ocorrencias/via-249.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-250.json,seed/ocorrencias/via-250.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-251.json,seed/ocorrencias/via-251.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-252.json,seed/ocorrencias/via-252.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-253.json,seed/ocorrencias/via-253.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-254.json,seed/ocorrencias/via-254.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-255.json,seed/ocorrencias/via-255.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-256.json,seed/ocorrencias/via-256.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-257.json,seed/ocorrencias/via-257.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-258.json,seed/ocorrencias/via-258.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-259.json,seed/ocorrencias/via-259.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-260.json,seed/ocorrencias/via-260.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-261.json,seed/ocorrencias/via-261.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-262.json,seed/ocorrencias/via-262.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-263.json,seed/ocorrencias/via-263.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-264.json,seed/ocorrencias/via-264.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-265.json,seed/ocorrencias/via-265.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-266.json,seed/ocorrencias/via-266.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-267.json,seed/ocorrencias/via-267.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-268.json,seed/ocorrencias/via-268.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-269.json,seed/ocorrencias/via-269.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-270.json,seed/ocorrencias/via-270.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-271.json,seed/ocorrencias/via-271.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-272.json,seed/ocorrencias/via-272.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-273.json,seed/ocorrencias/via-273.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-274.json,seed/ocorrencias/via-274.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-275.json,seed/ocorrencias/via-275.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-276.json,seed/ocorrencias/via-276.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-277.json,seed/ocorrencias/via-277.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-278.json,seed/ocorrencias/via-278.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-279.json,seed/ocorrencias/via-279.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-280.json,seed/ocorrencias/via-280.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-281.json,seed/ocorrencias/via-281.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-282.json,seed/ocorrencias/via-282.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-283.json,seed/ocorrencias/via-283.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-284.json,seed/ocorrencias/via-284.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-285.json,seed/ocorrencias/via-285.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-286.json,seed/ocorrencias/via-286.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-287.json,seed/ocorrencias/via-287.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-288.json,seed/ocorrencias/via-288.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-289.json,seed/ocorrencias/via-289.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-290.json,seed/ocorrencias/via-290.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-291.json,seed/ocorrencias/via-291.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-292.json,seed/ocorrencias/via-292.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-293.json,seed/ocorrencias/via-293.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-294.json,seed/ocorrencias/via-294.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-295.json,seed/ocorrencias/via-295.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-296.json,seed/ocorrencias/via-296.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-297.json,seed/ocorrencias/via-297.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-298.json,seed/ocorrencias/via-298.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-299.json,seed/ocorrencias/via-299.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-300.json,seed/ocorrencias/via-300.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-301.json,seed/ocorrencias/via-301.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-302.json,seed/ocorrencias/via-302.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-303.json,seed/ocorrencias/via-303.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-304.json,seed/ocorrencias/via-304.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-305.json,seed/ocorrencias/via-305.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-306.json,seed/ocorrencias/via-306.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-307.json,seed/ocorrencias/via-307.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+seed/ocorrencias/via-308.json,seed/ocorrencias/via-308.json,Carga inicial local com dados de colaboradores,Ignorar e preservar no disco,Existente
+tests/integracao/compose.yml,backend/tests/integracao/compose.yml,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/integracao/Dockerfile,backend/tests/integracao/Dockerfile,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/integracao/README.md,backend/tests/integracao/README.md,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/integracao/verificar_integracao.py,backend/tests/integracao/verificar_integracao.py,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/test_api.py,backend/tests/test_api.py,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/test_importacao.py,backend/tests/test_importacao.py,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/test_presenca.py,backend/tests/test_presenca.py,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+tests/test_validacao.py,backend/tests/test_validacao.py,Teste automatizado ou ambiente isolado de validação,Versionar,Existente
+(novo),backend/app/api/__init__.py,Declaração de pacote Python,Versionar,Novo ou extraído
+(novo),backend/app/core/__init__.py,Declaração de pacote Python,Versionar,Novo ou extraído
+(novo),backend/app/schemas/__init__.py,Declaração de pacote Python,Versionar,Novo ou extraído
+(novo),backend/app/services/__init__.py,Declaração de pacote Python,Versionar,Novo ou extraído
+(novo),backend/app/services/ponto.py,"Persistência, regras ou auditoria compartilhada",Versionar,Novo ou extraído
+(novo),docs/ARQUITETURA.md,"Documentação técnica, operacional ou histórico",Versionar,Novo ou extraído
+(novo),docs/DESENVOLVIMENTO.md,"Documentação técnica, operacional ou histórico",Versionar,Novo ou extraído
+(novo),docs/historico/REORGANIZACAO-2026-10-09.md,"Documentação técnica, operacional ou histórico",Versionar,Novo ou extraído
+(novo),docs/README.md,"Documentação técnica, operacional ou histórico",Versionar,Novo ou extraído
+(novo),frontend/package.json,Pacote ES e comando dos testes nativos do Node,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/armazenamento.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/colecoes.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/constantes.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/cores.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/datas.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/dom.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/estado.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/estatisticas.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/estilos-dinamicos.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/formatacao.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/jornada.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/navegacao.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/core/render.js,Infraestrutura ou cálculos comuns do painel,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/abonos.js,Funcionalidade do painel: abonos,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/atestados.js,Funcionalidade do painel: atestados,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/beneficios-extras.js,Funcionalidade do painel: beneficios-extras,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/beneficios.js,Funcionalidade do painel: beneficios,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/cadastro-transporte.js,Funcionalidade do painel: cadastro-transporte,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/configuracoes.js,Funcionalidade do painel: configuracoes,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/conta.js,Funcionalidade do painel: conta,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/contratos.js,Funcionalidade do painel: contratos,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/exportacao.js,Funcionalidade do painel: exportacao,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/ferias.js,Funcionalidade do painel: ferias,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/funcionarios/ficha.js,Funcionalidade do painel: funcionarios/ficha,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/funcionarios/formulario.js,Funcionalidade do painel: funcionarios/formulario,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/importacao.js,Funcionalidade do painel: importacao,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/ocorrencias/formulario.js,Funcionalidade do painel: ocorrencias/formulario,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/ocorrencias/listagem.js,Funcionalidade do painel: ocorrencias/listagem,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/panorama/ano.js,Funcionalidade do painel: panorama/ano,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/panorama/detalhes.js,Funcionalidade do painel: panorama/detalhes,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/panorama/indicadores.js,Funcionalidade do painel: panorama/indicadores,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/panorama/mes.js,Funcionalidade do painel: panorama/mes,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/panorama/proximos.js,Funcionalidade do painel: panorama/proximos,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/panorama/quadro.js,Funcionalidade do painel: panorama/quadro,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/remuneracao.js,Funcionalidade do painel: remuneracao,Versionar,Novo ou extraído
+(novo),frontend/scripts/features/usuarios.js,Funcionalidade do painel: usuarios,Versionar,Novo ou extraído
+(novo),frontend/scripts/main.js,Inicialização ou comportamento de página,Versionar,Novo ou extraído
+(novo),frontend/styles/base.css,Estilos externos: base.css,Versionar,Novo ou extraído
+(novo),frontend/styles/components.css,Estilos externos: components.css,Versionar,Novo ou extraído
+(novo),frontend/styles/cores.css,Estilos externos: cores.css,Versionar,Novo ou extraído
+(novo),frontend/styles/features/formularios.css,Estilos externos: features/formularios.css,Versionar,Novo ou extraído
+(novo),frontend/styles/features/funcionarios.css,Estilos externos: features/funcionarios.css,Versionar,Novo ou extraído
+(novo),frontend/styles/features/graficos.css,Estilos externos: features/graficos.css,Versionar,Novo ou extraído
+(novo),frontend/styles/features/panorama.css,Estilos externos: features/panorama.css,Versionar,Novo ou extraído
+(novo),frontend/styles/importacao.css,Estilos externos: importacao.css,Versionar,Novo ou extraído
+(novo),frontend/styles/layout.css,Estilos externos: layout.css,Versionar,Novo ou extraído
+(novo),frontend/styles/login.css,Estilos externos: login.css,Versionar,Novo ou extraído
+(novo),frontend/styles/reset.css,Estilos externos: reset.css,Versionar,Novo ou extraído
+(novo),frontend/styles/utilities.css,Estilos externos: utilities.css,Versionar,Novo ou extraído
+(novo),frontend/tests/calculos.test.js,Teste automatizado ou ambiente isolado de validação,Versionar,Novo ou extraído
+(novo),pytest.ini,Descoberta dos testes e caminho do pacote Python,Versionar,Novo ou extraído
+(novo),docs/historico/INVENTARIO-ARQUIVOS.csv,Inventário por arquivo,Versionar,Novo
+(novo),frontend/styles/impressao.css,Estilos da impressão da aba atual,Versionar,Novo

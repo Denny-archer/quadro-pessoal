@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/assets/images/logo-light.webp" type="image/webp">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Entrar · COFFITO Pass de Pessoal</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/styles/reset.css">
+<link rel="stylesheet" href="/styles/login.css">
+</head>
+<body>
+<div class="bar" aria-hidden="true"></div>
+<main>
+  <img class="l" src="/assets/images/logo-light.webp" alt="COFFITO"><img class="d" src="/assets/images/logo-dark.webp" alt="COFFITO">
+  <h1>COFFITO Pass de Pessoal</h1>
+  <p>Gestão de Pessoas · acesso restrito</p>
+  <form id="f" novalidate>
+    <label>E-mail<input id="email" type="email" autocomplete="username" required autofocus></label>
+    <label>Senha<input id="senha" type="password" autocomplete="current-password" required></label>
+    <div class="err" id="err" role="alert"></div>
+    <button id="b" type="submit">Entrar</button>
+  </form>
+</main>
+<script type="module" src="/scripts/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+/* A impressão usa o conteúdo da aba atual, sem controles de edição. */
+@media print {
+  :root,
+  :root[data-theme="dark"] {
+    color-scheme: light;
+    --ground: #fff;
+    --surface: #fff;
+    --sunk: #fff;
+    --ink: #111;
+    --muted: #444;
+    --line: #bbb;
+  }
+
+  body { background: #fff; color: #111; }
+  .app { padding: 0; max-width: none; }
+  .actions, .tabs, .qp-user, .period > button, .period .seg,
+  .filters, dialog, .toast, [data-edit-func], [data-new-for], [data-act],
+  .fwrap > aside { display: none !important; }
+  .fwrap { display: block; }
+  .logo-d { display: none !important; }
+  .logo-l { display: block !important; }
+  .scroll { overflow: visible; }
+  .panel { box-shadow: none; margin-top: 8pt; }
+  table { font-size: 9pt; }
+  th, td { padding: 4pt; }
+  thead { display: table-header-group; }
+  tr { break-inside: avoid; }
+  .panel-head, h2, h3 { break-after: avoid; }
+}

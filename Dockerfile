@@ -7,13 +7,15 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /srv
 
-COPY requirements.txt .
-RUN pip install -r requirements.txt \
+COPY backend/requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt \
  && useradd --system --uid 10001 --home /srv quadro
 
-COPY app ./app
+COPY backend/app ./backend/app
 COPY db ./db
-COPY public ./public
+COPY frontend ./frontend
+
+WORKDIR /srv/backend
 
 USER quadro
 EXPOSE 8000
@@ -22,4 +24,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/saude', timeout=4).status==200 else 1)"
 
 # 2 processos bastam para o porte do COFFITO; ajuste com WEB_CONCURRENCY
-CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port 8000 --proxy-headers --forwarded-allow-ips='*' --workers ${WEB_CONCURRENCY:-2}"]
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port 8000 --proxy-headers --workers ${WEB_CONCURRENCY:-2}"]

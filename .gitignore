@@ -1,7 +1,63 @@
+# Segredos e configuração por ambiente
 .env
-seed/
-backups/
-__pycache__/
-*.pyc
+.env.*
+.env-*
+.env_*
+!.env.example
+!**/.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+acesso-local*.txt
+
+# Dados reais, exportações, anexos e backups locais
+/seed/
+/backups/
+/export/
+/exports/
+/uploads/
+/dumps/
+/anexos/
+*.dump
+*.backup
+*.sqlite
+*.sqlite3
+
+# Python: ambientes, caches, cobertura e empacotamento
 .venv/
 venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+
+# Frontend: dependências e resultados gerados
+node_modules/
+coverage/
+dist/
+build/
+playwright-report/
+test-results/
+
+# Logs, temporários e arquivos do sistema/editor
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+~$*
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

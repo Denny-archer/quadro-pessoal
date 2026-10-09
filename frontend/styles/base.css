@@ -1,0 +1,151 @@
+:root {
+  --ground:#eff5f1;
+  --surface:#ffffff;
+  --sunk:#f3f8f4;
+  --ink:#122718;
+  --muted:#557062;
+  --line:#d6e4da;
+  --line-strong:#b3cabb;
+  --accent:#27774a;
+  --accent-ink:#ffffff;
+  --accent-soft:#e1f1e6;
+  --weekend:#e7efe9;
+  --today:#27774a;
+  --brand-dark:#122718;
+  --brand:#48ad75;
+  --brand-light:#8fcd9e;
+  --tile-bg:#122718;
+  --tile-ink:#e8f5ec;
+  --tile-accent:#8fcd9e;
+  --logo-light:block;
+  --logo-dark:none;
+  --c-ferias:#0f7f8c;
+  --c-atestado:#c23b3b;
+  --c-abono:#b87d06;
+  --c-viagem:#2c68c9;
+  --c-capacitacao:#7a4cc4;
+  --c-banco:#5f6f7b;
+  --c-ho:#e1f1e6;
+  --c-ho-strong:#27774a;
+  --on-type:#ffffff;
+  --good:#1d7a4d;
+  --bad:#b3372f;
+  --shadow:0 12px 40px -12px rgba(18,39,24,.35);
+  --f-display:"Archivo",Arial,system-ui,sans-serif;
+  --f-body:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme:dark;
+    --ground:#0b1510;
+    --surface:#12201a;
+    --sunk:#0f1b15;
+    --ink:#e3efe6;
+    --muted:#93ab9c;
+    --line:#1f3328;
+    --line-strong:#2e4a39;
+    --accent:#6cc793;
+    --accent-ink:#06170d;
+    --accent-soft:#163020;
+    --weekend:#16241c;
+    --today:#6cc793;
+    --brand-dark:#e2f2e6;
+    --brand:#48ad75;
+    --brand-light:#8fcd9e;
+    --tile-bg:#1b3a27;
+    --tile-ink:#e8f5ec;
+    --tile-accent:#8fcd9e;
+    --logo-light:none;
+    --logo-dark:block;
+    --c-ferias:#3db5c2;
+    --c-atestado:#e0625d;
+    --c-abono:#d9a232;
+    --c-viagem:#5b92ea;
+    --c-capacitacao:#9d78e0;
+    --c-banco:#8595a1;
+    --c-ho:#163524;
+    --c-ho-strong:#7fd3a0;
+    --on-type:#08140d;
+    --good:#4cc08a;
+    --bad:#ef7b72;
+    --shadow:0 12px 40px -12px rgba(0,0,0,.7);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --ground:#0b1510;
+  --surface:#12201a;
+  --sunk:#0f1b15;
+  --ink:#e3efe6;
+  --muted:#93ab9c;
+  --line:#1f3328;
+  --line-strong:#2e4a39;
+  --accent:#6cc793;
+  --accent-ink:#06170d;
+  --accent-soft:#163020;
+  --weekend:#16241c;
+  --today:#6cc793;
+  --brand-dark:#e2f2e6;
+  --brand:#48ad75;
+  --brand-light:#8fcd9e;
+  --tile-bg:#1b3a27;
+  --tile-ink:#e8f5ec;
+  --tile-accent:#8fcd9e;
+  --logo-light:none;
+  --logo-dark:block;
+  --c-ferias:#3db5c2;
+  --c-atestado:#e0625d;
+  --c-abono:#d9a232;
+  --c-viagem:#5b92ea;
+  --c-capacitacao:#9d78e0;
+  --c-banco:#8595a1;
+  --c-ho:#163524;
+  --c-ho-strong:#7fd3a0;
+  --on-type:#08140d;
+  --good:#4cc08a;
+  --bad:#ef7b72;
+  --shadow:0 12px 40px -12px rgba(0,0,0,.7);
+}
+
+* {
+  box-sizing:border-box
+}
+
+body {
+  background:var(--ground);
+  color:var(--ink);
+  font:15px/1.5 var(--f-body);
+  -webkit-font-smoothing:antialiased
+}
+
+button,input,select,textarea {
+  font:inherit;
+  color:inherit
+}
+
+button {
+  cursor:pointer
+}
+
+:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:2px
+}
+
+.num {
+  font-family:var(--f-mono);
+  font-variant-numeric:tabular-nums
+}
+
+.app {
+  max-width:1440px;
+  margin:0 auto;
+  padding-inline:clamp(16px,3vw,32px);
+  padding-block:20px 48px;
+  display:flex;
+  flex-direction:column;
+  gap:18px
+}

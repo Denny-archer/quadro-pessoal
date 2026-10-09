@@ -21,18 +21,25 @@ services:
 
   app:
     build: .
-    image: coffito/quadro-pessoal:1.0.0
+    image: coffito/quadro-pessoal:1.2.0
     restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-quadro}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-quadro}
+      DB_HOST: db
+      POSTGRES_DB: ${POSTGRES_DB:-quadro}
+      POSTGRES_USER: ${POSTGRES_USER:-quadro}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       JWT_SECRET: ${JWT_SECRET:?defina JWT_SECRET no .env}
       COOKIE_SEGURO: ${COOKIE_SEGURO:-true}
       SESSAO_HORAS: ${SESSAO_HORAS:-10}
       TAMANHO_MAX_UPLOAD_MB: ${TAMANHO_MAX_UPLOAD_MB:-10}
       WEB_CONCURRENCY: ${WEB_CONCURRENCY:-2}
+      API_DOCS: ${API_DOCS:-false}
+      DB_POOL_MAX: ${DB_POOL_MAX:-10}
+      FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:-127.0.0.1}
       TZ: America/Sao_Paulo
     ports:
       - "${PORTA:-127.0.0.1:8000}:8000"   # publique via proxy reverso com HTTPS
@@ -54,16 +61,9 @@ services:
       TZ: America/Sao_Paulo
     volumes:
       - ./backups:/backups
+      - ./ops/backup.sh:/usr/local/bin/backup.sh:ro
     # um dump compactado por dia, às 02h, apagando os mais antigos que RETENCAO_DIAS
-    entrypoint: >
-      sh -c 'while true; do
-        agora=$$(date +%H%M);
-        if [ "$$agora" = "0200" ]; then
-          pg_dump -Fc -f /backups/quadro-$$(date +%Y%m%d).dump && find /backups -name "quadro-*.dump" -mtime +$$RETENCAO_DIAS -delete;
-          sleep 60;
-        fi;
-        sleep 30;
-      done'
+    entrypoint: ["sh", "/usr/local/bin/backup.sh"]
 
 volumes:
   dados_pg:

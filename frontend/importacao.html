@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/assets/images/logo-light.webp" type="image/webp">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Estrutura das planilhas · COFFITO Pass de Pessoal</title>
+<link rel="stylesheet" href="/styles/reset.css">
+<link rel="stylesheet" href="/styles/importacao.css">
+</head>
+<body>
+<main>
+  <h1>Estrutura das planilhas de importação</h1>
+  <p>Aceita <strong>.xlsx</strong> (primeira aba ou aba com o nome do tipo) e <strong>.csv</strong> (separador <code>;</code>, <code>,</code> ou tab; UTF-8 ou Windows-1252). A primeira linha precisa ser o cabeçalho. A ordem das colunas não importa, e maiúsculas, acentos e espaços nos cabeçalhos são ignorados.</p>
+  <ul>
+    <li>Datas: <code>dd/mm/aaaa</code> (também aceita <code>aaaa-mm-dd</code> e datas do Excel).</li>
+    <li>Números: <code>1.234,56</code> ou <code>1234.56</code>. Horários: <code>HH:MM</code>. Sim/não: <code>sim</code>, <code>não</code>, <code>x</code>.</li>
+    <li>Célula vazia não apaga dado existente.</li>
+    <li>Nunca inclua CID ou diagnóstico: a coluna é descartada (LGPD).</li>
+  </ul>
+  <div id="conteudo">Carregando…</div>
+</main>
+<script type="module" src="/scripts/importacao.js"></script>
+</body>
+</html>

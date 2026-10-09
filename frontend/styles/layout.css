@@ -1,0 +1,246 @@
+/* Topo */
+.brandbar {
+  height:5px;
+  background:linear-gradient(90deg,var(--brand-dark) 0 42%,var(--brand) 42% 74%,var(--brand-light) 74% 100%)
+}
+
+.top {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px 24px;
+  padding-bottom:4px
+}
+
+.brandline {
+  display:flex;
+  align-items:center;
+  gap:clamp(14px,2.4vw,26px);
+  min-width:0
+}
+
+.logo {
+  height:clamp(56px,7vw,82px);
+  width:auto;
+  max-width:100%
+}
+
+.logo-l {
+  display:var(--logo-light)
+}
+
+.logo-d {
+  display:var(--logo-dark)
+}
+
+.brand-txt {
+  border-left:2px solid var(--line);
+  padding-left:clamp(14px,2.4vw,26px);
+  display:flex;
+  flex-direction:column;
+  gap:6px
+}
+
+.eyebrow {
+  font:600 11px/1 var(--f-body);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent)
+}
+
+h1 {
+  font:800 clamp(26px,3.6vw,38px)/1 var(--f-display);
+  letter-spacing:-.02em;
+  margin:0;
+  color:var(--brand-dark);
+  text-wrap:balance
+}
+
+@media (max-width:560px) {
+  .tabs {
+    flex-wrap:wrap;
+  }
+  .brand-txt {
+    border-left:0;
+    padding-left:0
+  }
+  .brandline {
+    flex-wrap:wrap;
+    gap:10px
+  }
+}
+
+.period {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.seg {
+  display:inline-flex;
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:3px
+}
+
+.seg button {
+  border:0;
+  background:none;
+  padding:5px 12px;
+  border-radius:6px;
+  font-weight:600;
+  font-size:13px;
+  color:var(--muted)
+}
+
+.seg button[aria-pressed="true"] {
+  background:var(--accent);
+  color:var(--accent-ink)
+}
+
+.icon-btn {
+  width:34px;
+  height:34px;
+  border-radius:8px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  font-size:18px;
+  line-height:1;
+  display:grid;
+  place-items:center
+}
+
+.icon-btn:hover {
+  border-color:var(--line-strong)
+}
+
+#period-label {
+  font:700 20px/1 var(--f-display);
+  font-stretch:85%;
+  min-width:190px;
+  text-align:center
+}
+
+.btn {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid var(--line);
+  background:var(--surface);
+  border-radius:8px;
+  padding:7px 14px;
+  font-weight:600;
+  font-size:14px
+}
+
+.btn:hover {
+  border-color:var(--line-strong)
+}
+
+.btn.primary {
+  background:var(--accent);
+  border-color:var(--accent);
+  color:var(--accent-ink)
+}
+
+.btn.primary:hover {
+  filter:brightness(1.08)
+}
+
+.btn.danger {
+  color:var(--bad);
+  border-color:color-mix(in srgb,var(--bad) 40%,var(--line))
+}
+
+.btn.danger.armed {
+  background:var(--bad);
+  color:#fff;
+  border-color:var(--bad)
+}
+
+.btn:disabled {
+  opacity:.55;
+  cursor:default
+}
+
+.btn.small {
+  padding:4px 10px;
+  font-size:13px
+}
+
+.bar {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--line)
+}
+
+.tabs {
+  display:flex;
+  gap:4px
+}
+
+.tabs button {
+  border:0;
+  background:none;
+  padding:10px 14px 12px;
+  font-weight:600;
+  color:var(--muted);
+  border-bottom:3px solid transparent;
+  margin-bottom:-1px
+}
+
+.tabs button[aria-selected="true"] {
+  color:var(--ink);
+  border-bottom-color:var(--accent)
+}
+
+.actions {
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  padding-bottom:8px
+}
+
+#priv[aria-pressed="true"] {
+  background:var(--accent);
+  color:var(--accent-ink);
+  border-color:var(--accent)
+}
+
+.privado tr[data-ficha] > td:first-child > strong,
+.privado tr[data-ben] > td:first-child > strong,
+.privado tr[data-oc-open] > td:first-child > strong,
+.privado td.name strong,
+.privado li > [data-ficha]:first-child,
+.privado li > [data-oc-open]:first-child,
+.privado [data-sel] .n,
+.privado .ficha-head h2,
+.privado .nm {
+  filter:blur(7px);
+  user-select:none;
+  transition:filter .15s
+}
+
+.banner {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 16px;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--accent-soft);
+  border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:14px
+}
+
+.banner.warn {
+  background:color-mix(in srgb,var(--c-abono) 14%,var(--surface));
+  border-color:color-mix(in srgb,var(--c-abono) 40%,transparent)
+}

@@ -1,0 +1,67 @@
+#presenca {
+  margin:0
+}
+
+#presenca .pr-tiles {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:8px;
+  margin-bottom:12px
+}
+
+#presenca .pr-tile {
+  all:unset;
+  box-sizing:border-box;
+  cursor:pointer;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 12px;
+  background:var(--surface);
+  border-left:4px solid var(--k);
+  display:flex;
+  flex-direction:column;
+  gap:2px
+}
+
+#presenca .pr-tile:hover {
+  border-color:var(--line-strong)
+}
+
+#presenca .pr-tile[aria-pressed="true"] {
+  background:var(--sunk);
+  outline:2px solid var(--k);
+  outline-offset:-2px
+}
+
+#presenca .pr-tile:focus-visible {
+  outline:2px solid var(--accent)
+}
+
+#presenca .pr-tile b {
+  font:800 26px/1 var(--f-display);
+  font-variant-numeric:tabular-nums
+}
+
+#presenca .pr-tile span {
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.05em
+}
+
+#presenca .pr-alerta {
+  color:var(--bad);
+  font-size:12.5px
+}
+
+#presenca .pr-bat {
+  font-family:var(--f-mono);
+  font-size:12.5px;
+  color:var(--muted)
+}
+
+#presenca .pr-off {
+  font-size:13px;
+  color:var(--c-abono)
+}

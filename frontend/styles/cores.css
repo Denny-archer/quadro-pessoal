@@ -1,0 +1,240 @@
+/* Paleta compartilhada para estados, indicadores e gráficos. */
+:root .cor-c-accent:not([hidden]) {
+  --c: var(--accent) !important;
+}
+
+:root .cor-k-accent:not([hidden]) {
+  --k: var(--accent) !important;
+}
+
+:root .cor-pc-accent:not([hidden]) {
+  --pc: var(--accent) !important;
+}
+
+:root .cor-color-accent:not([hidden]) {
+  color: var(--accent) !important;
+}
+
+:root .cor-fill-accent:not([hidden]) {
+  fill: var(--accent) !important;
+}
+
+:root .cor-c-bad:not([hidden]) {
+  --c: var(--bad) !important;
+}
+
+:root .cor-k-bad:not([hidden]) {
+  --k: var(--bad) !important;
+}
+
+:root .cor-pc-bad:not([hidden]) {
+  --pc: var(--bad) !important;
+}
+
+:root .cor-color-bad:not([hidden]) {
+  color: var(--bad) !important;
+}
+
+:root .cor-fill-bad:not([hidden]) {
+  fill: var(--bad) !important;
+}
+
+:root .cor-c-c-abono:not([hidden]) {
+  --c: var(--c-abono) !important;
+}
+
+:root .cor-k-c-abono:not([hidden]) {
+  --k: var(--c-abono) !important;
+}
+
+:root .cor-pc-c-abono:not([hidden]) {
+  --pc: var(--c-abono) !important;
+}
+
+:root .cor-color-c-abono:not([hidden]) {
+  color: var(--c-abono) !important;
+}
+
+:root .cor-fill-c-abono:not([hidden]) {
+  fill: var(--c-abono) !important;
+}
+
+:root .cor-c-c-atestado:not([hidden]) {
+  --c: var(--c-atestado) !important;
+}
+
+:root .cor-k-c-atestado:not([hidden]) {
+  --k: var(--c-atestado) !important;
+}
+
+:root .cor-pc-c-atestado:not([hidden]) {
+  --pc: var(--c-atestado) !important;
+}
+
+:root .cor-color-c-atestado:not([hidden]) {
+  color: var(--c-atestado) !important;
+}
+
+:root .cor-fill-c-atestado:not([hidden]) {
+  fill: var(--c-atestado) !important;
+}
+
+:root .cor-c-c-banco:not([hidden]) {
+  --c: var(--c-banco) !important;
+}
+
+:root .cor-k-c-banco:not([hidden]) {
+  --k: var(--c-banco) !important;
+}
+
+:root .cor-pc-c-banco:not([hidden]) {
+  --pc: var(--c-banco) !important;
+}
+
+:root .cor-color-c-banco:not([hidden]) {
+  color: var(--c-banco) !important;
+}
+
+:root .cor-fill-c-banco:not([hidden]) {
+  fill: var(--c-banco) !important;
+}
+
+:root .cor-c-c-capacitacao:not([hidden]) {
+  --c: var(--c-capacitacao) !important;
+}
+
+:root .cor-k-c-capacitacao:not([hidden]) {
+  --k: var(--c-capacitacao) !important;
+}
+
+:root .cor-pc-c-capacitacao:not([hidden]) {
+  --pc: var(--c-capacitacao) !important;
+}
+
+:root .cor-color-c-capacitacao:not([hidden]) {
+  color: var(--c-capacitacao) !important;
+}
+
+:root .cor-fill-c-capacitacao:not([hidden]) {
+  fill: var(--c-capacitacao) !important;
+}
+
+:root .cor-c-c-ferias:not([hidden]) {
+  --c: var(--c-ferias) !important;
+}
+
+:root .cor-k-c-ferias:not([hidden]) {
+  --k: var(--c-ferias) !important;
+}
+
+:root .cor-pc-c-ferias:not([hidden]) {
+  --pc: var(--c-ferias) !important;
+}
+
+:root .cor-color-c-ferias:not([hidden]) {
+  color: var(--c-ferias) !important;
+}
+
+:root .cor-fill-c-ferias:not([hidden]) {
+  fill: var(--c-ferias) !important;
+}
+
+:root .cor-c-c-ho-strong:not([hidden]) {
+  --c: var(--c-ho-strong) !important;
+}
+
+:root .cor-k-c-ho-strong:not([hidden]) {
+  --k: var(--c-ho-strong) !important;
+}
+
+:root .cor-pc-c-ho-strong:not([hidden]) {
+  --pc: var(--c-ho-strong) !important;
+}
+
+:root .cor-color-c-ho-strong:not([hidden]) {
+  color: var(--c-ho-strong) !important;
+}
+
+:root .cor-fill-c-ho-strong:not([hidden]) {
+  fill: var(--c-ho-strong) !important;
+}
+
+:root .cor-c-c-viagem:not([hidden]) {
+  --c: var(--c-viagem) !important;
+}
+
+:root .cor-k-c-viagem:not([hidden]) {
+  --k: var(--c-viagem) !important;
+}
+
+:root .cor-pc-c-viagem:not([hidden]) {
+  --pc: var(--c-viagem) !important;
+}
+
+:root .cor-color-c-viagem:not([hidden]) {
+  color: var(--c-viagem) !important;
+}
+
+:root .cor-fill-c-viagem:not([hidden]) {
+  fill: var(--c-viagem) !important;
+}
+
+:root .cor-c-good:not([hidden]) {
+  --c: var(--good) !important;
+}
+
+:root .cor-k-good:not([hidden]) {
+  --k: var(--good) !important;
+}
+
+:root .cor-pc-good:not([hidden]) {
+  --pc: var(--good) !important;
+}
+
+:root .cor-color-good:not([hidden]) {
+  color: var(--good) !important;
+}
+
+:root .cor-fill-good:not([hidden]) {
+  fill: var(--good) !important;
+}
+
+:root .cor-c-inherit:not([hidden]) {
+  --c: inherit !important;
+}
+
+:root .cor-k-inherit:not([hidden]) {
+  --k: inherit !important;
+}
+
+:root .cor-pc-inherit:not([hidden]) {
+  --pc: inherit !important;
+}
+
+:root .cor-color-inherit:not([hidden]) {
+  color: inherit !important;
+}
+
+:root .cor-fill-inherit:not([hidden]) {
+  fill: inherit !important;
+}
+
+:root .cor-c-muted:not([hidden]) {
+  --c: var(--muted) !important;
+}
+
+:root .cor-k-muted:not([hidden]) {
+  --k: var(--muted) !important;
+}
+
+:root .cor-pc-muted:not([hidden]) {
+  --pc: var(--muted) !important;
+}
+
+:root .cor-color-muted:not([hidden]) {
+  color: var(--muted) !important;
+}
+
+:root .cor-fill-muted:not([hidden]) {
+  fill: var(--muted) !important;
+}

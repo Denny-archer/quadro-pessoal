@@ -1,0 +1,629 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="3500" height="3410" viewBox="0 0 3500 3410">
+<rect width="3500" height="3410" fill="#f3f6fb"/>
+<text x="80" y="48" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start">COFFITO  /  PASS DE PESSOAL</text>
+<text x="80" y="92" font-family="Segoe UI,Arial,sans-serif" font-size="53" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">Modelagem do banco de dados do RH</text>
+<text x="80" y="164" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Schema v3 · PostgreSQL 16 · 13 tabelas · 7 chaves estrangeiras · Estrutura completa</text>
+<polyline points="880,370.0 990,370.0 990,1128.0 880,1128.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="884" y="328.0" width="54.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="894" y="333.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..1</text>
+<rect x="885" y="1088.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="895" y="1093.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="880,370.0 1060,370.0 1060,1662.0 880,1662.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="884" y="328.0" width="54.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="894" y="333.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..1</text>
+<rect x="885" y="1622.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="895" y="1627.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="880,370.0 1130,370.0 1130,2352.0 880,2352.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="884" y="328.0" width="54.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="894" y="333.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..1</text>
+<rect x="885" y="2312.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="895" y="2317.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="2130,370.0 2330,370.0 2330,402.0 2540,402.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="2333" y="362.0" width="32.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2343" y="367.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">1</text>
+<rect x="2456" y="362.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2466" y="367.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="2130,370.0 2260,370.0 2260,1636.0 2540,1636.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="2263" y="1596.0" width="54.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2273" y="1601.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..1</text>
+<rect x="2456" y="1596.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2466" y="1601.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="2130,370.0 2400,370.0 2400,2470.0 2540,2470.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="2403" y="2430.0" width="54.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2413" y="2435.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..1</text>
+<rect x="2456" y="2430.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2466" y="2435.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="1280,370.0 1190,370.0 1190,2094.0 1280,2094.0" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<rect x="1200" y="330.0" width="32.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="1210" y="335.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">1</text>
+<rect x="1190" y="2054.0" width="58.0" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="1200" y="2059.0" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#526982" dominant-baseline="text-before-edge" text-anchor="start">0..N</text>
+<polyline points="880,1000.0 940,1000.0 940,1800 2470,1800 2470,1010.0 2540,1010.0" fill="none" stroke="#8c98aa" stroke-width="3" stroke-linejoin="round" stroke-dasharray="12 10"/>
+<rect x="1350" y="1755" width="583.015625" height="38" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="1360" y="1760" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#718096" dominant-baseline="text-before-edge" text-anchor="start">LÓGICO: ocorrencias.importacao_id → importacoes.id</text>
+<polyline points="2130,2062.0 2320,2062.0 2320,2342.0 2540,2342.0" fill="none" stroke="#8c98aa" stroke-width="3" stroke-linejoin="round" stroke-dasharray="12 10"/>
+<rect x="2150" y="2140" width="353.984375" height="36" rx="5" fill="#f3f6fb" stroke="none" stroke-width="2"/>
+<text x="2160" y="2145" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#718096" dominant-baseline="text-before-edge" text-anchor="start">LÓGICO: sistema + colaborador_id</text>
+<rect x="85" y="287" width="800" height="463" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="80" y="280" width="800" height="463" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="80" y="280" width="800" height="74" rx="12" fill="#285a98" stroke="none" stroke-width="2"/>
+<rect x="80" y="340" width="800" height="14" rx="0" fill="#285a98" stroke="none" stroke-width="2"/>
+<text x="104" y="300" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">usuarios</text>
+<rect x="82" y="354" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="359" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="201" y="357" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="858" y="359" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<text x="98" y="391" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">UK*</text>
+<text x="201" y="389" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">email</text>
+<text x="858" y="391" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="418" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="423" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="421" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">nome</text>
+<text x="858" y="423" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="455" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="453" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">senha_hash</text>
+<text x="858" y="455" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="482" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="487" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="485" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">papel</text>
+<text x="858" y="487" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="519" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="517" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ativo</text>
+<text x="858" y="519" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">boolean</text>
+<rect x="82" y="546" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="551" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="549" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ultimo_acesso</text>
+<text x="858" y="551" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz ?</text>
+<text x="98" y="583" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="581" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">criado_em</text>
+<text x="858" y="583" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<rect x="82" y="610" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="615" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="613" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">atualizado_em</text>
+<text x="858" y="615" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="98" y="647" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="645" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">sessao_versao</text>
+<text x="858" y="647" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<text x="102" y="691" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">UK*: índice único em lower(email).</text>
+<rect x="1285" y="287" width="850" height="1423" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="1280" y="280" width="850" height="1423" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="1280" y="280" width="850" height="74" rx="12" fill="#126f79" stroke="none" stroke-width="2"/>
+<rect x="1280" y="340" width="850" height="14" rx="0" fill="#126f79" stroke="none" stroke-width="2"/>
+<text x="1304" y="300" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">funcionarios</text>
+<rect x="1282" y="354" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="359" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="1401" y="357" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="2108" y="359" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="1298" y="391" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="389" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">nome</text>
+<text x="2108" y="391" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="1282" y="418" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="423" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start">UK*</text>
+<text x="1401" y="421" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">matricula</text>
+<text x="2108" y="423" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="455" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="453" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">admissao</text>
+<text x="2108" y="455" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date ?</text>
+<rect x="1282" y="482" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="487" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="485" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">cargo</text>
+<text x="2108" y="487" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="519" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="517" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">setor</text>
+<text x="2108" y="519" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="546" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="551" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="549" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">vinculo</text>
+<text x="2108" y="551" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="1298" y="583" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="581" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">situacao</text>
+<text x="2108" y="583" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="1282" y="610" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="615" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="613" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">regime</text>
+<text x="2108" y="615" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="1298" y="647" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="645" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">carga</text>
+<text x="2108" y="647" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">smallint ?</text>
+<rect x="1282" y="674" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="679" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="677" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">intervalo</text>
+<text x="2108" y="679" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">smallint</text>
+<text x="1298" y="711" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="709" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">entrada</text>
+<text x="2108" y="711" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">time ?</text>
+<rect x="1282" y="738" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="743" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="741" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">saida</text>
+<text x="2108" y="743" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">time ?</text>
+<text x="1298" y="775" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="773" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">entrada_ho</text>
+<text x="2108" y="775" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">time ?</text>
+<rect x="1282" y="802" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="807" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="805" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">saida_ho</text>
+<text x="2108" y="807" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">time ?</text>
+<text x="1298" y="839" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="837" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">semana</text>
+<text x="2108" y="839" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb ?</text>
+<rect x="1282" y="866" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="871" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="869" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">funcao</text>
+<text x="2108" y="871" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="903" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="901" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">funcao_tipo</text>
+<text x="2108" y="903" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="930" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="935" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="933" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">nivel</text>
+<text x="2108" y="935" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="967" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="965" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">portaria_funcao</text>
+<text x="2108" y="967" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="994" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="999" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="997" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ingresso</text>
+<text x="2108" y="999" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="1031" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1029" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">orgao_origem</text>
+<text x="2108" y="1031" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="1058" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1063" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1061" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">cedido_para</text>
+<text x="2108" y="1063" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="1095" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1093" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">jornada_diaria</text>
+<text x="2108" y="1095" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">smallint ?</text>
+<rect x="1282" y="1122" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1127" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1125" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">instituicao</text>
+<text x="2108" y="1127" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="1159" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1157" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">contrato_inicio</text>
+<text x="2108" y="1159" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date ?</text>
+<rect x="1282" y="1186" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1191" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1189" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">contrato_fim</text>
+<text x="2108" y="1191" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date ?</text>
+<text x="1298" y="1223" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1221" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">providencia</text>
+<text x="2108" y="1223" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="1250" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1255" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1253" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">usa_transporte</text>
+<text x="2108" y="1255" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">boolean</text>
+<text x="1298" y="1287" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1285" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">valor_transporte</text>
+<text x="2108" y="1287" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">numeric(12,2)</text>
+<rect x="1282" y="1314" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1319" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1317" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">beneficios_extras</text>
+<text x="2108" y="1319" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb</text>
+<text x="1298" y="1351" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1349" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">abonos</text>
+<text x="2108" y="1351" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb ?</text>
+<rect x="1282" y="1378" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1383" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1381" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">periodos_aquisitivos</text>
+<text x="2108" y="1383" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb ?</text>
+<text x="1298" y="1415" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1413" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">carreira</text>
+<text x="2108" y="1415" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="1442" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1447" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1445" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">nivel_salarial</text>
+<text x="2108" y="1447" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">smallint ?</text>
+<text x="1298" y="1479" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1477" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">fg_tipo</text>
+<text x="2108" y="1479" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="1282" y="1506" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1511" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1509" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">bolsa_tipo</text>
+<text x="2108" y="1511" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="1298" y="1543" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1541" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">extra</text>
+<text x="2108" y="1543" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb</text>
+<rect x="1282" y="1570" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="1575" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1573" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">criado_em</text>
+<text x="2108" y="1575" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="1298" y="1607" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="1605" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">atualizado_em</text>
+<text x="2108" y="1607" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="1302" y="1651" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">UK*: matrícula única quando preenchida.</text>
+<rect x="2545" y="287" width="880" height="940" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="2540" y="280" width="880" height="940" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="2540" y="280" width="880" height="74" rx="12" fill="#126f79" stroke="none" stroke-width="2"/>
+<rect x="2540" y="340" width="880" height="14" rx="0" fill="#126f79" stroke="none" stroke-width="2"/>
+<text x="2564" y="300" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">ocorrencias</text>
+<rect x="2542" y="354" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="359" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="2661" y="357" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="3398" y="359" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="2558" y="391" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="2661" y="389" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">funcionario_id</text>
+<text x="3398" y="391" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="2542" y="418" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="423" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="421" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">tipo</text>
+<text x="3398" y="423" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="2558" y="455" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="453" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">inicio</text>
+<text x="3398" y="455" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date</text>
+<rect x="2542" y="482" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="487" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="485" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">fim</text>
+<text x="3398" y="487" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date</text>
+<text x="2558" y="519" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="517" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">horas</text>
+<text x="3398" y="519" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">numeric(6,2) ?</text>
+<rect x="2542" y="546" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="551" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="549" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">parcial</text>
+<text x="3398" y="551" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">boolean</text>
+<text x="2558" y="583" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="581" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">destino</text>
+<text x="3398" y="583" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="2542" y="610" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="615" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="613" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">obs</text>
+<text x="3398" y="615" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="2558" y="647" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="645" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">diarias</text>
+<text x="3398" y="647" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">numeric(6,2) ?</text>
+<rect x="2542" y="674" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="679" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="677" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">parcela</text>
+<text x="3398" y="679" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="2558" y="711" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="709" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">aquisitivo</text>
+<text x="3398" y="711" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date ?</text>
+<rect x="2542" y="738" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="743" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="741" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">aquisitivo_fim</text>
+<text x="3398" y="743" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date ?</text>
+<text x="2558" y="775" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="773" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">limite</text>
+<text x="3398" y="775" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date ?</text>
+<rect x="2542" y="802" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="807" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="805" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">abono_pecuniario</text>
+<text x="3398" y="807" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">smallint</text>
+<text x="2558" y="839" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="837" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">aviso_ferias</text>
+<text x="3398" y="839" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="2542" y="866" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="871" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="869" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">status_planilha</text>
+<text x="3398" y="871" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="2558" y="903" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="901" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">referencia_abono</text>
+<text x="3398" y="903" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="2542" y="930" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="935" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="933" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">status_abono</text>
+<text x="3398" y="935" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="2558" y="967" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="965" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">origem</text>
+<text x="3398" y="967" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="2542" y="994" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="999" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="997" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">importacao_id</text>
+<text x="3398" y="999" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint ?</text>
+<text x="2558" y="1031" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1029" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">extra</text>
+<text x="3398" y="1031" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb</text>
+<rect x="2542" y="1058" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1063" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1061" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">criado_em</text>
+<text x="3398" y="1063" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="2558" y="1095" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#126f79" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1093" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">atualizado_em</text>
+<text x="3398" y="1095" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="2562" y="1139" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">FK funcionario_id: ON DELETE CASCADE.</text>
+<text x="2562" y="1168" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">importacao_id é referência lógica, sem FK.</text>
+<rect x="85" y="917" width="800" height="591" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="80" y="910" width="800" height="591" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="80" y="910" width="800" height="74" rx="12" fill="#285a98" stroke="none" stroke-width="2"/>
+<rect x="80" y="970" width="800" height="14" rx="0" fill="#285a98" stroke="none" stroke-width="2"/>
+<text x="104" y="930" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">importacoes</text>
+<rect x="82" y="984" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="989" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="201" y="987" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="858" y="989" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<text x="98" y="1021" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1019" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">tipo</text>
+<text x="858" y="1021" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="1048" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1053" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1051" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">arquivo</text>
+<text x="858" y="1053" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="1085" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1083" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">status</text>
+<text x="858" y="1085" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="1112" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1117" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="201" y="1115" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">usuario_id</text>
+<text x="858" y="1117" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint ?</text>
+<text x="98" y="1149" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1147" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">total_linhas</text>
+<text x="858" y="1149" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<rect x="82" y="1176" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1181" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1179" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">inseridos</text>
+<text x="858" y="1181" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<text x="98" y="1213" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1211" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">atualizados</text>
+<text x="858" y="1213" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<rect x="82" y="1240" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1245" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1243" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ignorados</text>
+<text x="858" y="1245" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<text x="98" y="1277" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1275" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">com_erro</text>
+<text x="858" y="1277" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<rect x="82" y="1304" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1309" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1307" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">plano</text>
+<text x="858" y="1309" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb ?</text>
+<text x="98" y="1341" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1339" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">mensagens</text>
+<text x="858" y="1341" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb</text>
+<rect x="82" y="1368" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1373" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1371" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">criado_em</text>
+<text x="858" y="1373" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="98" y="1405" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1403" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">concluido_em</text>
+<text x="858" y="1405" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz ?</text>
+<text x="102" y="1449" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">FK usuario_id: ON DELETE SET NULL.</text>
+<rect x="85" y="1547" width="800" height="428" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="80" y="1540" width="800" height="428" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="80" y="1540" width="800" height="74" rx="12" fill="#285a98" stroke="none" stroke-width="2"/>
+<rect x="80" y="1600" width="800" height="14" rx="0" fill="#285a98" stroke="none" stroke-width="2"/>
+<text x="104" y="1560" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">auditoria</text>
+<rect x="82" y="1614" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1619" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="201" y="1617" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="858" y="1619" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<text x="98" y="1651" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="201" y="1649" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">usuario_id</text>
+<text x="858" y="1651" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint ?</text>
+<rect x="82" y="1678" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1683" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1681" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">acao</text>
+<text x="858" y="1683" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="1715" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1713" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">tabela</text>
+<text x="858" y="1715" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="1742" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1747" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1745" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">registro_id</text>
+<text x="858" y="1747" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="98" y="1779" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1777" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">antes</text>
+<text x="858" y="1779" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb ?</text>
+<rect x="82" y="1806" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="1811" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1809" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">depois</text>
+<text x="858" y="1811" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb ?</text>
+<text x="98" y="1843" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="1841" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">em</text>
+<text x="858" y="1843" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="102" y="1887" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">FK usuario_id: ON DELETE SET NULL.</text>
+<text x="102" y="1916" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">tabela + registro_id: referência lógica genérica.</text>
+<rect x="85" y="2077" width="800" height="431" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="80" y="2070" width="800" height="431" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="80" y="2070" width="800" height="74" rx="12" fill="#285a98" stroke="none" stroke-width="2"/>
+<rect x="80" y="2130" width="800" height="14" rx="0" fill="#285a98" stroke="none" stroke-width="2"/>
+<text x="104" y="2090" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">integracao_chaves</text>
+<rect x="82" y="2144" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="2149" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="201" y="2147" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="858" y="2149" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<text x="98" y="2181" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2179" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">nome</text>
+<text x="858" y="2181" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="2208" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="2213" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2211" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">prefixo</text>
+<text x="858" y="2213" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="2245" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">UK</text>
+<text x="201" y="2243" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">hash</text>
+<text x="858" y="2245" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="82" y="2272" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="2277" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2275" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">escopo</text>
+<text x="858" y="2277" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="2309" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2307" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ativo</text>
+<text x="858" y="2309" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">boolean</text>
+<rect x="82" y="2336" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="2341" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="201" y="2339" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">criado_por</text>
+<text x="858" y="2341" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint ?</text>
+<text x="98" y="2373" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2371" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">criado_em</text>
+<text x="858" y="2373" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<rect x="82" y="2400" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="2405" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#285a98" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2403" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ultimo_uso</text>
+<text x="858" y="2405" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz ?</text>
+<text x="102" y="2449" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">FK criado_por: ON DELETE SET NULL.</text>
+<rect x="1285" y="1947" width="850" height="268" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="1280" y="1940" width="850" height="268" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="1280" y="1940" width="850" height="74" rx="12" fill="#705098" stroke="none" stroke-width="2"/>
+<rect x="1280" y="2000" width="850" height="14" rx="0" fill="#705098" stroke="none" stroke-width="2"/>
+<text x="1304" y="1960" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">ponto_vinculos</text>
+<rect x="1282" y="2014" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="2019" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="1401" y="2017" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">sistema</text>
+<text x="2108" y="2019" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="1298" y="2051" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="1401" y="2049" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">colaborador_id</text>
+<text x="2108" y="2051" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="1282" y="2078" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="2083" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="1401" y="2081" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">funcionario_id</text>
+<text x="2108" y="2083" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="1302" y="2127" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">PK (sistema, colaborador_id)</text>
+<text x="1302" y="2156" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">UK (sistema, funcionario_id) · FK: CASCADE</text>
+<rect x="2545" y="1457" width="880" height="524" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="2540" y="1450" width="880" height="524" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="2540" y="1450" width="880" height="74" rx="12" fill="#705098" stroke="none" stroke-width="2"/>
+<rect x="2540" y="1510" width="880" height="14" rx="0" fill="#705098" stroke="none" stroke-width="2"/>
+<text x="2564" y="1470" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">ponto_marcacoes</text>
+<rect x="2542" y="1524" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1529" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="2661" y="1527" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="3398" y="1529" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<text x="2558" y="1561" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">UK</text>
+<text x="2661" y="1559" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id_externo</text>
+<text x="3398" y="1561" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="2542" y="1588" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1593" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1591" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">matricula</text>
+<text x="3398" y="1593" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="2558" y="1625" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="2661" y="1623" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">funcionario_id</text>
+<text x="3398" y="1625" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="2542" y="1652" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1657" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1655" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">momento</text>
+<text x="3398" y="1657" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="2558" y="1689" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1687" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">tipo</text>
+<text x="3398" y="1689" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="2542" y="1716" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1721" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1719" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">local</text>
+<text x="3398" y="1721" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="2558" y="1753" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1751" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">cancelada</text>
+<text x="3398" y="1753" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">boolean</text>
+<rect x="2542" y="1780" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1785" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1783" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">origem</text>
+<text x="3398" y="1785" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<text x="2558" y="1817" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1815" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">recebido_em</text>
+<text x="3398" y="1817" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<rect x="2542" y="1844" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="1849" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="1847" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">atualizado_em</text>
+<text x="3398" y="1849" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="2562" y="1893" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Batidas: compatibilidade com integração anterior.</text>
+<text x="2562" y="1922" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">FK funcionario_id: ON DELETE SET NULL.</text>
+<rect x="2545" y="2227" width="880" height="457" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="2540" y="2220" width="880" height="457" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="2540" y="2220" width="880" height="74" rx="12" fill="#705098" stroke="none" stroke-width="2"/>
+<rect x="2540" y="2280" width="880" height="14" rx="0" fill="#705098" stroke="none" stroke-width="2"/>
+<text x="2564" y="2240" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">ponto_resumos</text>
+<rect x="2542" y="2294" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="2299" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="2661" y="2297" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">sistema</text>
+<text x="3398" y="2299" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="2558" y="2331" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="2661" y="2329" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">colaborador_id</text>
+<text x="3398" y="2331" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="2542" y="2358" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="2363" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="2661" y="2361" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">data</text>
+<text x="3398" y="2363" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">date</text>
+<text x="2558" y="2395" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="2393" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">versao</text>
+<text x="3398" y="2395" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<rect x="2542" y="2422" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="2427" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="2425" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">matricula</text>
+<text x="3398" y="2427" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="2558" y="2459" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">FK</text>
+<text x="2661" y="2457" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">funcionario_id</text>
+<text x="3398" y="2459" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text ?</text>
+<rect x="2542" y="2486" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="2491" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="2489" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">dados</text>
+<text x="3398" y="2491" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb</text>
+<text x="2558" y="2523" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="2521" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">recebido_em</text>
+<text x="3398" y="2523" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="2562" y="2567" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">PK (sistema, colaborador_id, data)</text>
+<text x="2562" y="2596" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">FK funcionario_id: ON DELETE SET NULL.</text>
+<text x="2562" y="2625" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">dados: marcações, horas, saldo e pendências.</text>
+<rect x="1285" y="2457" width="850" height="271" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="1280" y="2450" width="850" height="271" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="1280" y="2450" width="850" height="74" rx="12" fill="#705098" stroke="none" stroke-width="2"/>
+<rect x="1280" y="2510" width="850" height="14" rx="0" fill="#705098" stroke="none" stroke-width="2"/>
+<text x="1304" y="2470" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">ponto_sincronizacao</text>
+<rect x="1282" y="2524" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="2529" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="1401" y="2527" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">sistema</text>
+<text x="2108" y="2529" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="1298" y="2561" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="2559" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">sinal_em</text>
+<text x="2108" y="2561" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<rect x="1282" y="2588" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="2593" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="2591" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">pendentes</text>
+<text x="2108" y="2593" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<text x="1298" y="2625" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#705098" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="2623" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ultima_entrega</text>
+<text x="2108" y="2625" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz ?</text>
+<text x="1302" y="2669" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Uma linha por sistema · Sem FK declarada.</text>
+<rect x="85" y="2887" width="800" height="239" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="80" y="2880" width="800" height="239" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="80" y="2880" width="800" height="74" rx="12" fill="#526477" stroke="none" stroke-width="2"/>
+<rect x="80" y="2940" width="800" height="14" rx="0" fill="#526477" stroke="none" stroke-width="2"/>
+<text x="104" y="2900" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">config</text>
+<rect x="82" y="2954" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="2959" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="201" y="2957" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">chave</text>
+<text x="858" y="2959" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<text x="98" y="2991" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="2989" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">valor</text>
+<text x="858" y="2991" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">jsonb</text>
+<rect x="82" y="3018" width="796" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="98" y="3023" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="201" y="3021" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">atualizado_em</text>
+<text x="858" y="3023" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="102" y="3067" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Regras e tabelas de valores em JSONB.</text>
+<rect x="1285" y="2887" width="850" height="239" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="1280" y="2880" width="850" height="239" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="1280" y="2880" width="850" height="74" rx="12" fill="#526477" stroke="none" stroke-width="2"/>
+<rect x="1280" y="2940" width="850" height="14" rx="0" fill="#526477" stroke="none" stroke-width="2"/>
+<text x="1304" y="2900" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">login_tentativas</text>
+<rect x="1282" y="2954" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="2959" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="1401" y="2957" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">id</text>
+<text x="2108" y="2959" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">bigint</text>
+<text x="1298" y="2991" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="2989" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">ip</text>
+<text x="2108" y="2991" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">text</text>
+<rect x="1282" y="3018" width="846" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="1298" y="3023" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="1401" y="3021" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">momento</text>
+<text x="2108" y="3023" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="1302" y="3067" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Controle de tentativas por IP · Sem FK.</text>
+<rect x="2545" y="2887" width="880" height="207" rx="12" fill="#e0e6ef" stroke="none" stroke-width="2"/>
+<rect x="2540" y="2880" width="880" height="207" rx="12" fill="#ffffff" stroke="#d3dce8" stroke-width="2"/>
+<rect x="2540" y="2880" width="880" height="74" rx="12" fill="#526477" stroke="none" stroke-width="2"/>
+<rect x="2540" y="2940" width="880" height="14" rx="0" fill="#526477" stroke="none" stroke-width="2"/>
+<text x="2564" y="2900" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700" fill="#ffffff" dominant-baseline="text-before-edge" text-anchor="start">schema_versao</text>
+<rect x="2542" y="2954" width="876" height="32" rx="0" fill="#f7f9fc" stroke="none" stroke-width="2"/>
+<text x="2558" y="2959" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start">PK</text>
+<text x="2661" y="2957" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">versao</text>
+<text x="3398" y="2959" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">integer</text>
+<text x="2558" y="2991" font-family="Segoe UI,Arial,sans-serif" font-size="19" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start"></text>
+<text x="2661" y="2989" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">aplicado_em</text>
+<text x="3398" y="2991" font-family="Segoe UI,Arial,sans-serif" font-size="23" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="end">timestamptz</text>
+<text x="2562" y="3035" font-family="Segoe UI,Arial,sans-serif" font-size="21" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Versões aplicadas ao schema · Sem FK.</text>
+<text x="80" y="2780" font-family="Segoe UI,Arial,sans-serif" font-size="26" font-weight="700" fill="#526477" dominant-baseline="text-before-edge" text-anchor="start">APOIO E CONTROLE  ·  Tabelas sem relacionamentos por FK</text>
+<rect x="80" y="3215" width="3340" height="125" rx="12" fill="#e8eef7" stroke="none" stroke-width="2"/>
+<text x="108" y="3234" font-family="Segoe UI,Arial,sans-serif" font-size="25" font-weight="700" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">PK  chave primária     FK  chave estrangeira     UK  unicidade     UK*  índice único especial     ?  permite NULL</text>
+<polyline points="111,3296 200,3296" fill="none" stroke="#526982" stroke-width="4" stroke-linejoin="round"/>
+<text x="220" y="3277" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">Linha contínua: FK no PostgreSQL</text>
+<polyline points="830,3296 920,3296" fill="none" stroke="#8c98aa" stroke-width="3" stroke-linejoin="round" stroke-dasharray="12 10"/>
+<text x="940" y="3277" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">Tracejada: vínculo lógico, sem FK</text>
+<text x="1700" y="3277" font-family="Segoe UI,Arial,sans-serif" font-size="24" font-weight="400" fill="#172b43" dominant-baseline="text-before-edge" text-anchor="start">1 = obrigatório · 0..1 = opcional · 0..N = vários</text>
+<text x="80" y="3362" font-family="Segoe UI,Arial,sans-serif" font-size="22" font-weight="400" fill="#5c6e83" dominant-baseline="text-before-edge" text-anchor="start">Fonte: metadados PostgreSQL em uso e db/schema.sql · 08/10/2026 · Nenhum registro pessoal incluído.</text>
+</svg>

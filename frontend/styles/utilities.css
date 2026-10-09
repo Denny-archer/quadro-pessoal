@@ -1,0 +1,295 @@
+/* Classes extraídas dos antigos estilos inline. A ordem preserva os overrides locais. */
+.text-normal {
+  color: var(--ink) !important;
+}
+
+/* margin-top:6px */
+:root .u-margin-top-6px:not([hidden]) {
+  margin-top: 6px !important;
+}
+
+/* display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px */
+:root .u-display-flex:not([hidden]) {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+  align-items: center !important;
+  margin-top: 8px !important;
+}
+
+/* align-self:end */
+:root .u-align-self-end:not([hidden]) {
+  align-self: end !important;
+}
+
+/* margin-top:22px */
+:root .u-margin-top-22px:not([hidden]) {
+  margin-top: 22px !important;
+}
+
+/* --c:var(--c-abono) */
+:root .u-c-var-c-abono:not([hidden]) {
+  --c: var(--c-abono) !important;
+}
+
+/* font-weight:600 */
+:root .u-font-weight-600:not([hidden]) {
+  font-weight: 600 !important;
+}
+
+/* margin:10px 0 0 */
+:root .u-margin-10px-0-0:not([hidden]) {
+  margin: 10px 0 0 !important;
+}
+
+/* grid-template-columns:1fr */
+:root .u-grid-template-columns-1fr:not([hidden]) {
+  grid-template-columns: 1fr !important;
+}
+
+/* color:var(--c-abono) */
+:root .u-color-var-c-abono:not([hidden]) {
+  color: var(--c-abono) !important;
+}
+
+/* margin-top:10px */
+:root .u-margin-top-10px:not([hidden]) {
+  margin-top: 10px !important;
+}
+
+/* margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted) */
+:root .u-margin-0-0-4px:not([hidden]) {
+  margin: 0 0 4px !important;
+  font-size: 12px !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  color: var(--muted) !important;
+}
+
+/* font-size:26px */
+:root .u-font-size-26px:not([hidden]) {
+  font-size: 26px !important;
+}
+
+/* --k:var(--c-ferias) */
+:root .u-k-var-c-ferias:not([hidden]) {
+  --k: var(--c-ferias) !important;
+}
+
+/* font-size:24px */
+:root .u-font-size-24px:not([hidden]) {
+  font-size: 24px !important;
+}
+
+/* --k:var(--c-viagem) */
+:root .u-k-var-c-viagem:not([hidden]) {
+  --k: var(--c-viagem) !important;
+}
+
+/* --k:var(--c-abono) */
+:root .u-k-var-c-abono:not([hidden]) {
+  --k: var(--c-abono) !important;
+}
+
+/* --k:var(--c-atestado) */
+:root .u-k-var-c-atestado:not([hidden]) {
+  --k: var(--c-atestado) !important;
+}
+
+/* width:min(440px,100%) */
+:root .u-width-min-440px-100:not([hidden]) {
+  width: min(440px,100%) !important;
+}
+
+/* grid-column:1/-1 */
+:root .u-grid-column-1-1:not([hidden]) {
+  grid-column: 1/-1 !important;
+}
+
+/* --pc:var(--bad) */
+:root .u-pc-var-bad:not([hidden]) {
+  --pc: var(--bad) !important;
+}
+
+/* --pc:var(--c-abono) */
+:root .u-pc-var-c-abono:not([hidden]) {
+  --pc: var(--c-abono) !important;
+}
+
+/* --pc:var(--c-viagem) */
+:root .u-pc-var-c-viagem:not([hidden]) {
+  --pc: var(--c-viagem) !important;
+}
+
+/* --pc:var(--good) */
+:root .u-pc-var-good:not([hidden]) {
+  --pc: var(--good) !important;
+}
+
+/* cursor:pointer */
+:root .u-cursor-pointer:not([hidden]) {
+  cursor: pointer !important;
+}
+
+/* font:inherit;font-size:13px */
+:root .u-font-inherit:not([hidden]) {
+  font: inherit !important;
+  font-size: 13px !important;
+}
+
+/* user-select:all;word-break:break-all */
+:root .u-user-select-all:not([hidden]) {
+  user-select: all !important;
+  word-break: break-all !important;
+}
+
+/* --k:var(--brand) */
+:root .u-k-var-brand:not([hidden]) {
+  --k: var(--brand) !important;
+}
+
+/* --k:var(--accent) */
+:root .u-k-var-accent:not([hidden]) {
+  --k: var(--accent) !important;
+}
+
+/* --k:var(--c-capacitacao) */
+:root .u-k-var-c-capacitacao:not([hidden]) {
+  --k: var(--c-capacitacao) !important;
+}
+
+/* font-size:15px */
+:root .u-font-size-15px:not([hidden]) {
+  font-size: 15px !important;
+}
+
+/* font-family:var(--f-body) */
+:root .u-font-family-var-f-body:not([hidden]) {
+  font-family: var(--f-body) !important;
+}
+
+/* font-size:18px */
+:root .u-font-size-18px:not([hidden]) {
+  font-size: 18px !important;
+}
+
+/* font-size:18px;color:var(--accent) */
+:root .u-font-size-18px-33:not([hidden]) {
+  font-size: 18px !important;
+  color: var(--accent) !important;
+}
+
+/* color:var(--c-abono);margin-top:6px */
+:root .u-color-var-c-abono-34:not([hidden]) {
+  color: var(--c-abono) !important;
+  margin-top: 6px !important;
+}
+
+/* margin:0 */
+:root .u-margin-0:not([hidden]) {
+  margin: 0 !important;
+}
+
+/* margin-top:14px */
+:root .u-margin-top-14px:not([hidden]) {
+  margin-top: 14px !important;
+}
+
+/* margin-top:12px */
+:root .u-margin-top-12px:not([hidden]) {
+  margin-top: 12px !important;
+}
+
+/* margin-top:2px */
+:root .u-margin-top-2px:not([hidden]) {
+  margin-top: 2px !important;
+}
+
+/* margin-top:4px */
+:root .u-margin-top-4px:not([hidden]) {
+  margin-top: 4px !important;
+}
+
+/* display:flex;gap:8px;flex-wrap:wrap */
+:root .u-display-flex-40:not([hidden]) {
+  display: flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+}
+
+/* --c:var(--c-ferias) */
+:root .u-c-var-c-ferias:not([hidden]) {
+  --c: var(--c-ferias) !important;
+}
+
+/* --c:var(--c-banco) */
+:root .u-c-var-c-banco:not([hidden]) {
+  --c: var(--c-banco) !important;
+}
+
+/* text-align:center */
+:root .u-text-align-center:not([hidden]) {
+  text-align: center !important;
+}
+
+/* fill:var(--ink) */
+:root .u-fill-var-ink:not([hidden]) {
+  fill: var(--ink) !important;
+}
+
+/* fill:var(--accent);font-weight:600 */
+:root .u-fill-var-accent:not([hidden]) {
+  fill: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+/* fill:none;stroke:var(--line-strong);stroke-dasharray:3 3 */
+:root .u-fill-none:not([hidden]) {
+  fill: none !important;
+  stroke: var(--line-strong) !important;
+  stroke-dasharray: 3 3 !important;
+}
+
+/* margin-top:8px */
+:root .u-margin-top-8px:not([hidden]) {
+  margin-top: 8px !important;
+}
+
+/* text-transform:none;letter-spacing:0 */
+:root .u-text-transform-none:not([hidden]) {
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+}
+
+/* --k:var(--c-banco) */
+:root .u-k-var-c-banco:not([hidden]) {
+  --k: var(--c-banco) !important;
+}
+
+/* --c:var(--c-banco);border-radius:50%;width:8px;height:8px */
+:root .u-c-var-c-banco-50:not([hidden]) {
+  --c: var(--c-banco) !important;
+  border-radius: 50% !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+/* --c:var(--c-ho);border:1px solid var(--c-ho-strong) */
+:root .u-c-var-c-ho:not([hidden]) {
+  --c: var(--c-ho) !important;
+  border: 1px solid var(--c-ho-strong) !important;
+}
+
+/* background:linear-gradient(to top,var(--c-ho) 0 40%,transparent 40%);border:1px solid var(--line-strong) */
+:root .u-background-linear-gradient-to-top-var-c-ho-0-:not([hidden]) {
+  background: linear-gradient(to top,var(--c-ho) 0 40%,transparent 40%) !important;
+  border: 1px solid var(--line-strong) !important;
+}
+
+/* margin:10px 0 0;display:flex;flex-direction:column;gap:6px */
+:root .u-margin-10px-0-0-53:not([hidden]) {
+  margin: 10px 0 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}

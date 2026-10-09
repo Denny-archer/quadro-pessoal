@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/assets/images/logo-light.webp" type="image/webp">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>COFFITO Pass de Pessoal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+
+<link rel="stylesheet" href="/styles/reset.css">
+<link rel="stylesheet" href="/styles/base.css">
+<link rel="stylesheet" href="/styles/layout.css">
+<link rel="stylesheet" href="/styles/components.css">
+<link rel="stylesheet" href="/styles/features/panorama.css">
+<link rel="stylesheet" href="/styles/features/graficos.css">
+<link rel="stylesheet" href="/styles/features/funcionarios.css">
+<link rel="stylesheet" href="/styles/features/formularios.css">
+<link rel="stylesheet" href="/styles/features/administracao.css">
+<link rel="stylesheet" href="/styles/features/presenca.css">
+<link rel="stylesheet" href="/styles/utilities.css">
+<link rel="stylesheet" href="/styles/cores.css">
+<link rel="stylesheet" href="/styles/impressao.css">
+</head>
+<body>
+<div class="brandbar" aria-hidden="true"></div>
+<div class="app">
+  <header class="top">
+    <div class="brandline">
+      <img class="logo logo-l" src="/assets/images/logo-light.webp" width="520" height="283" alt="COFFITO — Conselho Federal de Fisioterapia e Terapia Ocupacional">
+      <img class="logo logo-d" src="/assets/images/logo-dark.webp" width="520" height="283" alt="COFFITO — Conselho Federal de Fisioterapia e Terapia Ocupacional">
+      <div class="brand-txt">
+        <div class="eyebrow">Gestão de Pessoas</div>
+        <h1>COFFITO Pass de Pessoal</h1>
+      </div>
+    </div>
+    <div class="period">
+      <div class="seg" role="group" aria-label="Escala do período">
+        <button id="mode-mes" type="button" aria-pressed="true">Mês</button>
+        <button id="mode-ano" type="button" aria-pressed="false">Ano</button>
+      </div>
+      <button class="icon-btn" id="prev" type="button" aria-label="Período anterior">‹</button>
+      <div id="period-label" aria-live="polite"></div>
+      <button class="icon-btn" id="next" type="button" aria-label="Próximo período">›</button>
+      <button class="btn small" id="go-today" type="button">Hoje</button>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="tabs" role="tablist">
+      <button role="tab" type="button" data-tab="panorama" aria-selected="true">Panorama</button>
+      <button role="tab" type="button" data-tab="func" aria-selected="false">Funcionários</button>
+      <button role="tab" type="button" data-tab="lanc" aria-selected="false">Lançamentos</button>
+      <button role="tab" type="button" data-tab="ben" aria-selected="false">Benefícios</button>
+      <button role="tab" type="button" data-tab="rem" aria-selected="false">Remuneração</button>
+    </div>
+    <div class="actions">
+      <button class="btn" id="priv" type="button" aria-pressed="true" title="Borra o nome dos colaboradores (os dados continuam visíveis)">Nomes ocultos</button>
+      <button class="btn" id="export" type="button" hidden>Exportar CSV</button>
+      <button class="btn" id="new-func" type="button">+ Funcionário</button>
+      <button class="btn primary" id="new-lanc" type="button">+ Lançamento</button>
+    </div>
+  </div>
+
+  <div id="banners"></div>
+
+  <main id="view"></main>
+</div>
+
+<dialog id="dlg-lanc">
+  <form id="form-lanc" novalidate>
+    <div class="dlg-head"><h2 id="lanc-title">Novo lançamento</h2><button class="icon-btn" type="button" data-close aria-label="Fechar">×</button></div>
+    <div class="fields">
+      <label class="full">Funcionário<select id="l-func" required></select></label>
+      <label>Tipo<select id="l-tipo"></select></label>
+      <label id="lbl-horas">Horas<input id="l-horas" type="number" step="0.5"></label>
+      <label id="lbl-inicio">Início<input id="l-inicio" type="date" required></label>
+      <label id="lbl-fim">Término<input id="l-fim" type="date"></label>
+      <label class="full check" id="lbl-parcial"><input id="l-parcial" type="checkbox"> Declaração de comparecimento (sem dia de afastamento)</label>
+      <label class="full" id="lbl-destino">Destino<input id="l-destino" type="text" maxlength="160"></label>
+      <label id="lbl-abpec">Abono pecuniário (dias vendidos)<input id="l-abpec" type="number" min="0" max="10" step="1" placeholder="0"></label>
+      <label id="lbl-aviso">Aviso de férias / processo<input id="l-aviso" type="text" maxlength="120" placeholder="Ex.: FEITO - 00.0016.000067/2026-12"></label>
+      <label class="full">Observação<textarea id="l-obs" maxlength="600"></textarea></label>
+    </div>
+    <div class="note" id="l-note"></div>
+    <div class="err" id="l-err" role="alert"></div>
+    <div class="dlg-foot">
+      <button class="btn danger" type="button" id="l-del" hidden>Excluir</button>
+      <div class="r"><button class="btn" type="button" data-close>Cancelar</button><button class="btn primary" type="submit" id="l-save">Salvar</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-func">
+  <form id="form-func" novalidate>
+    <div class="dlg-head"><h2 id="func-title">Novo funcionário</h2><button class="icon-btn" type="button" data-close aria-label="Fechar">×</button></div>
+    <div class="fields">
+      <label class="full">Nome completo<input id="f-nome" type="text" required maxlength="120"></label>
+      <label>Matrícula<input id="f-mat" type="text" maxlength="30"></label>
+      <label>Admissão<input id="f-adm" type="date"></label>
+      <label>Cargo base (concurso)<input id="f-cargo" type="text" maxlength="80"></label>
+      <label>Setor / lotação<input id="f-setor" type="text" maxlength="80" list="setores"></label>
+      <label class="full">Vínculo<select id="f-vinc">
+        <option value="efetivo">Empregado efetivo</option>
+        <option value="comissionado">Emprego em comissão (sem vínculo)</option>
+        <option value="cedido">Cedido de outro órgão</option>
+        <option value="estagiario">Estagiário</option>
+        <option value="aprendiz">Jovem aprendiz</option>
+      </select></label>
+      <label class="full" id="lbl-origem">Órgão de origem<input id="f-origem" type="text" maxlength="80" placeholder="Ex.: CREFITO 11"></label>
+      <fieldset class="full wkset" id="f-nomeacao">
+        <legend>Nomeação</legend>
+        <div class="fields">
+          <label class="full">Cargo em comissão / função gratificada<input id="f-funcao" type="text" maxlength="160" placeholder="Ex.: Chefe do Setor de Transportes"></label>
+          <label>Tipo<select id="f-ftipo"><option value="">Sem comissão ou função</option><option value="comissao">Emprego em comissão</option><option value="fg">Função gratificada (FG)</option></select></label>
+          <label>Nível<select id="f-nivel"><option value="">—</option><option>I</option><option>II</option><option>III</option><option>IV</option><option>V</option><option>VI</option></select></label>
+          <label>Portaria de nomeação<input id="f-port" type="text" maxlength="60" placeholder="Ex.: Port. 18/2026"></label>
+          <label>Ingresso (edital / portaria do concurso)<input id="f-ingresso" type="text" maxlength="60" placeholder="Ex.: Edital nº 1/2024"></label>
+        </div>
+      </fieldset>
+      <fieldset class="full wkset" id="f-contrato">
+        <legend id="f-contrato-leg">Contrato de estágio</legend>
+        <div class="fields">
+          <label>Jornada diária<select id="f-jd"><option value="">Não informada</option><option value="4">4 horas (20h/semana)</option><option value="6">6 horas (30h/semana)</option></select></label>
+          <label id="lbl-inst">Instituição de ensino<input id="f-inst" type="text" maxlength="100"></label>
+          <label>Início do contrato<input id="f-ci" type="date"></label>
+          <label>Término do contrato<input id="f-cf" type="date"></label>
+          <label class="full">Providência / ação<input id="f-prov" type="text" maxlength="160" placeholder="Ex.: providenciar termo aditivo"></label>
+        </div>
+        <div id="f-dur" class="resumo" aria-live="polite"></div>
+      </fieldset>
+      <label>Regime de trabalho<select id="f-regime"><option>Presencial</option><option>Híbrido</option><option>Teletrabalho</option></select></label>
+      <label>Carga horária semanal (h)<input id="f-carga" type="number" min="1" max="60" step="1" value="40"></label>
+      <label>Intervalo de almoço (min)<input id="f-int" type="number" min="0" max="180" step="15" value="60" title="Descontado de qualquer período contínuo acima de 6h"></label>
+      <fieldset class="full wkset" id="f-hib">
+        <legend>Semana híbrida · 10h de home office por semana</legend>
+        <div class="presets">
+          <button type="button" class="preset" data-preset="diario"><strong>Misto todos os dias</strong><span>6h presencial + 2h home office, de seg a sex</span></button>
+          <button type="button" class="preset" data-preset="dia"><strong>1 dia home office + 1 dia misto</strong><span>8h em casa num dia, 6h + 2h em outro, 3 dias presenciais</span></button>
+        </div>
+        <div class="scroll"><table class="wkgrid">
+          <thead><tr><th>Dia</th><th>Formato</th><th>Presencial</th><th>Home office</th><th class="r">Horas</th></tr></thead>
+          <tbody id="f-semana"></tbody>
+        </table></div>
+        <div id="f-resumo" class="resumo" aria-live="polite"></div>
+      </fieldset>
+      <label id="lbl-ent">Entrada<input id="f-ent" type="time" value="08:00"></label>
+      <label id="lbl-sai">Saída<input id="f-sai" type="time" value="17:00"></label>
+      <label id="lbl-ent-ho">Entrada no home office<input id="f-ent-ho" type="time" value="08:00"></label>
+      <label id="lbl-sai-ho">Saída no home office<input id="f-sai-ho" type="time" value="17:00"></label>
+      <fieldset class="full wkset" id="f-ben">
+        <legend>Auxílio-transporte</legend>
+        <div class="fields">
+          <label class="check"><input type="checkbox" id="f-usa-at"> Utiliza auxílio-transporte</label>
+          <label id="lbl-at"><span id="lbl-at-txt">Valor mensal (R$)</span><input id="f-at" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0,00"></label>
+        </div>
+        <div class="hint u-margin-top-6px" id="f-at-hint" ></div>
+      </fieldset>
+      <fieldset class="full wkset" id="f-extras">
+        <legend>Benefícios adicionais</legend>
+        <div id="fx-lista" class="fx-lista"></div>
+        <div class="u-display-flex">
+          <button class="btn small" type="button" id="fx-add">+ Adicionar benefício</button>
+          <span class="hint">Ex.: auxílio-creche todo mês, abono de Natal em dezembro, auxílio-funeral uma vez.</span>
+        </div>
+      </fieldset>
+      <fieldset class="full wkset" id="f-rem">
+        <legend>Remuneração</legend>
+        <div class="fields">
+          <label id="lbl-carreira">Carreira (empregos efetivos)<select id="f-carreira"><option value="">Automática pelo cargo</option><option value="analista">Analista / Advogado</option><option value="tecnico">Técnico</option><option value="apoio">Apoio Operacional</option></select></label>
+          <label id="lbl-nivsal">Nível salarial atual (1 a 30)<input id="f-nivsal" type="number" min="1" max="30" step="1" placeholder="pelo tempo de casa"></label>
+          <label id="lbl-fgtipo">Função gratificada<select id="f-fgtipo"><option value="">Automática pela função</option><option value="chefia">FG Chefia</option><option value="assessor2">FG Assessor Nível II</option><option value="assessor1">FG Assessor Nível I</option></select></label>
+          <label id="lbl-bolsa">Bolsa-auxílio<select id="f-bolsa"><option value="">Nível superior 6h (padrão)</option><option value="medio4">Nível médio 4h</option><option value="tecnico6">Nível técnico 6h</option><option value="advocacia6">Profissional advocacia 6h</option><option value="superior6">Nível superior 6h</option><option value="pos6">Pós-graduação 6h</option></select></label>
+        </div>
+        <div class="hint u-margin-top-6px" id="f-rem-hint" ></div>
+      </fieldset>
+      <label class="full">Situação<select id="f-sit"><option value="ativo">Ativo</option><option value="cedido">Cedido a outro órgão</option><option value="inativo">Inativo / desligado</option></select></label>
+      <label class="full" id="lbl-cedpara">Cedido para<input id="f-cedpara" type="text" maxlength="80" placeholder="Ex.: CREFITO 3"></label>
+    </div>
+    <datalist id="setores"></datalist>
+    <div class="err" id="f-err" role="alert"></div>
+    <div class="dlg-foot">
+      <button class="btn danger" type="button" id="f-del" hidden>Excluir funcionário</button>
+      <div class="r"><button class="btn" type="button" data-close>Cancelar</button><button class="btn primary" type="submit" id="f-save">Salvar</button></div>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="dlg-kpi" class="dlg-wide">
+  <div class="kd">
+    <div class="kd-head">
+      <div><div class="eyebrow" id="kd-eyebrow">Detalhamento</div><h2 id="kd-title">—</h2></div>
+      <button class="icon-btn" type="button" data-close aria-label="Fechar">×</button>
+    </div>
+    <div class="kd-bar">
+      <div class="seg" role="tablist" aria-label="Visão">
+        <button type="button" data-kv="mes">Mensal</button><button type="button" data-kv="ano">Anual</button><button type="button" data-kv="reg">Registros</button>
+      </div>
+      <div class="kd-nav" id="kd-nav"><button class="icon-btn" type="button" data-kn="-1" aria-label="Anterior">‹</button><strong id="kd-per"></strong><button class="icon-btn" type="button" data-kn="1" aria-label="Próximo">›</button></div>
+    </div>
+    <div id="kd-body"></div>
+  </div>
+</dialog>
+
+<dialog id="dlg-tabsal" class="dlg-wide"><div class="kd" id="tabsal-body"></div></dialog>
+
+<dialog id="dlg-regras">
+  <form id="form-regras" novalidate>
+    <div class="dlg-head"><h2>Regras de cálculo dos benefícios</h2><button class="icon-btn" type="button" data-close aria-label="Fechar">×</button></div>
+    <div class="fields">
+      <label>Auxílio-alimentação mensal (R$)<input id="r-aa" type="number" min="0" step="0.01"></label>
+      <label>Estagiário e jovem aprendiz (% do valor)<input id="r-pct" type="number" min="0" max="100" step="1"></label>
+      <label>Desconta alimentação em viagem/atestado acima de (dias)<input id="r-lim" type="number" min="0" max="90" step="1"></label>
+      <label>Dias descontados do alimentação<select id="r-modo"><option value="todos">Todos os dias úteis do afastamento</option><option value="excedente">Só os dias úteis após o limite</option></select></label>
+      <label>Auxílio-transporte é cadastrado como<select id="r-atmodo"><option value="mensal">Valor mensal por funcionário</option><option value="diario">Valor diário por funcionário</option></select></label>
+      <label class="check u-align-self-end" ><input type="checkbox" id="r-atferias"> Descontar também férias do transporte</label>
+      <label class="full">Feriados e pontos facultativos <span class="hint">(um por linha, dd/mm/aaaa — saem da contagem de dias úteis)</span><textarea id="r-fer" rows="6" placeholder="07/09/2026"></textarea></label>
+    </div>
+    <div class="note">Valor por dia = valor mensal ÷ dias úteis do mês (seg a sex, sem feriados). Dias de home office integral, atestado e viagem são descontados do transporte; o dia misto não, porque há deslocamento.</div>
+    <div class="err" id="r-err" role="alert"></div>
+    <div class="dlg-foot"><div class="r"><button class="btn" type="button" data-close>Cancelar</button><button class="btn primary" type="submit" id="r-save">Salvar regras</button></div></div>
+  </form>
+</dialog>
+
+<script type="module" src="/scripts/main.js"></script>
+</body></html>
