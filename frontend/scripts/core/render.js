@@ -9,6 +9,7 @@ import { viewFunc } from "../features/funcionarios/ficha.js";
 import { viewBen } from "../features/beneficios.js";
 import { viewRem } from "../features/remuneracao.js";
 import { viewLanc } from "../features/ocorrencias/listagem.js";
+import { atualizarPontoFicha } from "../features/funcionarios/ponto.js";
 function render() {
   if ($("#dlg-kpi")?.open) renderKd();
   $("#period-label").textContent = periodoLabel();
@@ -18,10 +19,12 @@ function render() {
   renderBanners();
   const v = $("#view");
   if (!S.ready) {
+    atualizarPontoFicha();
     v.innerHTML = `<div class="panel empty">Carregando o quadro…</div>`;
     return;
   }
   if (S.tab === "panorama") v.innerHTML = S.mode === "mes" ? panoramaMes() : panoramaAno();else if (S.tab === "func") v.innerHTML = viewFunc();else if (S.tab === "ben") v.innerHTML = viewBen();else if (S.tab === "rem") v.innerHTML = viewRem();else v.innerHTML = viewLanc();
+  atualizarPontoFicha();
   const busca = $("#busca-func");
   if (busca && S._focusBusca) {
     busca.focus();

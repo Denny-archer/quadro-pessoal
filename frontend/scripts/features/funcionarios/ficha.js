@@ -7,7 +7,7 @@ import { foraHoje, stats } from "../../core/estatisticas.js";
 import { esc } from "../../core/dom.js";
 import { VINC_TAG, TIPOS, VINC, FUNCAO_TIPO, AUSENCIAS, MESES } from "../../core/constantes.js";
 import { prazoContrato, temContrato, duracaoTxt, passaDe2Anos, prazoPill, tempoCasa } from "../contratos.js";
-import { semanaDe, intervaloDe, totaisSemana, DIAS_UTEIS, horasDia, mins, WD_NOME, hN, checaHibrido } from "../../core/jornada.js";
+import { semanaDe, checaHibrido } from "../../core/jornada.js";
 import { cap, fmt, parse, DAY, iso, HOJE } from "../../core/datas.js";
 import { brl, fmtH } from "../../core/formatacao.js";
 import { fichaAbonos } from "../abonos.js";
@@ -16,6 +16,7 @@ import { fichaExtras } from "../beneficios-extras.js";
 import { indAtestados } from "../atestados.js";
 import { legend } from "../panorama/indicadores.js";
 import { tabelaLanc } from "../ocorrencias/listagem.js";
+import { fichaPonto } from "./ponto.js";
 function viewFunc() {
   const fs = [...S.func].sort(byName);
   const q = S.fBusca.trim().toLowerCase();
@@ -37,24 +38,7 @@ function viewFunc() {
   return h;
 }
 function jornadaSemanal(f) {
-  const s = semanaDe(f),
-    iv = intervaloDe(f),
-    t = totaisSemana(f);
-  const faixa = (a, b) => a && b ? `<span class="num">${esc(a)}–${esc(b)}</span>` : `<span class="hint">—</span>`;
-  let h = `<h3 class="u-margin-top-22px">Jornada semanal</h3><div class="scroll"><table class="jornada"><thead><tr><th>Dia</th><th>Formato</th><th>Presencial</th><th>Home office</th><th class="r">Horas</th></tr></thead><tbody>`;
-  for (const d of DIAS_UTEIS) {
-    const x = s[d] || {
-        tipo: "P"
-      },
-      hd = horasDia(x, iv);
-    const tag = x.tipo === "H" ? `<span class="ho-tag">HOME OFFICE</span>` : x.tipo === "M" ? `<span class="pres-tag">MISTO</span>` : `<span class="hint">Presencial</span>`;
-    const ordem = x.tipo === "M" && mins(x.he) < mins(x.pe) ? ` <span class="hint">(home office antes)</span>` : "";
-    h += `<tr><td><strong>${cap(WD_NOME[d])}</strong></td><td>${tag}</td><td>${x.tipo === "H" ? `<span class="hint">—</span>` : faixa(x.pe, x.ps)}</td><td>${x.tipo === "P" ? `<span class="hint">—</span>` : faixa(x.he, x.hs) + ordem}</td><td class="r num">${hN(hd.p + hd.h)}</td></tr>`;
-  }
-  const carga = Number(f.carga) || 0,
-    bate = !carga || Math.abs(t.t - carga) < 0.01;
-  h += `</tbody><tfoot><tr><td colspan="4">${hN(t.p)} presencial · ${hN(t.h)} home office${iv ? ` <span class="hint">(intervalo de ${iv} min descontado em períodos acima de 6h)</span>` : ""}</td><td class="r num ${classeCor(bate ? "inherit" : "var(--c-abono)", "color")}"  title="${bate ? "" : "Não bate com a carga cadastrada de " + carga + "h"}">${hN(t.t)}</td></tr></tfoot></table></div>`;
-  return h;
+  return fichaPonto(f);
 }
 function ficha(f) {
   const a = new Date(S.y, 0, 1),
