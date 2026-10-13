@@ -1167,3 +1167,6 @@ tests/test_validacao.py,backend/tests/test_validacao.py,Teste automatizado ou am
 (novo),pytest.ini,Descoberta dos testes e caminho do pacote Python,Versionar,Novo ou extraído
 (novo),docs/historico/INVENTARIO-ARQUIVOS.csv,Inventário por arquivo,Versionar,Novo
 (novo),frontend/styles/impressao.css,Estilos da impressão da aba atual,Versionar,Novo
+(novo),frontend/scripts/features/funcionarios/ponto.js,Consulta e apresentação da apuração semanal recebida do ponto,Versionar,Correção 1.2.1
+(novo),frontend/tests/ponto-ficha.test.js,"Regressões de apuração semanal, consulta, troca de contexto e falhas",Versionar,Correção 1.2.1
+(novo),docs/historico/CORRECAO-PONTO-FICHA-2026-10-13.md,"Causa, correção e validação do ponto na ficha",Versionar,Correção 1.2.1

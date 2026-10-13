@@ -13,6 +13,7 @@
 | Integração com o ponto | [Contrato e ativação](integracao/INTEGRACAO-PONTO.md) |
 | Histórico da revisão inicial | [Revisão 1.1](historico/REVISAO-2026-10-07.md) |
 | Reorganização e validação | [Revisão 1.2](historico/REORGANIZACAO-2026-10-09.md) |
+| Ponto na ficha do colaborador | [Correção 1.2.1](historico/CORRECAO-PONTO-FICHA-2026-10-13.md) |
 | Decisão por arquivo | [Inventário](historico/INVENTARIO-ARQUIVOS.csv) |
 
 Cada especificação tem uma versão canônica. Os antigos documentos duplicados foram consolidados neste índice.

@@ -3,6 +3,18 @@
 Contrato vigente em 07/10/2026. O ponto é responsável pela apuração. O RH consulta presença e horas,
 sem manter cópia completa do sistema de ponto. Transporte servidor a servidor, com HTTPS na implantação.
 
+## Consulta na ficha do colaborador
+
+Na versão 1.2.2, a ficha usa a tabela **Jornada semanal** existente, com as colunas Dia,
+Formato, Presencial, Home office e Horas. Os intervalos de batidas preenchem a modalidade
+correspondente, e Horas conserva o total oficial informado pelo ponto. Há uma única tabela.
+Os totais presenciais/remotos e oficiais são somados a partir dos resumos recebidos.
+
+A consulta usa `GET /api/jornada/{func_id}?de=AAAA-MM-DD&ate=AAAA-MM-DD`, permite navegar entre
+semanas e atualiza a cada quinze segundos. Os cinco dias úteis são exibidos; trabalho recebido
+no sábado/domingo também aparece. Dias sem resumo não se tornam zero ou falta. O cadastro
+de horários do RH não é sobrescrito pelas batidas. O vínculo tardio por matrícula continua suportado.
+
 ## Dados enviados
 
 `POST /api/integracao/ponto/resumos`, `Authorization: Bearer qpk_…`, `Content-Type: application/json`.

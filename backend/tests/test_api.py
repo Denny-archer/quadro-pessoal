@@ -214,3 +214,32 @@ def test_schema_reexecutavel_e_csp_sem_script_inline(cliente):
     assert "script-src 'self';" in r.headers['Content-Security-Policy']
     assert '<script>' not in r.text
     assert 'COFFITO Pass de Pessoal' in r.text
+
+
+def test_jornada_vincula_matricula_sem_abrir_panorama_e_isola_colaboradores(cliente):
+    h = chave(cliente)
+    d = resumo()
+    assert cliente.post('/api/integracao/ponto/resumos', headers=h, json={'resumos': [d]}).json()['sem_vinculo'] == ['5']
+    funcionario(cliente)
+    # Não depende de consultar /api/presenca para estabelecer o vínculo.
+    r = cliente.get('/api/jornada/f', params={'de': d['data'], 'ate': d['data']})
+    assert r.status_code == 200 and len(r.json()) == 1
+    assert r.json()[0]['dados']['segundos_oficiais'] == 3600
+    funcionario(cliente, 'outro', '2')
+    assert cliente.get('/api/jornada/outro', params={'de': d['data'], 'ate': d['data']}).json() == []
+    anterior = (dt.date.fromisoformat(d['data']) - dt.timedelta(days=1)).isoformat()
+    assert cliente.get('/api/jornada/f', params={'de': anterior, 'ate': anterior}).json() == []
+
+
+def test_jornada_conserva_vinculo_apos_mudar_matricula_e_recebe_correcao(cliente):
+    h = chave(cliente)
+    funcionario(cliente)
+    d = resumo()
+    cliente.post('/api/integracao/ponto/resumos', headers=h, json={'resumos': [d]}).raise_for_status()
+    funcionario(cliente, 'f', '999')
+    correcao = {**d, 'versao': 2, 'segundos_oficiais': 7200, 'saldo_segundos': -21600}
+    cliente.post('/api/integracao/ponto/resumos', headers=h, json={'resumos': [correcao]}).raise_for_status()
+    rows = cliente.get('/api/jornada/f', params={'de': d['data'], 'ate': d['data']}).json()
+    assert len(rows) == 1 and rows[0]['dados']['versao'] == 2
+    assert rows[0]['dados']['segundos_oficiais'] == 7200
+    assert rows[0]['dados']['saldo_segundos'] == -21600

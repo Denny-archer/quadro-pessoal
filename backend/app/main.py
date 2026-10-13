@@ -23,7 +23,7 @@ async def lifespan(app):
     yield
 
 
-app = FastAPI(title="COFFITO Pass de Pessoal", version="1.2.0", lifespan=lifespan, redoc_url=None,
+app = FastAPI(title="COFFITO Pass de Pessoal", version="1.2.2", lifespan=lifespan, redoc_url=None,
               docs_url="/api/docs" if DOCS else None, openapi_url="/api/openapi.json" if DOCS else None)
 app.include_router(auth.router)
 app.include_router(routes_usuarios.router)

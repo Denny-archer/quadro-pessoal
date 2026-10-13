@@ -156,6 +156,9 @@ def batidas_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = De
 def jornada_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = Depends(exige('leitor'))):
     if not 0 <= (ate - de).days < 62:
         raise HTTPException(400, 'Informe um período de 1 a 62 dias.')
+    # A ficha pode ser aberta antes do Panorama após completar a matrícula.
+    with db.conexao() as c:
+        resumos_ponto.vincular(c.cursor())
     return db.consultar('SELECT data, dados, recebido_em FROM ponto_resumos WHERE funcionario_id=%s AND data BETWEEN %s AND %s ORDER BY data',
                         (func_id, de, ate))
 

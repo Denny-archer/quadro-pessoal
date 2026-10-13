@@ -32,7 +32,7 @@ docker compose ps
 docker compose exec app python -m app.cli criar-admin seu.email@coffito.gov.br "Seu Nome"
 ```
 
-A porta é definida no `.env`. As URLs `/`, `/login`, `/importacao.html` e `/api/` foram preservadas. A imagem 1.2.0 usa o mesmo schema v3 e volume PostgreSQL.
+A porta é definida no `.env`. As URLs `/`, `/login`, `/importacao.html` e `/api/` foram preservadas. A imagem 1.2.2 usa o mesmo schema v3 e volume PostgreSQL. A ficha do colaborador preenche a tabela Jornada semanal existente com as batidas e horas recebidas do ponto.
 
 Para carga opcional dos dados locais, conserve `seed/` na raiz e execute `docker compose exec app python -m app.cli carregar-json /srv/seed`. Os arquivos de seed, `.env`, exportações e backups ficam fora do Git e da imagem da aplicação.
 
