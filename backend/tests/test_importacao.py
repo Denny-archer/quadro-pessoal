@@ -63,3 +63,28 @@ def test_modelos_releem():
         assert not ign and len(linhas) == len(modelos.EXEMPLOS[t])
         cols, ign, linhas = leitor.ler(modelos.modelo_csv(t), f"m.csv", t)
         assert not ign and len(linhas) == len(modelos.EXEMPLOS[t])
+
+
+def test_importacao_campos_folha_preserva_historico_existente():
+    _, ign, linhas = _csv('matricula;nome;vinculo;titulacao_pct;anuenio_pct;dependentes_ir;outros_descontos;sindicalizado\n'
+                        '47;;;7,5;2;1;123,45;sim\n', 'funcionarios')
+    assert not ign
+    existentes = [{**FUNCS[0], 'historicoRem': []}]
+    plano = validacao.validar_funcionarios(linhas, existentes)
+    doc = plano['operacoes'][0]['doc']
+    assert doc['titulacaoPct'] == 7.5 and doc['sindicalizado'] is True
+    assert doc['outrosDescontos'] == 123.45 and doc['historicoRem'] == []
+
+
+def test_importacao_recusa_titulacao_invalida_na_previa():
+    _, _, linhas = _csv('matricula;nome;vinculo;titulacao_pct\n47;;;8\n', 'funcionarios')
+    plano = validacao.validar_funcionarios(linhas, FUNCS)
+    assert plano['contagem']['erros'] == 1 and not plano['operacoes']
+
+
+def test_importacao_valor_unitario_diaria():
+    _, ign, linhas = _csv('matricula;tipo;inicio;fim;diarias;valor_diaria\n'
+                        '47;viagem;20/10/2026;21/10/2026;1,5;250,00\n')
+    assert not ign
+    plano = validacao.validar_lancamentos(linhas, FUNCS, [], 'teste.csv')
+    assert plano['operacoes'][0]['doc']['valorDiaria'] == 250

@@ -1,0 +1,365 @@
+/* Estilos dos novos componentes de folha, recibos e histórico. */
+:root .u-folha-margin-top-6px:not([hidden]) {
+  margin-top:6px !important;
+}
+
+:root .u-folha-display-flex:not([hidden]) {
+  display:flex !important;
+  flex-wrap:wrap !important;
+  gap:8px !important;
+  align-items:center !important;
+  margin-top:8px !important;
+}
+
+:root .u-folha-align-self-end:not([hidden]) {
+  align-self:end !important;
+}
+
+:root .u-folha-margin-top-22px:not([hidden]) {
+  margin-top:22px !important;
+}
+
+:root .u-folha-pc-var-c-abono:not([hidden]) {
+  --pc:var(--c-abono) !important;
+}
+
+:root .u-folha-pc-var-bad:not([hidden]) {
+  --pc:var(--bad) !important;
+}
+
+:root .u-folha-pc-var-c-viagem:not([hidden]) {
+  --pc:var(--c-viagem) !important;
+}
+
+:root .u-folha-pc-var-good:not([hidden]) {
+  --pc:var(--good) !important;
+}
+
+:root .u-folha-background-var-c-ferias:not([hidden]) {
+  background:var(--c-ferias) !important;
+}
+
+:root .u-folha-background-color-mix-in-srgb-var-c-ferias-45-:not([hidden]) {
+  background:color-mix(in srgb,var(--c-ferias) 45%,var(--surface)) !important;
+}
+
+:root .u-folha-background-var-c-abono:not([hidden]) {
+  background:var(--c-abono) !important;
+}
+
+:root .u-folha-font-weight-600:not([hidden]) {
+  font-weight:600 !important;
+}
+
+:root .u-folha-color-var-c-abono:not([hidden]) {
+  color:var(--c-abono) !important;
+}
+
+:root .u-folha-font-size-26px:not([hidden]) {
+  font-size:26px !important;
+}
+
+:root .u-folha-k-var-brand:not([hidden]) {
+  --k:var(--brand) !important;
+}
+
+:root .u-folha-font-size-24px:not([hidden]) {
+  font-size:24px !important;
+}
+
+:root .u-folha-k-var-c-atestado:not([hidden]) {
+  --k:var(--c-atestado) !important;
+}
+
+:root .u-folha-k-var-c-viagem:not([hidden]) {
+  --k:var(--c-viagem) !important;
+}
+
+:root .u-folha-k-var-c-abono:not([hidden]) {
+  --k:var(--c-abono) !important;
+}
+
+:root .u-folha-c-var-good:not([hidden]) {
+  --c:var(--good) !important;
+}
+
+:root .u-folha-margin-10px-0-0:not([hidden]) {
+  margin:10px 0 0 !important;
+}
+
+:root .u-folha-display-flex-22:not([hidden]) {
+  display:flex !important;
+  gap:8px !important;
+  flex-wrap:wrap !important;
+}
+
+:root .u-folha-color-var-accent:not([hidden]) {
+  color:var(--accent) !important;
+}
+
+:root .u-folha-margin-0-0-10px:not([hidden]) {
+  margin:0 0 10px !important;
+}
+
+:root .u-folha-k-var-accent:not([hidden]) {
+  --k:var(--accent) !important;
+}
+
+:root .u-folha-k-var-c-capacitacao:not([hidden]) {
+  --k:var(--c-capacitacao) !important;
+}
+
+:root .u-folha-k-var-c-ferias:not([hidden]) {
+  --k:var(--c-ferias) !important;
+}
+
+:root .u-folha-font-size-15px:not([hidden]) {
+  font-size:15px !important;
+}
+
+:root .u-folha-font-family-var-f-body:not([hidden]) {
+  font-family:var(--f-body) !important;
+}
+
+:root .u-folha-font-size-18px:not([hidden]) {
+  font-size:18px !important;
+}
+
+:root .u-folha-font-size-18px-31:not([hidden]) {
+  font-size:18px !important;
+  color:var(--accent) !important;
+}
+
+:root .u-folha-color-var-c-abono-32:not([hidden]) {
+  color:var(--c-abono) !important;
+  margin-top:6px !important;
+}
+
+:root .u-folha-margin-top-2px:not([hidden]) {
+  margin-top:2px !important;
+}
+
+:root .u-folha-margin-top-4px:not([hidden]) {
+  margin-top:4px !important;
+}
+
+:root .u-folha-color-var-c-viagem:not([hidden]) {
+  color:var(--c-viagem) !important;
+}
+
+:root .u-folha-c-var-c-ferias:not([hidden]) {
+  --c:var(--c-ferias) !important;
+}
+
+:root .u-folha-c-var-c-banco:not([hidden]) {
+  --c:var(--c-banco) !important;
+}
+
+:root .u-folha-text-align-center:not([hidden]) {
+  text-align:center !important;
+}
+
+:root .u-folha-margin-top-10px:not([hidden]) {
+  margin-top:10px !important;
+}
+
+.feriasbox {
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:12px 14px;
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+
+.fb-head {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:8px;
+  align-items:flex-start
+}
+
+.fb-nums {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 18px;
+  font-size:13px;
+  color:var(--muted)
+}
+
+.fb-nums strong {
+  color:var(--ink);
+  font-size:15px
+}
+
+.fb-list {
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-size:13.5px
+}
+
+.fb-list button.link {
+  all:unset;
+  cursor:pointer;
+  font-weight:600
+}
+
+.fb-list button.link:hover {
+  color:var(--accent)
+}
+
+.fb-hist {
+  margin-top:8px;
+  font-size:13.5px
+}
+
+.fb-hist summary {
+  cursor:pointer;
+  color:var(--muted);
+  font-weight:600
+}
+
+.fb-hist .fb-list {
+  margin-top:6px
+}
+
+.fb-hist .fb-list li {
+  padding:6px 0;
+  border-top:1px solid var(--line)
+}
+
+.fb-bar {
+  display:flex;
+  height:8px;
+  border-radius:4px;
+  overflow:hidden;
+  background:var(--sunk);
+  border:1px solid var(--line)
+}
+
+.fb-bar i {
+  display:block;
+  height:100%
+}
+
+.fb-par {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto auto;
+  gap:4px 12px;
+  align-items:center;
+  padding:6px 0;
+  border-top:1px solid var(--line)
+}
+
+.fb-par .fb-rec {
+  grid-column:1/-1
+}
+
+.fb-rec table.data {
+  font-size:13px
+}
+
+.fb-rec table.data td,.fb-rec table.data th {
+  padding:5px 8px
+}
+
+.fb-regra {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  color:var(--muted);
+  border-top:1px dashed var(--line);
+  padding-top:8px
+}
+
+.calc-ferias {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:13px
+}
+
+.calc-ferias .e {
+  color:var(--bad);
+  font-weight:600
+}
+
+.calc-ferias .a {
+  color:var(--c-abono)
+}
+
+.calc-ferias table {
+  width:100%;
+  border-collapse:collapse
+}
+
+.calc-ferias td {
+  padding:3px 0;
+  border-bottom:1px solid var(--line)
+}
+
+.calc-ferias td:last-child {
+  text-align:right;
+  font-family:var(--f-mono);
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap
+}
+
+html[data-papel="leitor"] [data-hist-del], html[data-papel="leitor"] [data-new-ferias] {
+  display:none !important;
+}
+
+.kd-grid > div, .memo-grid > div {
+  min-width:0;
+  overflow-x:auto;
+}
+
+.privado tr[data-fol] > td:first-child > strong {
+  filter:blur(7px);
+  user-select:none;
+}
+
+.fb-par button.link, .memo-grid button.link {
+  border:0;
+  padding:0;
+  background:none;
+  color:inherit;
+  font:inherit;
+  font-weight:600;
+  cursor:pointer;
+  text-align:left;
+}
+
+.fb-par button.link:hover, .memo-grid button.link:hover {
+  color:var(--accent);
+}
+
+@media (max-width: 720px) {
+  .fb-par {
+    grid-template-columns:1fr;
+  }
+  .kd-grid {
+    grid-template-columns:1fr;
+  }
+}
+
+@media print {
+  [data-hist-del], [data-new-ferias] {
+    display:none !important;
+  }
+  .fb-rec, .calc-ferias {
+    break-inside:avoid;
+  }
+  .kd-grid > div, .memo-grid > div {
+    overflow:visible;
+  }
+}

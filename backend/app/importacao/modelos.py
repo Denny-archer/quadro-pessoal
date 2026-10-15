@@ -94,9 +94,15 @@ FUNCIONARIOS = [
     Coluna("nivel_salarial", "Nível salarial 1 a 30 (vazio = pelo tempo de casa).", "", tipo="inteiro"),
     Coluna("fg_tipo", "chefia | assessor2 | assessor1 (vazio = automática).", "", tipo="enum", opcoes=FG_TIPO),
     Coluna("bolsa_tipo", "Estagiário: medio4 | tecnico6 | advocacia6 | superior6 | pos6", "", tipo="enum", opcoes=BOLSA),
+    Coluna("titulacao_pct", "Adicional de titulação: 0 | 7,5 | 10 | 12,5 (%).", "0", tipo="numero", apelidos=["titulacao"]),
+    Coluna("anuenio_pct", "Anuênio: percentual do salário base (0 a 50).", "0", tipo="numero", apelidos=["anuenio"]),
+    Coluna("dependentes_ir", "Quantidade de dependentes para IR (0 a 20).", "0", tipo="inteiro"),
+    Coluna("outros_descontos", "Outros descontos fixos mensais (R$).", "0", tipo="numero"),
+    Coluna("sindicalizado", "Paga mensalidade sindical? sim | não.", "não", tipo="booleano"),
 ]
 
 LANCAMENTOS = [
+    Coluna("valor_diaria", "Valor unitário da diária de viagem (R$); vazio usa o padrão das regras.", "", tipo="numero"),
     Coluna("matricula", "Matrícula do funcionário (preferencial para identificar).", "157", apelidos=["mat"], maximo=30),
     Coluna("nome", "Nome do funcionário (usado se não houver matrícula).", "Maria da Silva Souza", apelidos=["nome_completo", "colaborador", "funcionario", "servidor"], maximo=120),
     Coluna("tipo", "ferias | atestado | abono | viagem | capacitacao | banco_horas", "atestado", True, "enum", TIPO_LANC, ["tipo_de_lancamento", "ocorrencia"]),

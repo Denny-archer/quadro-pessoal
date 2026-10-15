@@ -21,7 +21,7 @@ services:
 
   app:
     build: .
-    image: coffito/quadro-pessoal:1.2.2
+    image: coffito/quadro-pessoal:1.3.0
     restart: unless-stopped
     depends_on:
       db:

@@ -34,6 +34,39 @@ def entrar(c):
     assert r.status_code == 200, r.text
 
 
+def test_folha_historico_persistem_com_auditoria_e_sem_afetar_jornada(cliente):
+    entrar(cliente)
+    doc = {'nome': 'Pessoa Folha', 'matricula': '456', 'admissao': '2025-01-01',
+        'nivelSalarial': 2, 'titulacaoPct': 10, 'anuenioPct': 2, 'dependentesIR': 1,
+        'outrosDescontos': 100, 'sindicalizado': True,
+        'historicoRem': [{'id': 'h1', 'tipo': 'nivel', 'data': '2026-10-15', 'de': 1, 'para': 2,
+            'ato': 'Portaria Teste', 'registradoEm': '2026-10-14T12:00:00Z'}]}
+    r = cliente.put('/api/dados/funcionarios/folha', json=doc)
+    assert r.status_code == 200, r.text
+    lido = next(f for f in cliente.get('/api/dados/funcionarios').json() if f['id'] == 'folha')
+    assert lido['titulacaoPct'] == 10 and lido['historicoRem'][0]['para'] == 2
+    assert lido['entrada'] == '' and lido['saida'] == ''
+    assert db.consultar("SELECT count(*) AS n FROM auditoria WHERE registro_id='folha'")[0]['n'] == 1
+    assert cliente.get('/api/jornada/folha', params={'de':'2026-10-12','ate':'2026-10-18'}).json() == []
+
+
+def test_api_recusa_folha_invalida_sem_gravar(cliente):
+    entrar(cliente)
+    for valores in ({'titulacaoPct': 8}, {'dependentesIR': -1}, {'outrosDescontos': -10}, {'sindicalizado': 'false'}):
+        resposta = cliente.put('/api/dados/funcionarios/invalido', json={'nome': 'Pessoa Teste', **valores})
+        assert resposta.status_code == 400
+    assert not db.consultar("SELECT id FROM funcionarios WHERE id='invalido'")
+
+
+def test_configuracoes_folha_validam_valores_e_preservam_regras(cliente):
+    entrar(cliente)
+    valores = {'aa': 2100, 'pctTemp': 50, 'vtPct': 0.1, 'sindical': 90.35, 'diaria': 250}
+    assert cliente.put('/api/dados/config/beneficios', json=valores).status_code == 200
+    for campo, valor in [('vtPct', 101), ('sindical', -1), ('diaria', True)]:
+        assert cliente.put('/api/dados/config/beneficios', json={**valores, campo: valor}).status_code == 400
+    assert cliente.get('/api/dados/config/beneficios').json()['dados'] == valores
+
+
 def chave(c):
     entrar(c)
     r = c.post('/api/integracao/chaves', json={'nome': 'Ponto Teste'})

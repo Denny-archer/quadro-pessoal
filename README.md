@@ -32,7 +32,9 @@ docker compose ps
 docker compose exec app python -m app.cli criar-admin seu.email@coffito.gov.br "Seu Nome"
 ```
 
-A porta é definida no `.env`. As URLs `/`, `/login`, `/importacao.html` e `/api/` foram preservadas. A imagem 1.2.2 usa o mesmo schema v3 e volume PostgreSQL. A ficha do colaborador preenche a tabela Jornada semanal existente com as batidas e horas recebidas do ponto.
+A porta é definida no `.env`. As URLs `/`, `/login`, `/importacao.html` e `/api/` foram preservadas. A imagem 1.3.0 usa o mesmo schema v3 e volume PostgreSQL. A ficha do colaborador preenche a tabela Jornada semanal existente com as batidas e horas recebidas do ponto.
+
+A versão 1.3.0 acrescenta campos de folha, histórico de remuneração por vigência, controle e recibos de férias/recesso e relatório estimado com exportação. Veja o [guia de folha e férias](docs/FOLHA-E-FERIAS.md). A atualização não exige migração de banco.
 
 Para carga opcional dos dados locais, conserve `seed/` na raiz e execute `docker compose exec app python -m app.cli carregar-json /srv/seed`. Os arquivos de seed, `.env`, exportações e backups ficam fora do Git e da imagem da aplicação.
 

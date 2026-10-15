@@ -1,22 +1,21 @@
-import { classeCor } from "../../core/cores.js";
-/** Funcionalidade: funcionarios / ficha. */
 import { S } from "../../core/estado.js";
-import { byName, noQuadro, overlap, naoUtil } from "../../core/colecoes.js";
-import { grupoDe, GRUPOS, periodoAquisitivo, fichaFerias } from "../ferias.js";
-import { foraHoje, stats } from "../../core/estatisticas.js";
+import { byName, naoUtil, noQuadro, overlap } from "../../core/colecoes.js";
+import { GRUPOS, fichaFerias, grupoDe, periodoAquisitivo } from "../ferias.js";
+import { diasFerias, foraHoje, stats } from "../../core/estatisticas.js";
 import { esc } from "../../core/dom.js";
-import { VINC_TAG, TIPOS, VINC, FUNCAO_TIPO, AUSENCIAS, MESES } from "../../core/constantes.js";
-import { prazoContrato, temContrato, duracaoTxt, passaDe2Anos, prazoPill, tempoCasa } from "../contratos.js";
-import { semanaDe, checaHibrido } from "../../core/jornada.js";
-import { cap, fmt, parse, DAY, iso, HOJE } from "../../core/datas.js";
+import { AUSENCIAS, FUNCAO_TIPO, MESES, TIPOS, VINC, VINC_TAG } from "../../core/constantes.js";
+import { duracaoTxt, passaDe2Anos, prazoContrato, prazoPill, temContrato, tempoCasa } from "../contratos.js";
+import { classeCor } from "../../core/cores.js";
+import { fichaPonto } from "./ponto.js";
+import { descGrat, estadoEm, fichaRem } from "../remuneracao.js";
+import { DAY, HOJE, fmt, iso, parse } from "../../core/datas.js";
+import { checaHibrido, semanaDe } from "../../core/jornada.js";
 import { brl, fmtH } from "../../core/formatacao.js";
 import { fichaAbonos } from "../abonos.js";
-import { fichaRem } from "../remuneracao.js";
 import { fichaExtras } from "../beneficios-extras.js";
 import { indAtestados } from "../atestados.js";
 import { legend } from "../panorama/indicadores.js";
 import { tabelaLanc } from "../ocorrencias/listagem.js";
-import { fichaPonto } from "./ponto.js";
 function viewFunc() {
   const fs = [...S.func].sort(byName);
   const q = S.fBusca.trim().toLowerCase();
@@ -41,17 +40,21 @@ function jornadaSemanal(f) {
   return fichaPonto(f);
 }
 function ficha(f) {
+  const fx = estadoEm(f, HOJE),
+    gEv = (f.historicoRem || []).filter(e => e.tipo === "grat").sort((x, y) => x.data.localeCompare(y.data));
+  const gDesde = gEv.filter(e => e.data <= HOJE).pop(),
+    gProx = gEv.find(e => e.data > HOJE);
   const a = new Date(S.y, 0, 1),
     b = new Date(S.y, 11, 31);
   const mine = S.ocs.filter(o => o.func === f.id);
   const st = stats(mine, a, b);
   const saldoTotal = mine.filter(o => o.tipo === "banco").reduce((n, o) => n + (Number(o.horas) || 0), 0);
   const pa = periodoAquisitivo(f.admissao);
-  let h = `<div class="ficha-head"><div><div class="eyebrow">${esc(f.matricula ? "Matrícula " + f.matricula : "Sem matrícula")}${f.exemplo ? '<span class="chip-ex">exemplo</span>' : ""}</div><h2>${esc(f.nome)}${f.nomeAbreviado ? ' <span class="chip-ex" title="Nome abreviado na planilha de origem — complete no cadastro">nome incompleto</span>' : ""}</h2><div class="sub">${esc(f.funcao ? `${f.funcao}${f.nivel ? " · Nível " + f.nivel : ""}` : [f.cargo, f.setor].filter(Boolean).join(" · ") || "Cargo e setor não informados")}</div>${f.funcao ? `<div class="sub u-margin-top-2px" >${esc([f.cargo, f.setor].filter(Boolean).join(" · "))}</div>` : ""}${f.situacao === "cedido" ? `<div class="sub u-margin-top-4px" ><span class="prazo u-pc-var-c-abono" >Cedido${f.cedidoPara ? " ao " + esc(f.cedidoPara) : " a outro órgão"}</span></div>` : ""}</div>
-    <div class="u-display-flex-40"><button class="btn small" type="button" data-edit-func="${f.id}">Editar cadastro</button><button class="btn small primary" type="button" data-new-for="${f.id}">+ Lançamento</button></div></div>`;
+  let h = `<div class="ficha-head"><div><div class="eyebrow">${esc(f.matricula ? "Matrícula " + f.matricula : "Sem matrícula")}${f.exemplo ? '<span class="chip-ex">exemplo</span>' : ""}</div><h2>${esc(f.nome)}${f.nomeAbreviado ? ' <span class="chip-ex" title="Nome abreviado na planilha de origem — complete no cadastro">nome incompleto</span>' : ""}</h2><div class="sub">${esc(fx.funcao ? `${fx.funcao}${fx.nivel ? " · Nível " + fx.nivel : ""}` : [f.cargo, f.setor].filter(Boolean).join(" · ") || "Cargo e setor não informados")}</div>${fx.funcao ? `<div class="sub u-folha-margin-top-2px" >${esc([f.cargo, f.setor].filter(Boolean).join(" · "))}</div>` : ""}${f.situacao === "cedido" ? `<div class="sub u-folha-margin-top-4px" ><span class="prazo u-folha-pc-var-c-abono" >Cedido${f.cedidoPara ? " ao " + esc(f.cedidoPara) : " a outro órgão"}</span></div>` : ""}</div>
+    <div class="u-folha-display-flex-22"><button class="btn small" type="button" data-edit-func="${f.id}">Editar cadastro</button><button class="btn small primary" type="button" data-new-for="${f.id}">+ Lançamento</button></div></div>`;
   h += `<dl class="facts">
     <div><dt>Vínculo</dt><dd>${VINC[f.vinculo] || VINC.efetivo}${f.instituicao ? `<br><span class="hint">${esc(f.instituicao)}</span>` : ""}${f.orgaoOrigem ? `<br><span class="hint">origem: ${esc(f.orgaoOrigem)}</span>` : ""}</dd></div>
-    ${f.funcao ? `<div><dt>${FUNCAO_TIPO[f.funcaoTipo] || "Cargo em comissão"}</dt><dd>${esc(f.funcao)}${f.nivel ? ` · Nível ${esc(f.nivel)}` : ""}${f.portariaFuncao ? `<br><span class="hint">${esc(f.portariaFuncao)}</span>` : ""}</dd></div>` : ""}
+    ${fx.funcao ? `<div><dt>${FUNCAO_TIPO[fx.funcaoTipo] || "Cargo em comissão"}</dt><dd>${esc(fx.funcao)}${fx.nivel ? ` · Nível ${esc(fx.nivel)}` : ""}${fx.portariaFuncao || gDesde ? `<br><span class="hint">${esc(fx.portariaFuncao || "")}${gDesde ? `${fx.portariaFuncao ? " · " : ""}desde ${fmt(gDesde.data)}` : ""}</span>` : ""}${gProx ? `<br><span class="hint u-folha-color-var-c-viagem" >a partir de ${fmt(gProx.data)}: ${esc(descGrat(gProx.para))}${gProx.para && gProx.para.portariaFuncao ? " · " + esc(gProx.para.portariaFuncao) : ""}</span>` : ""}</dd></div>` : ""}
     ${f.cargo || f.ingresso ? `<div><dt>Cargo base</dt><dd>${esc(f.cargo || "—")}${f.ingresso ? `<br><span class="hint">ingresso: ${esc(f.ingresso)}</span>` : ""}</dd></div>` : ""}
     <div><dt>Jornada</dt><dd>${f.jornadaDiaria && temContrato(f) ? `${f.jornadaDiaria}h por dia · ` : ""}${esc(f.carga || "—")} h/semana</dd></div>
     ${temContrato(f) ? `<div><dt>Contrato</dt><dd>${fmt(f.contratoInicio)} a ${fmt(f.contratoFim)}${f.contratoInicio && f.contratoFim ? `<br><span class="hint">${duracaoTxt(f.contratoInicio, f.contratoFim)}${passaDe2Anos(f.contratoInicio, f.contratoFim) ? " · acima do limite de 2 anos" : ""}</span>` : ""}</dd></div>
@@ -72,16 +75,21 @@ function ficha(f) {
   h += fichaExtras(f);
   {
     const i = indAtestados(f.id);
-    if (i.n) h += `<h3 class="u-margin-top-22px">Atestados nos últimos 12 meses</h3><div class="fb-nums u-margin-top-4px" ><span><strong class="num">${i.n}</strong> atestados</span><span><strong class="num">${i.parc}</strong> sem afastamento (comparecimento)</span><span><strong class="num">${i.dias}</strong> dias perdidos</span><span title="nº de atestados² × dias perdidos">Bradford <strong class="num">${i.bradford.toLocaleString("pt-BR")}</strong></span></div>`;
+    if (i.n) h += `<h3 class="u-folha-margin-top-22px">Atestados nos últimos 12 meses</h3><div class="fb-nums u-folha-margin-top-4px" ><span><strong class="num">${i.n}</strong> atestados</span><span><strong class="num">${i.parc}</strong> sem afastamento (comparecimento)</span><span><strong class="num">${i.dias}</strong> dias perdidos</span><span title="nº de atestados² × dias perdidos">Bradford <strong class="num">${i.bradford.toLocaleString("pt-BR")}</strong></span></div>`;
   }
-  h += `<h3 class="u-margin-top-22px">Em ${S.y}</h3><div class="stats">`;
-  h += `<div class="stat u-c-var-c-ferias" ><div class="v">${st.ferias.dias}<span class="hint"> / 30</span></div><div class="l">${f.vinculo === "estagiario" ? "dias de recesso gozados" : "dias de férias gozados"}</div></div>`;
+  h += `<h3 class="u-folha-margin-top-22px">Em ${S.y}</h3><div class="stats">`;
+  {
+    const fy = diasFerias(mine, a, b),
+      fmm = diasFerias(mine, new Date(S.y, S.m, 1), new Date(S.y, S.m + 1, 0)),
+      nome = f.vinculo === "estagiario" ? "recesso" : "férias";
+    h += `<div class="stat u-folha-c-var-c-ferias" ><div class="v">${fy.goz}${fy.prog ? `<span class="hint"> +${fy.prog} programados</span>` : ""}</div><div class="l">dias de ${nome} gozados em ${S.y}${fmm.total ? ` · em ${MESES[S.m]}: ${fmm.goz} gozados${fmm.prog ? `, ${fmm.prog} programados` : ""}` : ""}</div></div>`;
+  }
   for (const t of ["atestado", "abono", "viagem", "capacitacao"]) {
     const s = st[t];
     const extra = t === "capacitacao" && s.horas ? ` · ${s.horas} h` : "";
     h += `<div class="stat ${classeCor(TIPOS[t].cor, "c")}" ><div class="v">${s.dias}</div><div class="l">${s.dias === 1 ? "dia" : "dias"} de ${TIPOS[t].nome.toLowerCase()} · ${s.n}×${extra}</div></div>`;
   }
-  h += `<div class="stat u-c-var-c-banco" ><div class="v">${fmtH(st.banco.horas).replace(" h", "")}</div><div class="l">horas no banco em ${S.y}</div></div></div>`;
+  h += `<div class="stat u-folha-c-var-c-banco" ><div class="v">${fmtH(st.banco.horas).replace(" h", "")}</div><div class="l">horas no banco em ${S.y}</div></div></div>`;
 
   // faixa do ano
   const dias = {};
@@ -92,10 +100,10 @@ function ficha(f) {
       if (!dias[k] || AUSENCIAS.indexOf(o.tipo) < AUSENCIAS.indexOf(dias[k])) dias[k] = o.tipo;
     }
   }
-  h += `<h3 class="u-margin-top-22px">Calendário de ${S.y}</h3><div class="scroll"><div class="yearstrip" aria-label="Calendário anual de afastamentos">`;
+  h += `<h3 class="u-folha-margin-top-22px">Calendário de ${S.y}</h3><div class="scroll"><div class="yearstrip" aria-label="Calendário anual de afastamentos">`;
   h += `<span></span>` + Array.from({
     length: 31
-  }, (_, i) => `<span class="u-text-align-center">${(i + 1) % 5 === 0 || i === 0 ? i + 1 : ""}</span>`).join("");
+  }, (_, i) => `<span class="u-folha-text-align-center">${(i + 1) % 5 === 0 || i === 0 ? i + 1 : ""}</span>`).join("");
   for (let m = 0; m < 12; m++) {
     h += `<span class="ml">${MESES[m].slice(0, 3)}</span>`;
     const nd = new Date(S.y, m + 1, 0).getDate();
@@ -108,14 +116,14 @@ function ficha(f) {
         k = iso(dt),
         wd = dt.getDay(),
         t = dias[k];
-      h += `<i class="${t ? "on" : naoUtil(dt) ? "we" : ""} ${k === HOJE ? "t" : ""} ${t ? classeCor(TIPOS[t].cor, "c") : ""}"  title="${fmt(k)}${t ? " · " + TIPOS[t].nome : ""}"></i>`;
+      h += `<i class="${t ? "on" : naoUtil(dt) ? "we" : ""} ${k === HOJE ? "t" : ""} ${t ? classeCor(TIPOS[t].cor, "c") : ""}" title="${fmt(k)}${t ? " · " + TIPOS[t].nome : ""}"></i>`;
     }
   }
-  h += `</div></div><div class="u-margin-top-10px">${legend()}</div>`;
+  h += `</div></div><div class="u-folha-margin-top-10px">${legend()}</div>`;
 
   // lista de lançamentos
   const doAno = mine.filter(o => overlap(o, a, b)).sort((x, y) => y.inicio.localeCompare(x.inicio));
-  h += `<h3 class="u-margin-top-22px">Lançamentos de ${S.y}</h3>`;
+  h += `<h3 class="u-folha-margin-top-22px">Lançamentos de ${S.y}</h3>`;
   h += doAno.length ? tabelaLanc(doAno, false) : `<div class="empty">Nenhum lançamento em ${S.y}.</div>`;
   return h;
 }

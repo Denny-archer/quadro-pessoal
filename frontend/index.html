@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="/styles/utilities.css">
 <link rel="stylesheet" href="/styles/cores.css">
 <link rel="stylesheet" href="/styles/impressao.css">
+<link rel="stylesheet" href="/styles/features/folha.css">
 </head>
 <body>
 <div class="brandbar" aria-hidden="true"></div>
@@ -55,6 +56,7 @@
       <button role="tab" type="button" data-tab="lanc" aria-selected="false">Lançamentos</button>
       <button role="tab" type="button" data-tab="ben" aria-selected="false">Benefícios</button>
       <button role="tab" type="button" data-tab="rem" aria-selected="false">Remuneração</button>
+      <button role="tab" type="button" data-tab="folha" aria-selected="false">Relatório de folha</button>
     </div>
     <div class="actions">
       <button class="btn" id="priv" type="button" aria-pressed="true" title="Borra o nome dos colaboradores (os dados continuam visíveis)">Nomes ocultos</button>
@@ -80,11 +82,16 @@
       <label id="lbl-fim">Término<input id="l-fim" type="date"></label>
       <label class="full check" id="lbl-parcial"><input id="l-parcial" type="checkbox"> Declaração de comparecimento (sem dia de afastamento)</label>
       <label class="full" id="lbl-destino">Destino<input id="l-destino" type="text" maxlength="160"></label>
+      <label id="lbl-diarias">Diárias (quantidade)<input id="l-diarias" type="number" min="0" step="0.5" placeholder="Ex.: 3,5"></label>
+      <label id="lbl-vdiaria">Valor da diária (R$)<input id="l-vdiaria" type="number" min="0" step="0.01" placeholder="padrão das regras"></label>
+      <label class="full" id="lbl-aq">Período aquisitivo<select id="l-aq"></select></label>
+      <label class="full" id="lbl-ref">Desconta de<select id="l-ref"></select></label>
       <label id="lbl-abpec">Abono pecuniário (dias vendidos)<input id="l-abpec" type="number" min="0" max="10" step="1" placeholder="0"></label>
       <label id="lbl-aviso">Aviso de férias / processo<input id="l-aviso" type="text" maxlength="120" placeholder="Ex.: FEITO - 00.0016.000067/2026-12"></label>
       <label class="full">Observação<textarea id="l-obs" maxlength="600"></textarea></label>
     </div>
     <div class="note" id="l-note"></div>
+    <div class="resumo calc-ferias" id="l-calc" hidden aria-live="polite"></div>
     <div class="err" id="l-err" role="alert"></div>
     <div class="dlg-foot">
       <button class="btn danger" type="button" id="l-del" hidden>Excluir</button>
@@ -156,12 +163,12 @@
           <label class="check"><input type="checkbox" id="f-usa-at"> Utiliza auxílio-transporte</label>
           <label id="lbl-at"><span id="lbl-at-txt">Valor mensal (R$)</span><input id="f-at" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0,00"></label>
         </div>
-        <div class="hint u-margin-top-6px" id="f-at-hint" ></div>
+        <div class="hint u-folha-margin-top-6px" id="f-at-hint" ></div>
       </fieldset>
       <fieldset class="full wkset" id="f-extras">
         <legend>Benefícios adicionais</legend>
         <div id="fx-lista" class="fx-lista"></div>
-        <div class="u-display-flex">
+        <div class="u-folha-display-flex">
           <button class="btn small" type="button" id="fx-add">+ Adicionar benefício</button>
           <span class="hint">Ex.: auxílio-creche todo mês, abono de Natal em dezembro, auxílio-funeral uma vez.</span>
         </div>
@@ -174,7 +181,26 @@
           <label id="lbl-fgtipo">Função gratificada<select id="f-fgtipo"><option value="">Automática pela função</option><option value="chefia">FG Chefia</option><option value="assessor2">FG Assessor Nível II</option><option value="assessor1">FG Assessor Nível I</option></select></label>
           <label id="lbl-bolsa">Bolsa-auxílio<select id="f-bolsa"><option value="">Nível superior 6h (padrão)</option><option value="medio4">Nível médio 4h</option><option value="tecnico6">Nível técnico 6h</option><option value="advocacia6">Profissional advocacia 6h</option><option value="superior6">Nível superior 6h</option><option value="pos6">Pós-graduação 6h</option></select></label>
         </div>
-        <div class="hint u-margin-top-6px" id="f-rem-hint" ></div>
+        <div class="hint u-folha-margin-top-6px" id="f-rem-hint" ></div>
+      </fieldset>
+      <fieldset class="full wkset" id="f-folha">
+        <legend>Folha de pagamento</legend>
+        <div class="fields">
+          <label>Adicional de titulação<select id="f-tit"><option value="">Não recebe</option><option value="7.5">7,5% (especialização)</option><option value="10">10% (mestrado)</option><option value="12.5">12,5% (doutorado)</option></select></label>
+          <label>Anuênio (% do salário base)<input id="f-anu" type="number" min="0" max="50" step="1" placeholder="0"></label>
+          <label>Dependentes para o IR<input id="f-depir" type="number" min="0" max="20" step="1" placeholder="0"></label>
+          <label>Outros descontos fixos (R$/mês)<input id="f-outdesc" type="number" min="0" step="0.01" placeholder="consignado, plano, pensão"></label>
+          <label class="check u-folha-align-self-end" ><input type="checkbox" id="f-sind"> Paga mensalidade sindical</label>
+        </div>
+        <div class="hint u-folha-margin-top-6px" id="f-folha-hint" >Titulação e anuênio incidem sobre o salário base, como na folha. Os valores servem para a estimativa do contracheque.</div>
+      </fieldset>
+      <fieldset class="full wkset" id="f-mud" hidden>
+        <legend>Mudança de nível ou gratificação</legend>
+        <div class="fields">
+          <label>Vigência (primeiro dia com o novo valor)<input id="f-mud-data" type="date"></label>
+          <label>Ato / portaria / observação<input id="f-mud-ato" type="text" maxlength="160" placeholder="Ex.: Portaria nº 123/2026 · avaliação de desempenho"></label>
+        </div>
+        <div class="hint u-folha-margin-top-6px" id="f-mud-hint" ></div>
       </fieldset>
       <label class="full">Situação<select id="f-sit"><option value="ativo">Ativo</option><option value="cedido">Cedido a outro órgão</option><option value="inativo">Inativo / desligado</option></select></label>
       <label class="full" id="lbl-cedpara">Cedido para<input id="f-cedpara" type="text" maxlength="80" placeholder="Ex.: CREFITO 3"></label>
@@ -208,7 +234,7 @@
 
 <dialog id="dlg-regras">
   <form id="form-regras" novalidate>
-    <div class="dlg-head"><h2>Regras de cálculo dos benefícios</h2><button class="icon-btn" type="button" data-close aria-label="Fechar">×</button></div>
+    <div class="dlg-head"><h2>Regras de benefícios e folha</h2><button class="icon-btn" type="button" data-close aria-label="Fechar">×</button></div>
     <div class="fields">
       <label>Auxílio-alimentação mensal (R$)<input id="r-aa" type="number" min="0" step="0.01"></label>
       <label>Estagiário e jovem aprendiz (% do valor)<input id="r-pct" type="number" min="0" max="100" step="1"></label>
@@ -216,6 +242,9 @@
       <label>Dias descontados do alimentação<select id="r-modo"><option value="todos">Todos os dias úteis do afastamento</option><option value="excedente">Só os dias úteis após o limite</option></select></label>
       <label>Auxílio-transporte é cadastrado como<select id="r-atmodo"><option value="mensal">Valor mensal por funcionário</option><option value="diario">Valor diário por funcionário</option></select></label>
       <label class="check u-align-self-end" ><input type="checkbox" id="r-atferias"> Descontar também férias do transporte</label>
+      <label>Desconto de vale-transporte (% do salário)<input id="r-vt" type="number" min="0" max="100" step="0.01"></label>
+      <label>Mensalidade sindical (R$)<input id="r-sind" type="number" min="0" step="0.01"></label>
+      <label>Valor padrão da diária de viagem (R$)<input id="r-diaria" type="number" min="0" step="0.01"></label>
       <label class="full">Feriados e pontos facultativos <span class="hint">(um por linha, dd/mm/aaaa — saem da contagem de dias úteis)</span><textarea id="r-fer" rows="6" placeholder="07/09/2026"></textarea></label>
     </div>
     <div class="note">Valor por dia = valor mensal ÷ dias úteis do mês (seg a sex, sem feriados). Dias de home office integral, atestado e viagem são descontados do transporte; o dia misto não, porque há deslocamento.</div>

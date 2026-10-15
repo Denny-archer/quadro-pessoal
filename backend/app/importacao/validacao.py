@@ -11,6 +11,8 @@ from decimal import Decimal
 
 from . import modelos
 from . import normaliza as N
+from ..schemas.folha import CamposFolha, CamposDiaria
+from pydantic import ValidationError
 
 TEMPORARIOS = ("estagiario", "aprendiz")
 
@@ -24,6 +26,8 @@ CAMPO_FUNC = {
     "instituicao": "instituicao", "contrato_inicio": "contratoInicio", "contrato_fim": "contratoFim",
     "providencia": "providencia", "carreira": "carreira", "nivel_salarial": "nivelSalarial",
     "fg_tipo": "fgTipo", "bolsa_tipo": "bolsaTipo",
+    "titulacao_pct": "titulacaoPct", "anuenio_pct": "anuenioPct", "dependentes_ir": "dependentesIR",
+    "outros_descontos": "outrosDescontos", "sindicalizado": "sindicalizado",
 }
 
 
@@ -201,6 +205,11 @@ def validar_funcionarios(linhas, funcionarios: list[dict], hoje: dt.date | None 
             doc["importado"] = "planilha"
 
         # regras de consistência
+        try:
+            doc.update(CamposFolha.model_validate(doc).model_dump(mode='json', exclude_unset=True))
+        except ValidationError:
+            res.erro(n, 'Confira os campos de folha: titulação, anuênio, dependentes, descontos e histórico.')
+            continue
         limites = {'carga': (1, 60), 'intervalo': (0, 180), 'valorTransporte': (0, 9999999999.99)}
         invalidos = [k for k, (a, b) in limites.items() if doc.get(k) is not None and not a <= doc[k] <= b]
         if invalidos:
@@ -312,6 +321,12 @@ def validar_lancamentos(linhas, funcionarios: list[dict], ocorrencias: list[dict
             doc["destino"] = v.get("destino") or ""
         if tipo == "viagem" and "diarias" in v:
             doc["diarias"] = _json(v["diarias"])
+        if tipo == 'viagem' and 'valor_diaria' in v:
+            try:
+                doc.update(CamposDiaria.model_validate({'valorDiaria': _json(v['valor_diaria'])}).model_dump(mode='json'))
+            except ValidationError:
+                res.erro(n, 'Valor da diária deve ser finito e não negativo.')
+                continue
         if tipo == "ferias":
             ap = v.get("abono_pecuniario") or 0
             if not 0 <= ap <= 10:
@@ -321,9 +336,9 @@ def validar_lancamentos(linhas, funcionarios: list[dict], ocorrencias: list[dict
         if tipo == "abono":
             doc["referenciaAbono"] = v.get("referencia_abono") or ""
             doc["statusAbono"] = v.get("status_abono") or ("gozado" if fim < hoje else "agendado")
-        for k in [k for k in ("periodo", "destino", "diarias", "parcela", "abono_pecuniario", "aviso_ferias",
+        for k in [k for k in ("periodo", "destino", "diarias", "valor_diaria", "parcela", "abono_pecuniario", "aviso_ferias",
                               "referencia_abono", "status_abono") if k in v]:
-            usado = {"periodo": "atestado", "destino": ("viagem", "capacitacao"), "diarias": "viagem",
+            usado = {"periodo": "atestado", "destino": ("viagem", "capacitacao"), "diarias": "viagem", "valor_diaria": "viagem",
                      "parcela": "ferias", "abono_pecuniario": "ferias", "aviso_ferias": "ferias",
                      "referencia_abono": "abono", "status_abono": "abono"}[k]
             if tipo not in (usado if isinstance(usado, tuple) else (usado,)):

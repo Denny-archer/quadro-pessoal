@@ -1,5 +1,3 @@
-/** Infraestrutura compartilhada: datas. */
-
 const pad = n => String(n).padStart(2, "0");
 const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
 const parse = s => {
@@ -12,4 +10,14 @@ const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 const DAY = 864e5;
 const hoje = new Date();
 const HOJE = iso(hoje);
-export { pad, iso, parse, fmt, fmtCurto, cap, DAY, hoje, HOJE };
+const addDias = (s, n) => {
+  const d = parse(s);
+  d.setDate(d.getDate() + n);
+  return iso(d);
+};
+const addAnos = (s, n) => {
+  const d = parse(s);
+  d.setFullYear(d.getFullYear() + n);
+  return iso(d);
+};
+export { pad, iso, parse, fmt, fmtCurto, cap, DAY, hoje, HOJE, addDias, addAnos };

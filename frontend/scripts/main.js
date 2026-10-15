@@ -1,11 +1,10 @@
 import { iniciarEstilosDinamicos } from "./core/estilos-dinamicos.js";
 import { iniciarApi, db, downloads } from "./core/api.js";
-import { S, CFG_PADRAO } from "./core/estado.js";
+import { S, CFG_PADRAO, iniciarCoreEstado } from "./core/estado.js";
 import { render } from "./core/render.js";
 import { $ } from "./core/dom.js";
 import { iniciarConta } from "./features/conta.js";
 import { iniciarPresenca } from "./features/presenca.js";
-import { iniciarCoreEstado } from "./core/estado.js";
 import { iniciarFeaturesBeneficiosExtras } from "./features/beneficios-extras.js";
 import { iniciarFeaturesCadastroTransporte } from "./features/cadastro-transporte.js";
 import { iniciarFeaturesConfiguracoes } from "./features/configuracoes.js";
@@ -14,6 +13,7 @@ import { iniciarFeaturesFuncionariosFormulario } from "./features/funcionarios/f
 import { iniciarFeaturesOcorrenciasFormulario } from "./features/ocorrencias/formulario.js";
 import { iniciarFeaturesPanoramaDetalhes } from "./features/panorama/detalhes.js";
 import { iniciarFeaturesRemuneracao } from "./features/remuneracao.js";
+import { iniciarFolha } from "./features/folha/controlador.js";
 import { iniciarCoreNavegacao } from "./core/navegacao.js";
 async function iniciar() {
   try {
@@ -29,6 +29,7 @@ async function iniciar() {
     iniciarFeaturesPanoramaDetalhes();
     iniciarFeaturesRemuneracao();
     iniciarCoreNavegacao();
+    iniciarFolha();
     iniciarConta(usuario);
     iniciarPresenca(usuario);
     S.db = db;

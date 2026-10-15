@@ -33,3 +33,5 @@ O schema v3 e o contrato de resumos versionados permanecem iguais. Outbox e work
 `seed` e `backups` continuam locais, fora do Git e da imagem. Os modelos de planilhas, diagramas e fixtures sintéticas são parte da manutenção e permanecem versionados.
 
 A paleta de estados e tipos fica em `styles/cores.css`; `core/cores.js` seleciona classes existentes. Somente a largura calculada de barras é aplicada por CSSOM, por `core/estilos-dinamicos.js`.
+
+A versão 1.3 adiciona os contratos `schemas/folha`, campos financeiros e histórico por vigência em `funcionarios.extra`, e `valorDiaria` em `ocorrencias.extra`. O frontend calcula as estimativas em `features/remuneracao` e `features/folha/regras`; `features/folha` apresenta o relatório e `features/ferias` os recibos. Consulte o [guia](FOLHA-E-FERIAS.md). Não há mudança no schema nem no contrato com o ponto.

@@ -1,6 +1,5 @@
-/** Infraestrutura compartilhada: colecoes. */
 import { S } from "./estado.js";
-import { iso, parse, DAY, cap } from "./datas.js";
+import { DAY, cap, iso, parse } from "./datas.js";
 import { MESES } from "./constantes.js";
 const naoUtil = dt => dt.getDay() === 0 || dt.getDay() === 6 || (S.cfg.feriados || []).includes(iso(dt));
 function range() {
@@ -23,4 +22,5 @@ function visiveis() {
   const com = new Set(S.ocs.filter(o => overlap(o, a, b)).map(o => o.func));
   return S.func.filter(f => noQuadro(f) || com.has(f.id)).sort(byName);
 }
-export { naoUtil, range, overlap, covers, funcMap, byName, noQuadro, periodoLabel, visiveis };
+const diasCorr = o => overlap(o, parse(o.inicio), parse(o.fim || o.inicio));
+export { naoUtil, range, overlap, covers, funcMap, byName, noQuadro, periodoLabel, visiveis, diasCorr };

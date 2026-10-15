@@ -34,38 +34,43 @@ Regras de consistência:
 
 | Coluna | Obrigatória | Formato / valores aceitos | Exemplo | Também aceita como cabeçalho |
 |---|---|---|---|---|
-| `matricula` |  | Matrícula. É a chave: se já existir, o cadastro é atualizado. | 157 | `mat`, `matricula_funcional` |
-| `nome` | **sim** | Nome completo. | Maria da Silva Souza | `nome_completo`, `colaborador`, `funcionario`, `servidor` |
-| `vinculo` | **sim** | efetivo \| comissionado \| cedido \| estagiario \| aprendiz | efetivo | `tipo_de_vinculo` |
-| `situacao` |  | ativo \| cedido \| inativo (padrão: ativo) | ativo |  |
-| `admissao` |  | Data de admissão (dd/mm/aaaa). | 01/03/2016 | `data_de_admissao`, `data_admissao` |
-| `cargo` |  | Cargo base (do concurso). | Assistente Administrativo | `cargo_base` |
-| `setor` |  | Setor / lotação. | DAGEP | `lotacao`, `unidade` |
-| `regime` |  | Presencial \| Híbrido \| Teletrabalho (padrão: Presencial). A grade semanal do híbrido é definida na tela. | Presencial |  |
-| `carga_horaria` |  | Carga horária semanal em horas. | 40 | `carga`, `carga_horaria_semanal`, `ch` |
-| `intervalo_min` |  | Intervalo de almoço em minutos (padrão 60). | 60 | `intervalo` |
+| `matricula` |  | Matrícula. É a chave: se já existir, o cadastro é atualizado. | 157 | mat, matricula_funcional |
+| `nome` | sim | Nome completo. | Maria da Silva Souza | nome_completo, colaborador, funcionario, servidor |
+| `vinculo` | sim | efetivo  /  comissionado  /  cedido  /  estagiario  /  aprendiz | efetivo | tipo_de_vinculo |
+| `situacao` |  | ativo  /  cedido  /  inativo (padrão: ativo) | ativo |  |
+| `admissao` |  | Data de admissão (dd/mm/aaaa). | 01/03/2016 | data_de_admissao, data_admissao |
+| `cargo` |  | Cargo base (do concurso). | Assistente Administrativo | cargo_base |
+| `setor` |  | Setor / lotação. | DAGEP | lotacao, unidade |
+| `regime` |  | Presencial  /  Híbrido  /  Teletrabalho (padrão: Presencial). A grade semanal do híbrido é definida na tela. | Presencial |  |
+| `carga_horaria` |  | Carga horária semanal em horas. | 40 | carga, carga_horaria_semanal, ch |
+| `intervalo_min` |  | Intervalo de almoço em minutos (padrão 60). | 60 | intervalo |
 | `entrada` |  | Horário de entrada presencial (HH:MM). | 08:00 |  |
 | `saida` |  | Horário de saída presencial (HH:MM). | 17:00 |  |
-| `entrada_ho` |  | Entrada no home office (teletrabalho). |  | `entrada_home_office` |
-| `saida_ho` |  | Saída do home office (teletrabalho). |  | `saida_home_office` |
-| `usa_transporte` |  | Utiliza auxílio-transporte? sim \| não | sim | `auxilio_transporte`, `vale_transporte` |
-| `valor_transporte` |  | Valor mensal do auxílio-transporte (R$). | 440,00 | `valor_auxilio_transporte` |
+| `entrada_ho` |  | Entrada no home office (teletrabalho). |  | entrada_home_office |
+| `saida_ho` |  | Saída do home office (teletrabalho). |  | saida_home_office |
+| `usa_transporte` |  | Utiliza auxílio-transporte? sim  /  não | sim | auxilio_transporte, vale_transporte |
+| `valor_transporte` |  | Valor mensal do auxílio-transporte (R$). | 440,00 | valor_auxilio_transporte |
 | `funcao` |  | Cargo em comissão ou função gratificada. | Chefe do Setor de Transportes |  |
-| `funcao_tipo` |  | comissao \| fg | comissao | `tipo_funcao` |
-| `nivel` |  | Nível da comissão: I a VI. | II | `nivel_comissao` |
-| `portaria` |  | Portaria de nomeação. | Port. 18/2026 | `portaria_funcao`, `portaria_de_nomeacao` |
+| `funcao_tipo` |  | comissao  /  fg | comissao | tipo_funcao |
+| `nivel` |  | Nível da comissão: I a VI. | II | nivel_comissao |
+| `portaria` |  | Portaria de nomeação. | Port. 18/2026 | portaria_funcao, portaria_de_nomeacao |
 | `ingresso` |  | Edital / portaria do concurso. | Edital nº 1/2024 |  |
 | `orgao_origem` |  | Órgão de origem (cedidos). |  |  |
 | `cedido_para` |  | Órgão de destino (situação cedido). |  |  |
 | `jornada_diaria` |  | Estágio/aprendizagem: 4 ou 6 horas. |  |  |
-| `instituicao` |  | Instituição de ensino (estágio/aprendizagem). |  | `instituicao_de_ensino` |
-| `contrato_inicio` |  | Início do contrato (estágio/aprendizagem, obrigatório para eles). |  | `inicio_contrato`, `inicio_do_contrato` |
-| `contrato_fim` |  | Término do contrato (estágio/aprendizagem, obrigatório para eles). |  | `termino_contrato`, `fim_contrato`, `termino_do_contrato` |
+| `instituicao` |  | Instituição de ensino (estágio/aprendizagem). |  | instituicao_de_ensino |
+| `contrato_inicio` |  | Início do contrato (estágio/aprendizagem, obrigatório para eles). |  | inicio_contrato, inicio_do_contrato |
+| `contrato_fim` |  | Término do contrato (estágio/aprendizagem, obrigatório para eles). |  | termino_contrato, fim_contrato, termino_do_contrato |
 | `providencia` |  | Providência pendente do contrato. |  |  |
-| `carreira` |  | analista \| tecnico \| apoio (vazio = automática pelo cargo). |  |  |
+| `carreira` |  | analista  /  tecnico  /  apoio (vazio = automática pelo cargo). |  |  |
 | `nivel_salarial` |  | Nível salarial 1 a 30 (vazio = pelo tempo de casa). |  |  |
-| `fg_tipo` |  | chefia \| assessor2 \| assessor1 (vazio = automática). |  |  |
-| `bolsa_tipo` |  | Estagiário: medio4 \| tecnico6 \| advocacia6 \| superior6 \| pos6 |  |  |
+| `fg_tipo` |  | chefia  /  assessor2  /  assessor1 (vazio = automática). |  |  |
+| `bolsa_tipo` |  | Estagiário: medio4  /  tecnico6  /  advocacia6  /  superior6  /  pos6 |  |  |
+| `titulacao_pct` |  | Adicional de titulação: 0  /  7,5  /  10  /  12,5 (%). | 0 | titulacao |
+| `anuenio_pct` |  | Anuênio: percentual do salário base (0 a 50). | 0 | anuenio |
+| `dependentes_ir` |  | Quantidade de dependentes para IR (0 a 20). | 0 |  |
+| `outros_descontos` |  | Outros descontos fixos mensais (R$). | 0 |  |
+| `sindicalizado` |  | Paga mensalidade sindical? sim  /  não. | não |  |
 
 ## 2. Lançamentos — `lancamentos`
 
@@ -91,21 +96,22 @@ aviso para conferência. Nome que serve a mais de uma pessoa é recusado.
 
 | Coluna | Obrigatória | Formato / valores aceitos | Exemplo | Também aceita como cabeçalho |
 |---|---|---|---|---|
-| `matricula` |  | Matrícula do funcionário (preferencial para identificar). | 157 | `mat` |
-| `nome` |  | Nome do funcionário (usado se não houver matrícula). | Maria da Silva Souza | `nome_completo`, `colaborador`, `funcionario`, `servidor` |
-| `tipo` | **sim** | ferias \| atestado \| abono \| viagem \| capacitacao \| banco_horas | atestado | `tipo_de_lancamento`, `ocorrencia` |
-| `inicio` | **sim** | Data de início (dd/mm/aaaa). | 10/06/2026 | `data`, `data_inicio`, `data_de_inicio`, `de` |
-| `fim` |  | Data de término (vazio = mesmo dia do início). | 10/06/2026 | `termino`, `data_fim`, `data_de_termino`, `ate` |
-| `periodo` |  | Só atestado: integral \| matutino \| vespertino \| comparecimento (padrão integral). | integral | `turno` |
+| `valor_diaria` |  | Valor unitário da diária de viagem (R$); vazio usa o padrão das regras. |  |  |
+| `matricula` |  | Matrícula do funcionário (preferencial para identificar). | 157 | mat |
+| `nome` |  | Nome do funcionário (usado se não houver matrícula). | Maria da Silva Souza | nome_completo, colaborador, funcionario, servidor |
+| `tipo` | sim | ferias  /  atestado  /  abono  /  viagem  /  capacitacao  /  banco_horas | atestado | tipo_de_lancamento, ocorrencia |
+| `inicio` | sim | Data de início (dd/mm/aaaa). | 10/06/2026 | data, data_inicio, data_de_inicio, de |
+| `fim` |  | Data de término (vazio = mesmo dia do início). | 10/06/2026 | termino, data_fim, data_de_termino, ate |
+| `periodo` |  | Só atestado: integral  /  matutino  /  vespertino  /  comparecimento (padrão integral). | integral | turno |
 | `horas` |  | Banco de horas (obrigatório: + crédito, − débito) ou horas parciais de abono/capacitação. |  |  |
-| `destino` |  | Viagem/capacitação: destino, evento ou curso. |  | `curso`, `evento`, `local` |
-| `diarias` |  | Viagem: quantidade de diárias. |  | `qtd_diarias` |
+| `destino` |  | Viagem/capacitação: destino, evento ou curso. |  | curso, evento, local |
+| `diarias` |  | Viagem: quantidade de diárias. |  | qtd_diarias |
 | `parcela` |  | Férias: 1ª, 2ª ou 3ª parcela. |  |  |
-| `abono_pecuniario` |  | Férias: dias vendidos (0 a 10). |  | `dias_vendidos` |
-| `aviso_ferias` |  | Férias: aviso / número do processo. |  | `processo` |
+| `abono_pecuniario` |  | Férias: dias vendidos (0 a 10). |  | dias_vendidos |
+| `aviso_ferias` |  | Férias: aviso / número do processo. |  | processo |
 | `referencia_abono` |  | Abono: ano de referência (ref2024, ref2025, folgas2026...). Vincula ao saldo. |  |  |
-| `status_abono` |  | Abono: agendado \| gozado (padrão: gozado se já passou). |  |  |
-| `obs` |  | Observação livre. NÃO informe CID ou diagnóstico. |  | `observacao`, `observacoes` |
+| `status_abono` |  | Abono: agendado  /  gozado (padrão: gozado se já passou). |  |  |
+| `obs` |  | Observação livre. NÃO informe CID ou diagnóstico. |  | observacao, observacoes |
 
 ### Exemplo (CSV)
 
@@ -129,3 +135,6 @@ matricula;nome;tipo;inicio;fim;periodo;horas;destino;diarias;parcela;abono_pecun
 - Cadastro excluído depois da prévia causa conflito; não é recriado silenciosamente.
 - Cada documento alterado tem antes/depois na auditoria, além do registro do lote.
 - Prévia expira em 24 horas e precisa ser validada novamente. Confirmar é atômico; erros de banco desfazem o lote.
+
+
+Os campos opcionais de folha são `titulacao_pct`, `anuenio_pct`, `dependentes_ir`, `outros_descontos` e `sindicalizado`. O histórico de progressões permanece no cadastro e não é substituído por uma planilha. Viagens também aceitam `valor_diaria`, combinado com `diarias`. Consulte [Folha e férias](../FOLHA-E-FERIAS.md).
