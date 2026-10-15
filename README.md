@@ -1,4 +1,4 @@
-# COFFITO Pass de Pessoal
+# COFFITO Pass
 
 Gestão de pessoas da DAGEP: cadastros, afastamentos, jornada, benefícios, remuneração e integração com o sistema de ponto.
 
@@ -32,9 +32,11 @@ docker compose ps
 docker compose exec app python -m app.cli criar-admin seu.email@coffito.gov.br "Seu Nome"
 ```
 
-A porta é definida no `.env`. As URLs `/`, `/login`, `/importacao.html` e `/api/` foram preservadas. A imagem 1.3.0 usa o mesmo schema v3 e volume PostgreSQL. A ficha do colaborador preenche a tabela Jornada semanal existente com as batidas e horas recebidas do ponto.
+A porta é definida no `.env`. As URLs `/`, `/login`, `/importacao.html` e `/api/` foram preservadas. A imagem 1.3.1 acrescenta o controle de sessões do schema v4, mantendo o volume PostgreSQL e os dados existentes. A ficha do colaborador preenche a tabela Jornada semanal existente com as batidas e horas recebidas do ponto.
 
 A versão 1.3.0 acrescenta campos de folha, histórico de remuneração por vigência, controle e recibos de férias/recesso e relatório estimado com exportação. Veja o [guia de folha e férias](docs/FOLHA-E-FERIAS.md). A atualização não exige migração de banco.
+
+A versão 1.3.1 corrige o logout, reorganiza a troca de senha e controla expiração por inatividade no servidor. O schema v4 é aplicado automaticamente ao iniciar; será necessário entrar novamente após atualizar. Veja [Sessões e acesso](docs/SESSOES-E-ACESSO.md).
 
 Para carga opcional dos dados locais, conserve `seed/` na raiz e execute `docker compose exec app python -m app.cli carregar-json /srv/seed`. Os arquivos de seed, `.env`, exportações e backups ficam fora do Git e da imagem da aplicação.
 

@@ -8,6 +8,8 @@ O fluxo é **API → contratos e autorização → serviços → PostgreSQL**. R
 
 O pool PostgreSQL continua usando pg8000, e a aplicação do schema preserva o lock transacional existente. `core/paths` resolve a raiz pelo local do código e usa a mesma hierarquia no Docker e no checkout.
 
+Na versão 1.3.1, `auth_sessoes` (schema v4) controla revogação individual, prazo absoluto e inatividade. O JWT em cookie HttpOnly precisa corresponder a uma sessão ativa no banco. `core/sessao` coordena atividade explícita e logout entre abas; o polling não renova a sessão. Consulte [Sessões e acesso](SESSOES-E-ACESSO.md).
+
 ## Frontend
 
 As páginas usam `<script type="module">`. `scripts/main.js` autentica a sessão, inicializa controles uma vez e assina os dados. Os módulos declaram suas dependências com imports; não há fachada global `window.claude` ou variáveis `window.qp*`.
@@ -28,7 +30,7 @@ O CSS fixo não é gerado pelo JavaScript. Larguras calculadas de gráficos são
 
 ## Integração e dados
 
-O schema v3 e o contrato de resumos versionados permanecem iguais. Outbox e worker pertencem ao sistema de ponto; a aplicação de RH apenas recebe e apresenta os resumos. Consulte o [contrato](integracao/INTEGRACAO-PONTO.md).
+O contrato de resumos versionados permanece igual. O schema v4 acrescenta somente o controle de sessões e o evento de logout à auditoria. Outbox e worker pertencem ao sistema de ponto; a aplicação de RH apenas recebe e apresenta os resumos. Consulte o [contrato](integracao/INTEGRACAO-PONTO.md).
 
 `seed` e `backups` continuam locais, fora do Git e da imagem. Os modelos de planilhas, diagramas e fixtures sintéticas são parte da manutenção e permanecem versionados.
 

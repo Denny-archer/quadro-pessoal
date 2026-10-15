@@ -6,3 +6,7 @@ body {
 [hidden] {
   display:none!important
 }
+
+html.sessao-validando body { visibility:hidden; }
+html.sessao-encerrada body > :not(#sessao-aviso) { display:none !important; }
+#sessao-aviso { padding:24px; font:inherit; }

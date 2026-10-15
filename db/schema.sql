@@ -248,3 +248,18 @@ CREATE TABLE IF NOT EXISTS ponto_sincronizacao (
   ultima_entrega timestamptz
 );
 INSERT INTO schema_versao (versao) VALUES (3) ON CONFLICT DO NOTHING;
+
+-- Sessões individuais revogáveis. Armazenar apenas o hash do identificador aleatório.
+CREATE TABLE IF NOT EXISTS auth_sessoes (
+  token_hash char(64) PRIMARY KEY,
+  usuario_id bigint NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+  criado_em timestamptz NOT NULL DEFAULT now(),
+  ultimo_uso_em timestamptz NOT NULL DEFAULT now(),
+  expira_em timestamptz NOT NULL
+);
+CREATE INDEX IF NOT EXISTS auth_sessoes_usuario_idx ON auth_sessoes (usuario_id);
+CREATE INDEX IF NOT EXISTS auth_sessoes_expira_idx ON auth_sessoes (expira_em);
+ALTER TABLE auditoria DROP CONSTRAINT IF EXISTS auditoria_acao_check;
+ALTER TABLE auditoria ADD CONSTRAINT auditoria_acao_check
+  CHECK (acao IN ('criar','alterar','excluir','importar','login','logout'));
+INSERT INTO schema_versao (versao) VALUES (4) ON CONFLICT DO NOTHING;

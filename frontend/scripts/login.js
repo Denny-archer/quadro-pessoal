@@ -1,3 +1,13 @@
+import { destinoAposLogin } from "./core/sessao.js";
+const motivos = {
+  saiu: "Você saiu da sua conta.",
+  expirada: "Sua sessão foi encerrada ou expirou. Entre novamente."
+};
+const motivo = motivos[new URLSearchParams(location.search).get("motivo")];
+if (motivo) {
+  document.getElementById("sessao-info").textContent = motivo;
+  document.getElementById("sessao-info").hidden = false;
+}
 document.getElementById("f").addEventListener("submit", async e => {
   e.preventDefault();
   const b = document.getElementById("b"),
@@ -20,7 +30,7 @@ document.getElementById("f").addEventListener("submit", async e => {
     const j = await r.json().catch(() => ({}));
     if (!r.ok) throw new Error(j.detail || "Não foi possível entrar.");
     const volta = new URLSearchParams(location.search).get("volta");
-    location.href = volta && volta.startsWith("/") && !volta.startsWith("//") ? volta : "/";
+    location.replace(destinoAposLogin(volta, location.origin));
   } catch (x) {
     err.textContent = x.message;
     b.disabled = false;

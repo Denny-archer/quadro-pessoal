@@ -11,6 +11,9 @@ def _bool(nome, padrao=False):
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://quadro:quadro@db:5432/quadro")
 JWT_SECRET = os.getenv("JWT_SECRET", "")
 SESSAO_HORAS = int(os.getenv("SESSAO_HORAS", "10"))
+SESSAO_INATIVIDADE_MINUTOS = int(os.getenv("SESSAO_INATIVIDADE_MINUTOS", "30"))
+if not 1 <= SESSAO_HORAS <= 24 or not 1 <= SESSAO_INATIVIDADE_MINUTOS <= 120:
+    raise SystemExit('Sessão: use de 1 a 24 horas e de 1 a 120 minutos de inatividade.')
 COOKIE_SEGURO = _bool("COOKIE_SEGURO", True)          # exige HTTPS para o cookie de sessão
 TAMANHO_MAX_UPLOAD_MB = int(os.getenv("TAMANHO_MAX_UPLOAD_MB", "10"))
 POOL_MAX = int(os.getenv("DB_POOL_MAX", "10"))

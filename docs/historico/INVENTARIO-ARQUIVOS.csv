@@ -30,7 +30,7 @@ backups/quadro-inicial-20261006.dump,backups/quadro-inicial-20261006.dump,Backup
 db/schema.sql,db/schema.sql,DDL versionado; schema v3 sem alteração,Versionar,Existente
 docker-compose.yml,docker-compose.yml,"Serviços de aplicação, PostgreSQL e backup, preservando o volume",Versionar,Existente
 Dockerfile,Dockerfile,Construção da imagem de aplicação sem privilégios,Versionar,Existente
-docs/COFFITO Pass de Pessoal.md,docs/README.md (consolidado),"Documentação técnica, operacional ou histórico",Consolidar documento duplicado,Existente
+docs/COFFITO Pass.md,docs/README.md (consolidado),"Documentação técnica, operacional ou histórico",Consolidar documento duplicado,Existente
 docs/DOCUMENTACAO-TI.md,docs/operacao/DOCUMENTACAO-TI.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
 docs/ESQUEMA-BANCO (1).md,docs/README.md (consolidado),"Documentação técnica, operacional ou histórico",Consolidar documento duplicado,Existente
 docs/ESQUEMA-BANCO.md,docs/banco/ESQUEMA-BANCO.md,"Documentação técnica, operacional ou histórico",Versionar,Existente
@@ -1181,3 +1181,9 @@ tests/test_validacao.py,backend/tests/test_validacao.py,Teste automatizado ou am
 (novo),frontend/tests/folha.test.js,"Regressões de cálculos por vigência, férias e exportação",Versionar,Atualização 1.3.0
 (novo),docs/FOLHA-E-FERIAS.md,Operação e manutenção das funcionalidades da versão 1.3,Versionar,Atualização 1.3.0
 (novo),docs/historico/ATUALIZACAO-FICHA-2026-10-14.md,Entrega e evidências dos testes da versão 1.3,Versionar,Atualização 1.3.0
+(novo),frontend/scripts/core/sessao.js,"Coordenação de sessão, atividade e logout entre abas sem credenciais no armazenamento JS",Versionar,Atualização 1.3.1
+(novo),frontend/scripts/features/conta/validacao.js,Validação pura da confirmação e dos limites de senha,Versionar,Atualização 1.3.1
+(novo),frontend/styles/features/conta.css,"Layout externo, acessibilidade e responsividade da troca de senha",Versionar,Atualização 1.3.1
+(novo),frontend/tests/conta-sessao.test.js,Regressões de senha e retorno seguro após login,Versionar,Atualização 1.3.1
+(novo),docs/SESSOES-E-ACESSO.md,"Política de sessão, diagnóstico e guia operacional da versão 1.3.1",Versionar,Atualização 1.3.1
+(novo),docs/historico/CONTA-E-SESSAO-2026-10-15.md,Registro da implementação e validação de conta e sessão,Versionar,Atualização 1.3.1

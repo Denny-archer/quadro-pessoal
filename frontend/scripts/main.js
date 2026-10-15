@@ -42,10 +42,7 @@ async function iniciar() {
       render();
     };
     const falhou = e => {
-      if (e?.code === "revoked") {
-        S.offline = true;
-        render();
-      }
+      if (e?.code === "revoked") return; // Controle de sessão já ocultou os dados e redirecionou.
     };
     const linhas = snap => snap.docs.map(d => ({
       ...d.data(),

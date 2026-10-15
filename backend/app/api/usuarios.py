@@ -72,6 +72,8 @@ def alterar(uid: int, dados: AlteraUsuario, adm: Usuario = Depends(exige("admin"
         if not antes:
             raise HTTPException(404, 'Usuário não encontrado.')
         cur.execute(f"UPDATE usuarios SET {', '.join(sets)}, atualizado_em = now() WHERE id = %s", (*params, uid))
+        if dados.nova_senha or dados.ativo is False:
+            cur.execute('DELETE FROM auth_sessoes WHERE usuario_id=%s', (uid,))
         if cur.rowcount == 0:
             raise HTTPException(404, "Usuário não encontrado.")
         cur.execute(f'SELECT {CAMPOS} FROM usuarios WHERE id = %s', (uid,))

@@ -98,6 +98,90 @@ def test_login_sessao_e_csrf(cliente):
     assert cliente.put('/api/dados/config/ponto', json={}).status_code == 403
 
 
+def test_cookie_sessao_tem_flags_sem_persistencia(cliente, monkeypatch):
+    monkeypatch.setattr(config, 'COOKIE_SEGURO', True)
+    r = cliente.post('/api/auth/login', json={'email': 'admin@test', 'senha': SENHA})
+    cookie = r.headers['set-cookie'].lower()
+    assert 'httponly' in cookie and 'secure' in cookie and 'samesite=strict' in cookie and 'path=/' in cookie
+    assert 'max-age' not in cookie and 'expires=' not in cookie
+    sessao = db.consultar('SELECT token_hash FROM auth_sessoes')[0]['token_hash']
+    assert len(sessao) == 64 and sessao not in cliente.cookies.get(auth.COOKIE)
+
+
+def test_logout_revoga_sessao_e_cookie_copiado_nao_pode_ser_reutilizado(cliente):
+    entrar(cliente)
+    cookie = cliente.cookies.get(auth.COOKIE)
+    r = cliente.post('/api/auth/logout')
+    assert r.status_code == 200 and 'Max-Age=0' in r.headers['set-cookie']
+    assert not db.consultar('SELECT token_hash FROM auth_sessoes')
+    assert cliente.get('/api/auth/eu').status_code == 401
+    with TestClient(app) as copia:
+        copia.cookies.set(auth.COOKIE, cookie)
+        assert copia.get('/api/auth/eu').status_code == 401
+    assert cliente.post('/api/auth/logout').status_code == 200
+    assert db.consultar("SELECT count(*) n FROM auditoria WHERE acao='logout'")[0]['n'] == 1
+    db.aplicar_schema()  # mantém o evento inclusive na reexecução da atualização v4
+    assert db.consultar("SELECT count(*) n FROM auditoria WHERE acao='logout'")[0]['n'] == 1
+
+
+def test_logout_nao_revoga_outro_navegador_do_mesmo_usuario(cliente):
+    entrar(cliente)
+    with TestClient(app) as outro:
+        outro.headers.update(H)
+        entrar(outro)
+        assert len(db.consultar('SELECT token_hash FROM auth_sessoes')) == 2
+        assert cliente.post('/api/auth/logout').status_code == 200
+        assert outro.get('/api/auth/eu').status_code == 200
+
+
+def test_polling_nao_renova_inatividade_mas_interacao_sim(cliente):
+    entrar(cliente)
+    with db.conexao() as c:
+        c.cursor().execute("UPDATE auth_sessoes SET ultimo_uso_em = now() - interval '10 minutes'")
+    antes = db.consultar('SELECT ultimo_uso_em FROM auth_sessoes')[0]['ultimo_uso_em']
+    for rota in ('/api/auth/eu', '/api/dados/versoes', '/api/presenca'):
+        assert cliente.get(rota).status_code == 200
+    assert db.consultar('SELECT ultimo_uso_em FROM auth_sessoes')[0]['ultimo_uso_em'] == antes
+    assert cliente.post('/api/auth/atividade').status_code == 200
+    assert db.consultar('SELECT ultimo_uso_em FROM auth_sessoes')[0]['ultimo_uso_em'] > antes
+    with db.conexao() as c:
+        c.cursor().execute("UPDATE auth_sessoes SET ultimo_uso_em = now() - (%s * interval '1 minute')", (config.SESSAO_INATIVIDADE_MINUTOS + 1,))
+    assert cliente.post('/api/auth/atividade').status_code == 401  # não ressuscita sessão expirada
+
+
+@pytest.mark.parametrize('coluna', ['ultimo_uso_em', 'expira_em'])
+def test_expiracao_e_imposta_pelo_servidor(cliente, coluna):
+    entrar(cliente)
+    with db.conexao() as c:
+        c.cursor().execute(f"UPDATE auth_sessoes SET {coluna} = now() - interval '2 days'")
+    r = cliente.get('/api/dados/funcionarios')
+    assert r.status_code == 401 and 'Max-Age=0' in r.headers['set-cookie']
+
+
+def test_token_sem_registro_ou_legado_nao_autentica(cliente):
+    entrar(cliente)
+    token = cliente.cookies.get(auth.COOKIE)
+    with db.conexao() as c:
+        c.cursor().execute('DELETE FROM auth_sessoes')
+    assert cliente.get('/api/auth/eu').status_code == 401
+    antigo = jwt.encode({'sub': '1', 'v': 0, 'exp': dt.datetime.now(dt.timezone.utc) + dt.timedelta(hours=1)}, config.JWT_SECRET, algorithm='HS256')
+    cliente.cookies.set(auth.COOKIE, antigo)
+    assert cliente.get('/api/auth/eu').status_code == 401
+    cliente.cookies.set(auth.COOKIE, token)
+    assert cliente.post('/api/auth/logout').status_code == 200
+
+
+def test_senha_igual_e_recusada_e_cookie_antigo_e_expirado(cliente):
+    entrar(cliente)
+    assert cliente.post('/api/auth/senha', json={'atual': SENHA, 'nova': SENHA}).status_code == 400
+    assert cliente.get('/api/auth/eu').status_code == 200
+
+
+def test_html_nao_permite_cache_do_painel(cliente):
+    for rota in ('/', '/index.html', '/login', '/importacao.html'):
+        assert cliente.get(rota).headers['cache-control'] == 'no-store'
+
+
 def test_sinal_em_dia_nao_comprova_dia_de_pessoa_sem_resumo(cliente):
     h = chave(cliente)
     funcionario(cliente)
@@ -242,11 +326,11 @@ def test_previa_expirada_nao_grava(cliente):
 
 def test_schema_reexecutavel_e_csp_sem_script_inline(cliente):
     db.aplicar_schema()
-    assert db.consultar('SELECT max(versao) AS v FROM schema_versao')[0]['v'] == 3
+    assert db.consultar('SELECT max(versao) AS v FROM schema_versao')[0]['v'] == 4
     r = cliente.get('/')
     assert "script-src 'self';" in r.headers['Content-Security-Policy']
     assert '<script>' not in r.text
-    assert 'COFFITO Pass de Pessoal' in r.text
+    assert 'COFFITO Pass' in r.text
 
 
 def test_jornada_vincula_matricula_sem_abrir_panorama_e_isola_colaboradores(cliente):

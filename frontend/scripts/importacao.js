@@ -1,4 +1,10 @@
+import { iniciarApi } from "./core/api.js";
 (async () => {
+  try {
+    await iniciarApi();
+  } catch {
+    return;
+  }
   const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({
     "&": "&amp;",
     "<": "&lt;",
