@@ -5,6 +5,7 @@ from urllib.parse import urljoin
 from fastapi.testclient import TestClient
 
 from app.core import db
+from app.core import frontend
 from app.core.frontend import versao_frontend
 from app.main import app
 
@@ -22,6 +23,9 @@ def test_paginas_carregam_estilos_e_scripts_da_mesma_versao(monkeypatch):
         recursos = re.findall(r'''(?:src|href)=["'](/ui/[^"']+)["']''', pagina.text)
         assert recursos
         assert not re.search(r'''(?:src|href)=["']/(?:scripts|styles|demandas/(?:scripts|styles))/''', pagina.text)
+        for endereco in re.findall(r'''(?:src|href)=["']([^"']+)["']''', pagina.text):
+            resolvido = urljoin(rota, endereco)
+            assert not re.match(r'^/(?:scripts|styles|assets|demandas/(?:scripts|styles))/', resolvido), resolvido
         for recurso in recursos:
             assert recurso.startswith('/ui/' + versao + '/')
             resposta = cliente.get(recurso)
@@ -65,3 +69,21 @@ def test_alterar_modulo_interno_muda_versao_do_frontend(tmp_path):
     anterior = versao_frontend(tmp_path)
     modulo.write_text('export const panorama = false;', encoding='utf-8')
     assert versao_frontend(tmp_path) != anterior
+
+
+def test_caminhos_relativos_respeitam_a_pasta_da_pagina(monkeypatch, tmp_path):
+    pagina = tmp_path / 'demandas' / 'index.html'
+    pagina.parent.mkdir()
+    pagina.write_text('''<link href="styles/painel.css?v=2#tema">
+        <script src="./scripts/painel.js"></script>
+        <script src="../scripts/shared/http.js"></script>
+        <a href="/administracao">Administração</a>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo">''', encoding='utf-8')
+    monkeypatch.setattr(frontend, 'FRONTEND', tmp_path)
+    html = frontend.pagina_frontend('demandas/index.html').body.decode()
+    prefixo = frontend.PREFIXO_FRONTEND
+    assert f'href="{prefixo}/demandas/styles/painel.css?v=2#tema"' in html
+    assert f'src="{prefixo}/demandas/scripts/painel.js"' in html
+    assert f'src="{prefixo}/scripts/shared/http.js"' in html
+    assert 'href="/administracao"' in html
+    assert 'href="https://fonts.googleapis.com/css2?family=Archivo"' in html

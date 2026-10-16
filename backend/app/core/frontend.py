@@ -2,6 +2,7 @@
 import hashlib
 import re
 from pathlib import Path
+from urllib.parse import urljoin, urlsplit, urlunsplit
 
 from fastapi.responses import HTMLResponse
 
@@ -25,11 +26,20 @@ def versao_frontend(raiz: Path) -> str:
 
 VERSAO_FRONTEND = versao_frontend(FRONTEND)
 PREFIXO_FRONTEND = '/ui/' + VERSAO_FRONTEND
-RECURSO_HTML = re.compile(r'''(\b(?:src|href)=["'])(/(?:scripts|styles|assets|demandas/(?:scripts|styles))/[^"']+)(["'])''')
+RECURSO_HTML = re.compile(r'''(\b(?:src|href)=["'])([^"']+)(["'])''')
 
 
 def pagina_frontend(arquivo: str) -> HTMLResponse:
     conteudo = (FRONTEND / arquivo).read_text(encoding='utf-8-sig')
+    def versionar(recurso):
+        endereco = urlsplit(recurso[2])
+        if endereco.scheme or endereco.netloc or not endereco.path:
+            return recurso[0]
+        caminho = urljoin('/' + arquivo, endereco.path)
+        if not any(caminho.startswith('/' + pasta + '/') for pasta in PASTAS_PUBLICAS):
+            return recurso[0]
+        novo = urlunsplit(('', '', PREFIXO_FRONTEND + caminho, endereco.query, endereco.fragment))
+        return recurso[1] + novo + recurso[3]
     # Imports relativos dos módulos herdam o prefixo, inclusive os módulos internos.
-    conteudo = RECURSO_HTML.sub(lambda m: m[1] + PREFIXO_FRONTEND + m[2] + m[3], conteudo)
+    conteudo = RECURSO_HTML.sub(versionar, conteudo)
     return HTMLResponse(conteudo, headers={'Cache-Control': 'no-store', 'X-UI-Version': VERSAO_FRONTEND})

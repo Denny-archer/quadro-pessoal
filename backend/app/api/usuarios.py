@@ -79,8 +79,6 @@ def alterar(uid: int, dados: AlteraUsuario, adm: Usuario = Depends(exige("admin"
         invalidar(cur,usuarios=[uid])
         if dados.nova_senha or dados.ativo is False:
             cur.execute('DELETE FROM auth_sessoes WHERE usuario_id=%s', (uid,))
-        if cur.rowcount == 0:
-            raise HTTPException(404, "Usuário não encontrado.")
         cur.execute(f'SELECT {CAMPOS} FROM usuarios WHERE id = %s', (uid,))
         depois = db.linhas(cur)[0]
         if dados.nova_senha:

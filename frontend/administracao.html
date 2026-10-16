@@ -1,1 +1,68 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Administração · COFFITO</title><link rel="stylesheet" href="/styles/base.css"><link rel="stylesheet" href="/styles/components.css"><link rel="stylesheet" href="/styles/integracao.css"></head><body><main class="integracao"><header><h1>Administração compartilhada</h1><nav><a href="/">Quadro de Pessoal</a> · <a href="/demandas/">Demandas</a></nav></header><p id="mensagem" role="status"></p><section class="painel-integracao"><h2>Criar acesso individual</h2><p>Confira o e-mail e selecione o funcionário. A senha provisória será exibida uma vez para entrega manual.</p><form id="criar-conta" class="grade-integracao"><label>Nome<input name="nome" required maxlength="120"></label><label>E-mail<input name="email" type="email" required maxlength="200"></label><label>Perfil<select name="papel"><option value="colaborador">Colaborador</option><option value="gestor">Gestor</option><option value="admin">Administrador</option></select></label><label>Funcionário<select name="funcionario_id" id="novo-funcionario"></select></label><button class="btn primary">Criar acesso</button></form><p id="senha-provisoria" role="status"></p></section><section class="painel-integracao"><h2>Contas, vínculos e gestão de setores</h2><p>O vínculo é individual. Selecione vários setores usando Ctrl ou ⌘. Gestão só se aplica ao perfil gestor.</p><div id="contas" class="rolagem-integracao"></div></section><section class="painel-integracao"><h2>Setores e cargos</h2><form id="novo-cadastro" class="grade-integracao"><label>Cadastro<select name="tipo"><option value="setores">Setor</option><option value="cargos">Cargo</option></select></label><label>Nome<input name="nome" required maxlength="150"></label><label>Sigla do setor<input name="codigo" maxlength="30"></label><button class="btn">Adicionar</button></form><div id="organizacao" class="rolagem-integracao"></div></section><section class="painel-integracao"><h2>Conferência de lotação e cargo</h2><p>Revise os registros sem referência. A migração não associa contas por nome nem une setores parecidos.</p><div id="funcionarios" class="rolagem-integracao"></div></section></main><script type="module" src="/scripts/shared/administracao.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Administração · COFFITO</title>
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/integracao.css">
+    <link rel="stylesheet" href="demandas/styles/painel.css">
+    <link rel="stylesheet" href="styles/administracao.css">
+</head>
+
+<body>
+    <main class="integracao">
+        <header>
+            <h1>Administração compartilhada</h1>
+            <nav aria-label="Sistemas"><a href="/" class="btn">Quadro de Pessoal</a><a href="/demandas/" class="btn">Demandas</a></nav>
+        </header>
+        <p id="mensagem" role="status"></p>
+        <section class="painel-integracao">
+            <h2>Criar acesso individual</h2>
+            <p>Confira o e-mail e selecione o funcionário. A senha provisória será exibida uma vez para entrega manual.
+            </p>
+            <form id="criar-conta" class="grade-integracao"><label>Nome<input name="nome" required
+                        maxlength="120"></label><label>E-mail<input name="email" type="email" required
+                        maxlength="200"></label><label>Perfil<select name="papel">
+                        <option value="colaborador">Colaborador</option>
+                        <option value="gestor">Gestor</option>
+                        <option value="admin">Administrador</option>
+                    </select></label><label>Funcionário<select name="funcionario_id"
+                        id="novo-funcionario"></select></label><button class="btn primary">Criar acesso</button></form>
+            <p id="senha-provisoria" role="status"></p>
+        </section>
+        <section class="painel-integracao contas-painel" aria-labelledby="contas-titulo">
+            <div class="contas-cabecalho">
+                <div><h2 id="contas-titulo">Contas, vínculos e gestão de setores</h2>
+                    <p class="contas-ajuda">Selecione uma conta para editar o acesso, vincular um funcionário ou definir os setores do gestor.</p></div>
+                <span id="contas-total" class="conta-tag"></span>
+            </div>
+            <div class="contas-filtros">
+                <label for="buscar-conta">Buscar conta<input id="buscar-conta" type="search" placeholder="Nome, e-mail ou funcionário" autocomplete="off"></label>
+                <label for="filtrar-perfil">Perfil<select id="filtrar-perfil"><option value="">Todos os perfis</option><option value="admin">Administrador</option><option value="gestor">Gestor</option><option value="colaborador">Colaborador</option></select></label>
+            </div>
+            <p id="contas-contagem" class="contas-ajuda" role="status"></p>
+            <div id="contas" class="contas-lista"></div>
+            <p id="contas-vazio" class="contas-vazio" hidden>Nenhuma conta encontrada. Ajuste a busca ou o perfil selecionado.</p>
+        </section>
+        <section class="painel-integracao">
+            <h2>Setores e cargos</h2>
+            <form id="novo-cadastro" class="grade-integracao"><label>Cadastro<select name="tipo">
+                        <option value="setores">Setor</option>
+                        <option value="cargos">Cargo</option>
+                    </select></label><label>Nome<input name="nome" required maxlength="150"></label><label>Sigla do
+                    setor<input name="codigo" maxlength="30"></label><button class="btn">Adicionar</button></form>
+            <div id="organizacao" class="rolagem-integracao"></div>
+        </section>
+        <section class="painel-integracao">
+            <h2>Conferência de lotação e cargo</h2>
+            <p>Revise os registros sem referência. A migração não associa contas por nome nem une setores parecidos.</p>
+            <div id="funcionarios" class="rolagem-integracao"></div>
+        </section>
+    </main>
+    <script type="module" src="scripts/shared/administracao.js"></script>
+</body>
+
+</html>
