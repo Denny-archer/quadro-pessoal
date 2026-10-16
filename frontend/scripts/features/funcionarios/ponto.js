@@ -137,6 +137,10 @@ export function criarConsultaPonto(consultar, mudou) {
 }
 
 let consulta, semanaEscolhida, periodo;
+if(typeof window!=='undefined')window.addEventListener('qp-limpar-dados',()=>{
+  consulta?.cancelar();semanaEscolhida=null;periodo=null;
+  document.getElementById('ponto-ficha')?.replaceChildren();
+});
 function contexto(id) {
   const atual = `${S.y}-${S.m}`;
   if (periodo !== atual || !semanaEscolhida) {

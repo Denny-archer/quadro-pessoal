@@ -1,5 +1,5 @@
 import { iniciarEstilosDinamicos } from "./core/estilos-dinamicos.js";
-import { iniciarApi, db, downloads } from "./core/api.js";
+import { iniciarApi, db, downloads, req } from "./core/api.js";
 import { S, CFG_PADRAO, iniciarCoreEstado } from "./core/estado.js";
 import { render } from "./core/render.js";
 import { $ } from "./core/dom.js";
@@ -18,6 +18,16 @@ import { iniciarCoreNavegacao } from "./core/navegacao.js";
 async function iniciar() {
   try {
     const usuario = await iniciarApi();
+    if(usuario.papel==='admin'){
+      const org=await req('GET','/api/acesso/organizacao');
+      for(const [id,lista,campo] of [['f-setor',org.setores,'setor'],['f-cargo',org.cargos,'cargo']]){
+        const el=document.getElementById(id);
+        if(!el)continue;
+        const dl=document.createElement('datalist');dl.id=id+'-catalogo';
+        for(const item of lista.filter(x=>x.ativo))dl.append(Object.assign(document.createElement('option'),{value:item[campo]}));
+        el.setAttribute('list',dl.id);document.body.append(dl);
+      }
+    }
     iniciarEstilosDinamicos();
     iniciarCoreEstado();
     iniciarFeaturesBeneficiosExtras();

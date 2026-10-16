@@ -122,7 +122,8 @@ export function iniciarConta(u) {
   const box = document.createElement("div");
   box.className = "qp-user";
   box.innerHTML = `<span>Olá, <strong>${esc(u.nome.split(" ")[0])}</strong></span>
-    ${u.papel === "admin" ? `<button class="btn small" type="button" id="qp-usr">Usuários</button>` : ""}
+    <a class="btn small" href="/demandas/">Demandas</a>
+    ${u.papel === "admin" ? `<a class="btn small" href="/administracao">Administração</a><button class="btn small" type="button" id="qp-usr">Usuários</button>` : ""}
     <button class="btn small" type="button" id="qp-senha">Senha</button>
     <button class="btn small" type="button" id="qp-sair">Sair</button>`;
   $(".period").appendChild(box);

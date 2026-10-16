@@ -8,7 +8,6 @@ from fastapi import Depends, HTTPException, Request, Response
 from . import config, db
 from ..schemas.auth import Usuario
 COOKIE = "qp_sessao"
-NIVEL = {"leitor": 1, "editor": 2, "admin": 3}
 
 def hash_senha(senha: str) -> str:
     validar_senha_nova(senha)
@@ -79,7 +78,7 @@ def usuario_atual(request: Request) -> Usuario:
     condicao = """u.id = s.usuario_id AND u.id = %s AND s.token_hash = %s
                   AND u.ativo AND u.sessao_versao = %s AND s.expira_em > now()
                   AND s.ultimo_uso_em > now() - (%s * interval '1 minute')"""
-    campos = 'u.id, u.email, u.nome, u.papel'
+    campos = 'u.id, u.email, u.nome, u.papel, u.trocar_senha'
     if request.method not in ('GET', 'HEAD', 'OPTIONS'):
         sql = f'UPDATE auth_sessoes s SET ultimo_uso_em = now() FROM usuarios u WHERE {condicao} RETURNING {campos}'
     else:
@@ -91,12 +90,18 @@ def usuario_atual(request: Request) -> Usuario:
     if not r:
         raise HTTPException(401, 'Sessão encerrada ou expirada. Entre novamente.')
     u = r[0]
-    return Usuario(id=u["id"], email=u["email"], nome=u["nome"], papel=u["papel"])
+    if config.ACESSO_SOMENTE_ADMIN and u['papel']!='admin':
+        raise HTTPException(403,'Acesso temporariamente restrito à administração.')
+    if u['trocar_senha'] and request.url.path not in ('/api/auth/eu','/api/auth/senha','/api/auth/logout','/api/auth/atividade'):
+        raise HTTPException(403, 'Troque a senha provisória antes de acessar os dados.')
+    return Usuario(**u)
 
 
 def exige(papel: str):
+    if papel != 'admin':
+        raise ValueError('Use usuario_atual para autenticação ou o contexto de acesso para alcance por objeto.')
     def dep(u: Usuario = Depends(usuario_atual)) -> Usuario:
-        if NIVEL[u.papel] < NIVEL[papel]:
+        if u.papel != "admin":
             raise HTTPException(403, "Seu perfil não permite esta ação.")
         return u
     return dep

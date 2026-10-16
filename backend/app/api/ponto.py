@@ -18,7 +18,8 @@ from ..schemas.ponto import Marcacao, Lote, NovaChave
 from ..core import db
 from ..services import mapping, presenca, ponto as resumos_ponto
 from ..schemas.auth import Usuario
-from ..core.seguranca import exige
+from ..core.seguranca import exige, usuario_atual
+from ..acesso.service import contexto, exigir_funcionario
 from ..services.auditoria import auditar
 
 router = APIRouter(tags=["integração ponto"])
@@ -114,7 +115,7 @@ def _regras_ponto() -> tuple[int, str]:
 
 
 @router.get("/api/presenca")
-def quadro_presenca(data: dt.date | None = Query(default=None), _: Usuario = Depends(exige("leitor"))):
+def quadro_presenca(data: dt.date | None = Query(default=None), _: Usuario = Depends(usuario_atual)):
     agora = dt.datetime.now(dt.timezone.utc)
     data = data or agora.astimezone(presenca.FUSO).date()
     ini = dt.datetime.combine(data, dt.time.min, presenca.FUSO)
@@ -122,27 +123,33 @@ def quadro_presenca(data: dt.date | None = Query(default=None), _: Usuario = Dep
     with db.conexao() as c:
         c.cursor().execute(VINCULAR)
         resumos_ponto.vincular(c.cursor())
-    funcs = [mapping.linha_para_doc("funcionarios", l) for l in db.consultar("SELECT * FROM funcionarios")]
+    ctx=contexto(_)
+    where, params=ctx.funcionario_sql()
+    funcs = [mapping.linha_para_doc("funcionarios",l) for l in db.consultar(f'SELECT f.* FROM funcionarios f WHERE {where}',params)]
     ocs = [mapping.linha_para_doc("ocorrencias", l) for l in db.consultar(
-        "SELECT * FROM ocorrencias WHERE inicio <= %s AND fim >= %s AND tipo <> 'banco'", (data, data))]
+        f"SELECT o.* FROM ocorrencias o JOIN funcionarios f ON f.id=o.funcionario_id WHERE inicio<=%s AND fim>=%s AND tipo<>'banco' AND {where}", (data,data,*params))]
     marc = db.consultar("""SELECT id_externo, funcionario_id, momento, tipo, local, cancelada FROM ponto_marcacoes
-                           WHERE momento >= %s AND momento < %s AND funcionario_id IS NOT NULL""", (ini, fim))
+                           WHERE momento >= %s AND momento < %s AND funcionario_id=ANY(%s::text[])""", (ini,fim,[f['id'] for f in funcs]))
     tol, padrao = _regras_ponto()
     out = presenca.quadro_do_dia(funcs, ocs, marc, data, agora, _feriados(), tol, padrao)
-    ult = db.consultar("SELECT max(recebido_em) AS r FROM ponto_marcacoes")[0]["r"]
+    ids=[f['id'] for f in funcs]
+    ult = db.consultar("SELECT max(recebido_em) AS r FROM ponto_marcacoes WHERE funcionario_id=ANY(%s::text[])",(ids,))[0]["r"]
     out["ultima_recepcao"] = ult.isoformat() if ult else None
     out["matriculas_desconhecidas"] = [x["matricula"] for x in db.consultar(
-        "SELECT DISTINCT matricula FROM ponto_marcacoes WHERE funcionario_id IS NULL AND momento >= %s AND momento < %s ORDER BY 1", (ini, fim))]
-    sem_vinculo = db.consultar('SELECT DISTINCT matricula FROM ponto_resumos WHERE funcionario_id IS NULL AND data=%s', (data,))
+        "SELECT DISTINCT matricula FROM ponto_marcacoes WHERE funcionario_id IS NULL AND momento >= %s AND momento < %s ORDER BY 1", (ini, fim))] if ctx.admin else []
+    sem_vinculo = db.consultar('SELECT DISTINCT matricula FROM ponto_resumos WHERE funcionario_id IS NULL AND data=%s', (data,)) if ctx.admin else []
     out['matriculas_desconhecidas'] = sorted(set(out['matriculas_desconhecidas']) | {x['matricula'] or '(sem matrícula)' for x in sem_vinculo})
-    ult_resumo = db.consultar('SELECT max(recebido_em) AS r FROM ponto_resumos')[0]['r']
+    if not ctx.admin:
+        out['matriculas_desconhecidas']=[]
+    ult_resumo = db.consultar('SELECT max(recebido_em) AS r FROM ponto_resumos WHERE funcionario_id=ANY(%s::text[])',(ids,))[0]['r']
     if ult_resumo and (not ult or ult_resumo > ult):
         out['ultima_recepcao'] = ult_resumo.isoformat()
     return resumos_ponto.completar_quadro(out, funcs, ocs, data, agora, _feriados(), tol, padrao)
 
 
 @router.get("/api/presenca/{func_id}")
-def batidas_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = Depends(exige("leitor"))):
+def batidas_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = Depends(usuario_atual)):
+    exigir_funcionario(_,func_id)
     if not 0 <= (ate - de).days < 62:
         raise HTTPException(400, "Período máximo de 62 dias.")
     ini = dt.datetime.combine(de, dt.time.min, presenca.FUSO)
@@ -153,7 +160,8 @@ def batidas_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = De
 
 
 @router.get('/api/jornada/{func_id}')
-def jornada_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = Depends(exige('leitor'))):
+def jornada_funcionario(func_id: str, de: dt.date, ate: dt.date, _: Usuario = Depends(usuario_atual)):
+    exigir_funcionario(_,func_id)
     if not 0 <= (ate - de).days < 62:
         raise HTTPException(400, 'Informe um período de 1 a 62 dias.')
     # A ficha pode ser aberta antes do Panorama após completar a matrícula.

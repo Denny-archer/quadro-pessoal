@@ -59,8 +59,18 @@ def erro_banco(e: Exception) -> HTTPException:
     return HTTPException(500, "Erro ao gravar no banco de dados.")
 
 
-def gravar(cur, colecao: str, rid: str, doc: dict):
+def gravar(cur, colecao: str, rid: str, doc: dict, autor=None):
     """INSERT ... ON CONFLICT: substitui o documento inteiro (semântica de 'set')."""
+    anterior = None
+    organizacao = {}
+    if colecao == 'funcionarios':
+        from ..organizacao.service import resolver
+        cur.execute('SELECT * FROM funcionarios WHERE id=%s FOR UPDATE', (rid,))
+        rows = db.linhas(cur)
+        anterior = rows[0] if rows else None
+        organizacao = resolver(cur, doc, anterior)
+        doc = {**doc, **{k:v for k,v in organizacao.items() if k in ('setor','cargo')},
+               **{k[:-3]+'Id':v for k,v in organizacao.items() if k.endswith('_id')}}
     linha = mapping.doc_para_linha(colecao, doc)
     if colecao == 'funcionarios' and linha.get('matricula'):
         chave_mat = linha['matricula'].strip().lower().lstrip('0') or '0'
@@ -79,3 +89,13 @@ def gravar(cur, colecao: str, rid: str, doc: dict):
            f"VALUES (%s, {', '.join(['%s'] * len(cols))}, COALESCE(%s, now()), now()) "
            f"ON CONFLICT (id) DO UPDATE SET {', '.join(f'{c} = EXCLUDED.{c}' for c in cols)}, atualizado_em = now()")
     cur.execute(sql, (rid, *[linha[c] for c in cols], criado))
+    from ..acesso.service import invalidar
+    if colecao == 'funcionarios':
+        from ..organizacao.service import aplicar_referencias
+        aplicar_referencias(cur,rid,organizacao,autor,anterior.get('setor_id') if anterior else None)
+        if linha.get('situacao')=='inativo':
+            cur.execute("UPDATE usuarios SET ativo=false WHERE id IN (SELECT usuario_id FROM usuario_funcionario WHERE funcionario_id=%s) AND papel<>'admin'",(rid,))
+    else:
+        cur.execute('SELECT setor_id FROM funcionarios WHERE id=%s', (linha['funcionario_id'],))
+        f=cur.fetchone()
+        invalidar(cur,funcionarios=[linha['funcionario_id']],setores=[f[0]] if f else [])

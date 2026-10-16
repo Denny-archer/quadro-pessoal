@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel de Demandas · COFFITO</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/demandas/styles/painel.css"></head><body>
+<div class="brandbar" aria-hidden="true"></div><div class="wrap">
+<header class="top"><div class="brandline">
+<img class="logo logo-l" src="/assets/images/logo-light.webp" width="520" height="283" alt="COFFITO">
+<img class="logo logo-d" src="/assets/images/logo-dark.webp" width="520" height="283" alt="COFFITO">
+<div class="brand-txt"><div class="eyebrow">Gestão de demandas</div><h1>Painel de Demandas</h1></div></div>
+<div class="today-lbl" id="today-lbl"></div></header>
+<nav class="userbar" id="userbar" aria-label="Sistemas"></nav>
+<div class="bar"><nav class="tabs" role="tablist" id="tabs"></nav><div class="actions">
+<button class="btn" id="btn-colabs" data-action="colabs">Responsáveis</button>
+<button class="btn primary" id="btn-nova" data-action="new">+ Nova demanda</button></div></div>
+<div id="notice"></div><section class="kpis" id="kpis" aria-label="Resumo"></section><section id="view"></section>
+</div><div id="modal-root"></div><div id="toast-root"></div>
+<script type="module" src="/demandas/scripts/painel.js"></script></body></html>

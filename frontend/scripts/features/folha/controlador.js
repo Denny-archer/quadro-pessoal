@@ -33,7 +33,7 @@ export function iniciarFolha() {
         fim: addDias(inicio, Math.min(14, c.aProgramar) - 1)
       });
     } else if (t.dataset.histDel) {
-      if (document.documentElement.dataset.papel === "leitor") return;
+      if (document.documentElement.dataset.alterarRh !== "true") return;
       if (!t.classList.contains("armed")) {
         t.classList.add("armed");
         t.textContent = "Confirmar exclusão";

@@ -314,7 +314,7 @@
   white-space:nowrap
 }
 
-html[data-papel="leitor"] [data-hist-del], html[data-papel="leitor"] [data-new-ferias] {
+html[data-alterar-rh="false"] [data-hist-del], html[data-alterar-rh="false"] [data-new-ferias] {
   display:none !important;
 }
 

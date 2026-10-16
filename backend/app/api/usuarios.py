@@ -36,7 +36,7 @@ def criar(dados: NovoUsuario, adm: Usuario = Depends(exige("admin"))):
         cur.execute('SELECT 1 FROM usuarios WHERE lower(email)=lower(%s)', (dados.email,))
         if cur.fetchone():
             raise HTTPException(409, 'Já existe usuário com este e-mail.')
-        cur.execute("INSERT INTO usuarios (email, nome, papel, senha_hash) VALUES (%s,%s,%s,%s) RETURNING id",
+        cur.execute("INSERT INTO usuarios (email, nome, papel, senha_hash,trocar_senha) VALUES (%s,%s,%s,%s,true) RETURNING id",
                     (dados.email.strip(), dados.nome.strip(), dados.papel, hash_senha(senha)))
         novo = cur.fetchone()[0]
         cur.execute("INSERT INTO auditoria (usuario_id, acao, tabela, registro_id, depois) VALUES (%s,'criar','usuarios',%s,%s)",
@@ -63,6 +63,7 @@ def alterar(uid: int, dados: AlteraUsuario, adm: Usuario = Depends(exige("admin"
         sets.append("senha_hash = %s")
         params.append(hash_senha(dados.nova_senha))
         sets.append('sessao_versao = sessao_versao + 1')
+        sets.append('trocar_senha = true')
     if not sets:
         return {"ok": True}
     with db.conexao() as c:
@@ -72,6 +73,10 @@ def alterar(uid: int, dados: AlteraUsuario, adm: Usuario = Depends(exige("admin"
         if not antes:
             raise HTTPException(404, 'Usuário não encontrado.')
         cur.execute(f"UPDATE usuarios SET {', '.join(sets)}, atualizado_em = now() WHERE id = %s", (*params, uid))
+        from ..acesso.service import invalidar
+        if dados.papel and dados.papel != 'gestor':
+            cur.execute('UPDATE gestores_setores SET ativo=false WHERE usuario_id=%s', (uid,))
+        invalidar(cur,usuarios=[uid])
         if dados.nova_senha or dados.ativo is False:
             cur.execute('DELETE FROM auth_sessoes WHERE usuario_id=%s', (uid,))
         if cur.rowcount == 0:

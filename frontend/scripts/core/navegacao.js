@@ -23,7 +23,7 @@ function setPriv(on) {
   b.setAttribute("aria-pressed", on);
   b.textContent = on ? "Nomes ocultos" : "Nomes visíveis";
   try {
-    localStorage.setItem("qp-priv", on ? "1" : "0");
+    localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-priv'}`, on ? "1" : "0");
   } catch (e) {}
 }
 export function iniciarCoreNavegacao() {
@@ -45,7 +45,7 @@ export function iniciarCoreNavegacao() {
   document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => {
     S.tab = b.dataset.tab;
     try {
-      localStorage.setItem("qp-tab", S.tab);
+      localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`, S.tab);
     } catch (e) {}
     render();
   }));
@@ -56,7 +56,7 @@ export function iniciarCoreNavegacao() {
   {
     let on = true;
     try {
-      on = localStorage.getItem("qp-priv") !== "0";
+      on = localStorage.getItem(`rh:${document.documentElement.dataset.usuario}:${'qp-priv'}`) !== "0";
     } catch (e) {}
     setPriv(on);
   }
@@ -93,7 +93,7 @@ export function iniciarCoreNavegacao() {
       S.sel = t.dataset.ficha;
       S.tab = "func";
       try {
-        localStorage.setItem("qp-tab", "func");
+        localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`, "func");
       } catch (e) {}
       render();
       window.scrollTo({
@@ -112,7 +112,7 @@ export function iniciarCoreNavegacao() {
       S.sel = null;
       S.tab = "func";
       try {
-        localStorage.setItem("qp-tab", "func");
+        localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`, "func");
       } catch (e) {}
       render();
       window.scrollTo({

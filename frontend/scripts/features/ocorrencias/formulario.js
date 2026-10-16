@@ -223,6 +223,8 @@ function calcLanc() {
   };
 }
 function openLanc(id, pre = {}) {
+  const leitura=document.documentElement.dataset.alterarRh!=='true';
+  if(leitura&&!id)return;
   if (!S.func.length) {
     openFunc();
     toast("Cadastre um funcionário antes de lançar.");
@@ -235,7 +237,7 @@ function openLanc(id, pre = {}) {
     fim: HOJE,
     ...pre
   };
-  $("#lanc-title").textContent = editOc ? "Editar lançamento" : "Novo lançamento";
+  $("#lanc-title").textContent = leitura ? 'Consultar lançamento' : editOc ? "Editar lançamento" : "Novo lançamento";
   $("#l-func").innerHTML = [...S.func].sort(byName).filter(f => noQuadro(f) || f.id === o.func).map(f => `<option value="${f.id}">${esc(f.nome)}</option>`).join("");
   $("#l-func").value = o.func || S.sel || $("#l-func").options[0]?.value;
   $("#l-tipo").value = o.tipo;
@@ -257,6 +259,7 @@ function openLanc(id, pre = {}) {
   preencheAq(o.aquisitivo || "");
   ajustaTipo();
   calcLanc();
+  dl.querySelectorAll('input,select,textarea').forEach(el=>el.disabled=leitura);
   dl.showModal();
 }
 export { iniciarFeaturesOcorrenciasFormulario, dl, editOc, ajustaTipo, openLanc, preencheRef, preencheAq, limite, calcLanc };

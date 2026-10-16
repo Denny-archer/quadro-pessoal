@@ -2,8 +2,8 @@
 
 Perfis:
   admin  — tudo, inclusive gerenciar usuários
-  editor — lê e altera funcionários, lançamentos, regras e importa planilhas
-  leitor — só consulta
+  gestor — consulta o próprio cadastro e as equipes explicitamente autorizadas
+  colaborador — consulta o próprio cadastro; ambos apenas consultam o RH
 """
 from __future__ import annotations
 
@@ -44,8 +44,10 @@ def login(dados: Login, request: Request, resp: Response):
         raise HTTPException(429, "Muitas tentativas. Aguarde 15 minutos.")
     if u is None:
         raise HTTPException(401, "E-mail ou senha incorretos.")
+    if config.ACESSO_SOMENTE_ADMIN and u['papel']!='admin':
+        raise HTTPException(403,'Acesso temporariamente restrito à administração.')
     _emitir(resp, u)
-    return {"id": u["id"], "nome": u["nome"], "email": u["email"], "papel": u["papel"]}
+    return {"id": u["id"], "nome": u["nome"], "email": u["email"], "papel": u["papel"], "trocar_senha": u["trocar_senha"]}
 
 
 @router.post("/logout")
@@ -90,7 +92,7 @@ def trocar_senha(dados: TrocaSenha, resp: Response, u: Usuario = Depends(usuario
         raise HTTPException(400, 'Escolha uma senha diferente da atual.')
     with db.conexao() as c:
         cur = c.cursor()
-        cur.execute("UPDATE usuarios SET senha_hash = %s, sessao_versao = sessao_versao + 1, atualizado_em = now() WHERE id = %s RETURNING sessao_versao",
+        cur.execute("UPDATE usuarios SET senha_hash = %s, trocar_senha=false, sessao_versao = sessao_versao + 1, atualizado_em = now() WHERE id = %s RETURNING sessao_versao",
                     (hash_senha(dados.nova), u.id))
         versao = cur.fetchone()[0]
         cur.execute('DELETE FROM auth_sessoes WHERE usuario_id=%s', (u.id,))

@@ -1,11 +1,13 @@
 """Contratos de sessão e autenticação."""
 from pydantic import BaseModel, Field
+from typing import Literal
 
 class Usuario(BaseModel):
     id: int
     email: str
     nome: str
-    papel: str
+    papel: Literal['admin','gestor','colaborador']
+    trocar_senha: bool = False
 
 
 class Login(BaseModel):

@@ -13,6 +13,10 @@ import { atualizarPontoFicha } from "../features/funcionarios/ponto.js";
 /** Infraestrutura compartilhada: render. */
 
 function render() {
+  const colaborador = document.documentElement.dataset.papel === "colaborador";
+  const abaPanorama = document.querySelector('[data-tab="panorama"]');
+  if (abaPanorama) abaPanorama.hidden = colaborador;
+  if (colaborador && S.tab === "panorama") S.tab = "func";
   if ($("#dlg-kpi")?.open) renderKd();
   $("#period-label").textContent = periodoLabel();
   $("#mode-mes").setAttribute("aria-pressed", S.mode === "mes");

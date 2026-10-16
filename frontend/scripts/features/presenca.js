@@ -2,6 +2,7 @@ import { classeCor } from "../core/cores.js";
 import { req as api } from "../core/api.js";
 import { $, esc } from "../core/dom.js";
 export function iniciarPresenca(usuario) {
+  if (usuario.papel === "colaborador") return;
   const $ = s => document.querySelector(s);
   const GRUPOS = [["no_posto", "No posto", "var(--good)"], ["intervalo", "Em intervalo", "var(--c-banco)"], ["remoto", "Remoto / home office", "var(--c-ho-strong)"], ["planejado", "Home office previsto", "var(--muted)"], ["aguardando_integracao", "Sem sincronização", "var(--c-abono)"], ["afastado", "Afastados", "var(--c-ferias)"], ["sem_registro", "Sem registro", "var(--bad)"], ["aguardando", "Aguardando entrada", "var(--c-abono)"], ["saiu", "Já saíram", "var(--muted)"]];
   const GRUPO_DE = {
@@ -20,10 +21,15 @@ export function iniciarPresenca(usuario) {
     filtro = null,
     timer = null,
     ativa = false;
+  let sequenciaConsulta=0;
   const caixa = document.createElement("section");
   caixa.id = "presenca";
   caixa.className = "panel";
   caixa.hidden = true;
+  window.addEventListener('qp-limpar-dados',()=>{
+    sequenciaConsulta++;dados=null;filtro=null;caixa.replaceChildren();
+    if(ativa)carregar();
+  });
   $("#view").before(caixa);
   function minutosDesde(iso) {
     return iso ? Math.round((Date.now() - new Date(iso)) / 60000) : null;
@@ -80,10 +86,14 @@ export function iniciarPresenca(usuario) {
       ${dados.matriculas_desconhecidas.length ? `<div class="note u-margin-top-10px" >Batidas de hoje com matrícula não cadastrada no RH: ${dados.matriculas_desconhecidas.map(esc).join(", ")}. Cadastre a matrícula no funcionário para vincular.</div>` : ""}`;
   }
   async function carregar() {
+    const token=++sequenciaConsulta;
     try {
-      dados = await api("GET", "/api/presenca");
+      const novos = await api("GET", "/api/presenca");
+      if(token!==sequenciaConsulta)return;
+      dados=novos;
       desenhar();
     } catch (e) {
+      if(token!==sequenciaConsulta)return;
       caixa.innerHTML = `<div class="empty">Não foi possível carregar a presença: ${esc(e.mensagem || e.message)}</div>`;
     }
   }

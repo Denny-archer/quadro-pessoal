@@ -1,54 +1,24 @@
 "use strict";
 
 import { iniciarControleSessao, encerrarTela, sessaoEncerrada } from "./sessao.js";
-const H = {
-  "Content-Type": "application/json",
-  "X-Requested-With": "quadro-pessoal"
-};
-async function req(metodo, url, corpo) {
-  if (sessaoEncerrada()) throw {
-    code: "revoked"
-  };
-  const r = await fetch(url, {
-    method: metodo,
-    headers: H,
-    credentials: "same-origin",
-    body: corpo === undefined ? undefined : JSON.stringify(corpo)
-  });
-  if (r.status === 401) {
-    encerrarTela("expirada");
-    throw {
-      code: "revoked"
-    };
-  }
-  let dados = null;
-  try {
-    dados = await r.json();
-  } catch (e) {}
-  if (!r.ok) {
-    const msg = dados && typeof dados.detail === "string" ? dados.detail : `Erro ${r.status}`;
-    const e = new Error(msg);
-    e.code = r.status === 403 || r.status === 400 || r.status === 409 ? "invalid_argument" : "server";
-    e.mensagem = msg;
-    throw e;
-  }
-  if (sessaoEncerrada()) throw {
-    code: "revoked"
-  };
-  return dados;
-}
+import { req, iniciarSessao, aplicarContexto, abrirEventos } from '../shared/http.js';
+import { S } from './estado.js';
 const ouvintes = new Map(); // chave -> Set(callback)
 const cache = new Map(); // chave -> dados
 const assinaturas = {};
+let geracao=0;
 async function carregar(chave) {
+  const token=geracao;
   if (chave.startsWith("config/")) {
     const r = await req("GET", "/api/dados/" + chave);
+    if(token!==geracao)return;
     cache.set(chave, {
       exists: r.existe,
       data: () => r.dados
     });
   } else {
     const docs = await req("GET", "/api/dados/" + chave);
+    if(token!==geracao)return;
     cache.set(chave, {
       docs: docs.map(d => {
         const {
@@ -139,25 +109,33 @@ const downloads = {
 
 let sessao;
 export function iniciarApi() {
-  if (!sessao) {
-    sessao = req("GET", "/api/auth/eu").then(u => {
-      document.documentElement.dataset.papel = u.papel;
-      iniciarControleSessao({
-        inatividadeMinutos: u.sessao?.inatividade_minutos ?? 30,
-        atividade: () => req("POST", "/api/auth/atividade"),
-        validar: () => req("GET", "/api/auth/eu"),
-        aoEncerrar: () => {
-          cache.clear();
-          ouvintes.clear();
-        }
-      });
-      return u;
-    });
-    setInterval(sondar, 5000);
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) sondar();
-    });
-  }
+  if(!sessao) sessao=iniciarSessao(()=>{geracao++;cache.clear();ouvintes.clear();S.func=[];S.ocs=[];window.dispatchEvent(new CustomEvent('qp-limpar-dados'));}).then(async u=>{
+    const atualizar=async()=>{
+      const ctx=await req('GET','/api/acesso/contexto');
+      const papelAnterior=document.documentElement.dataset.papel;
+      aplicarContexto(ctx);
+      const permitidos=await req('GET','/api/dados/funcionarios');
+      const ids=new Set(permitidos.map(f=>f.id));
+      const perdeu=S.func.some(f=>!ids.has(f.id))||papelAnterior!==ctx.perfil;
+      if(perdeu){
+        geracao++;
+        S.func=[];S.ocs=[];S.sel=null;
+        document.querySelectorAll('dialog').forEach(d=>{d.close();d.replaceChildren();});
+        window.dispatchEvent(new CustomEvent('qp-limpar-dados'));
+        document.querySelector('#view')?.replaceChildren();
+        location.reload();
+        return;
+      }
+      geracao++;
+      cache.clear();
+      await Promise.all([...ouvintes.keys()].map(carregar));
+    };
+    const ctx=await req('GET','/api/acesso/contexto');
+    aplicarContexto(ctx);
+    abrirEventos(ctx.revisao_acesso,atualizar);
+    setInterval(sondar,5000);
+    return u;
+  });
   return sessao;
 }
 export { req, sessao, db, downloads };

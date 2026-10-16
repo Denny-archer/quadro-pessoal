@@ -12,35 +12,41 @@ from fastapi import APIRouter, Body, Depends, HTTPException
 from ..core import db
 from ..services import mapping
 from ..schemas.auth import Usuario
-from ..core.seguranca import exige
+from ..core.seguranca import exige, usuario_atual
 from ..core.privacidade import sem_diagnostico
 from ..services.auditoria import auditar
+from ..acesso.service import contexto, invalidar
 from ..services.dados import TABELA, _colecao, _id, erro_banco, gravar
 
 router = APIRouter(prefix="/api/dados", tags=["dados"])
-CONFIG_EDITOR = {"beneficios", "ponto"}   # editores mudam regras de benefícios e tolerância do ponto
+CONFIG_GERAIS = {"beneficios", "ponto"}
 CONFIG_ADMIN = {"remuneracao"}            # tabela salarial: só administradores
 
 
 @router.get("/versoes")
-def versoes(_: Usuario = Depends(exige("leitor"))):
+def versoes(_: Usuario = Depends(usuario_atual)):
     """Assinatura barata de cada coleção; o painel recarrega só o que mudou."""
-    r = db.consultar("""
-        SELECT 'funcionarios' AS c, count(*) AS n, max(atualizado_em) AS t FROM funcionarios
-        UNION ALL SELECT 'ocorrencias', count(*), max(atualizado_em) FROM ocorrencias
-        UNION ALL SELECT 'config/' || chave, 1, atualizado_em FROM config""")
-    return {x["c"]: f"{x['n']}|{x['t'].isoformat() if x['t'] else ''}" for x in r}
+    ctx = contexto(_)
+    where, params = ctx.funcionario_sql()
+    r = db.consultar(f"""
+        SELECT 'funcionarios' AS c, count(*) AS n, max(f.atualizado_em) AS t FROM funcionarios f WHERE {where}
+        UNION ALL SELECT 'ocorrencias', count(*), max(o.atualizado_em) FROM ocorrencias o
+            JOIN funcionarios f ON f.id=o.funcionario_id WHERE {where}
+        UNION ALL SELECT 'config/' || chave, 1, atualizado_em FROM config WHERE chave IN ('remuneracao','beneficios','ponto')""", (*params,*params))
+    return {x["c"]: f"{ctx.revisao}|{x['n']}|{x['t'].isoformat() if x['t'] else ''}" for x in r}
 
 
 @router.get("/config/{chave}")
-def ler_config(chave: str, _: Usuario = Depends(exige("leitor"))):
+def ler_config(chave: str, _: Usuario = Depends(usuario_atual)):
+    if chave not in ("remuneracao","beneficios","ponto") and _.papel != "admin":
+        raise HTTPException(403, "Configuração administrativa.")
     r = db.consultar("SELECT valor FROM config WHERE chave = %s", (_id(chave),))
     return {"existe": bool(r), "dados": r[0]["valor"] if r else None}
 
 
 @router.put("/config/{chave}")
-def gravar_config(chave: str, valor: dict = Body(...), u: Usuario = Depends(exige("editor"))):
-    if chave not in CONFIG_EDITOR | CONFIG_ADMIN:
+def gravar_config(chave: str, valor: dict = Body(...), u: Usuario = Depends(exige("admin"))):
+    if chave not in CONFIG_GERAIS | CONFIG_ADMIN:
         raise HTTPException(404, "Configuração inexistente.")
     if chave in CONFIG_ADMIN and u.papel != "admin":
         raise HTTPException(403, "Somente administradores alteram a tabela salarial.")
@@ -75,13 +81,16 @@ def gravar_config(chave: str, valor: dict = Body(...), u: Usuario = Depends(exig
 
 
 @router.get("/{colecao}")
-def listar(colecao: str, _: Usuario = Depends(exige("leitor"))):
+def listar(colecao: str, _: Usuario = Depends(usuario_atual)):
     t = _colecao(colecao)
-    return [mapping.linha_para_doc(colecao, l) for l in db.consultar(f"SELECT * FROM {t} ORDER BY id")]
+    where, params = contexto(_).funcionario_sql()
+    sql = (f'SELECT f.* FROM funcionarios f WHERE {where} ORDER BY f.id' if colecao=='funcionarios'
+           else f'SELECT o.* FROM ocorrencias o JOIN funcionarios f ON f.id=o.funcionario_id WHERE {where} ORDER BY o.id')
+    return [mapping.linha_para_doc(colecao,l) for l in db.consultar(sql,params)]
 
 
 @router.put("/{colecao}/{rid}")
-def gravar_doc(colecao: str, rid: str, doc: dict = Body(...), u: Usuario = Depends(exige("editor"))):
+def gravar_doc(colecao: str, rid: str, doc: dict = Body(...), u: Usuario = Depends(exige("admin"))):
     t = _colecao(colecao)
     _id(rid)
     doc = sem_diagnostico(doc)
@@ -90,7 +99,7 @@ def gravar_doc(colecao: str, rid: str, doc: dict = Body(...), u: Usuario = Depen
             cur = c.cursor()
             cur.execute(f"SELECT * FROM {t} WHERE id = %s", (rid,))
             antes = db.linhas(cur)
-            gravar(cur, colecao, rid, doc)
+            gravar(cur, colecao, rid, doc, autor=u.id)
             auditar(cur, u.id, "alterar" if antes else "criar", t, rid,
                     mapping.linha_para_doc(colecao, antes[0]) if antes else None, doc)
     except mapping.ErroValidacao as e:
@@ -101,7 +110,7 @@ def gravar_doc(colecao: str, rid: str, doc: dict = Body(...), u: Usuario = Depen
 
 
 @router.delete("/{colecao}/{rid}")
-def excluir(colecao: str, rid: str, u: Usuario = Depends(exige("editor"))):
+def excluir(colecao: str, rid: str, u: Usuario = Depends(exige("admin"))):
     t = _colecao(colecao)
     with db.conexao() as c:
         cur = c.cursor()
@@ -109,6 +118,14 @@ def excluir(colecao: str, rid: str, u: Usuario = Depends(exige("editor"))):
         antes = db.linhas(cur)
         if not antes:
             return {"ok": True}
-        cur.execute(f"DELETE FROM {t} WHERE id = %s", (rid,))
+        if colecao == 'funcionarios':
+            cur.execute("UPDATE funcionarios SET situacao='inativo',atualizado_em=now() WHERE id=%s",(rid,))
+            cur.execute("UPDATE usuarios SET ativo=false WHERE id IN (SELECT usuario_id FROM usuario_funcionario WHERE funcionario_id=%s) AND papel<>'admin'",(rid,))
+            invalidar(cur,funcionarios=[rid],setores=[antes[0]['setor_id']])
+        else:
+            cur.execute(f"DELETE FROM {t} WHERE id = %s", (rid,))
+            cur.execute('SELECT setor_id FROM funcionarios WHERE id=%s',(antes[0]['funcionario_id'],))
+            f=cur.fetchone()
+            invalidar(cur,funcionarios=[antes[0]['funcionario_id']],setores=[f[0]] if f else [])
         auditar(cur, u.id, "excluir", t, rid, mapping.linha_para_doc(colecao, antes[0]))
     return {"ok": True}

@@ -10,13 +10,21 @@
   color:var(--ink)
 }
 
-html[data-papel="leitor"] #new-func, html[data-papel="leitor"] #new-lanc, html[data-papel="leitor"] #qp-imp {
+html[data-papel="colaborador"] [data-tab="panorama"] {
   display:none!important
 }
 
-html[data-papel="leitor"] [data-edit-func], html[data-papel="leitor"] [data-new-for],
-    html[data-papel="leitor"] [data-act="new-func"], html[data-papel="leitor"] [data-act="regras"],
-    html[data-papel="leitor"] #dlg-lanc .dlg-foot, html[data-papel="leitor"] #dlg-func .dlg-foot {
+html[data-alterar-rh="false"] #new-func, html[data-alterar-rh="false"] #new-lanc, html[data-alterar-rh="false"] #qp-imp {
+  display:none!important
+}
+
+html[data-alterar-rh="false"] #qp-usr,
+html[data-alterar-rh="false"] a[href="/administracao"],
+html[data-alterar-rh="false"] #rm-ex {display:none!important}
+
+html[data-alterar-rh="false"] [data-edit-func], html[data-alterar-rh="false"] [data-new-for],
+    html[data-alterar-rh="false"] [data-act="new-func"], html[data-alterar-rh="false"] [data-act="regras"],
+    html[data-alterar-rh="false"] #dlg-lanc .dlg-foot, html[data-alterar-rh="false"] #dlg-func .dlg-foot {
   display:none!important
 }
 

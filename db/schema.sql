@@ -136,8 +136,32 @@ CREATE TABLE IF NOT EXISTS config (
 );
 
 -- ---------------------------------------------------------------------
+-- Tabela Auxiliar de Cargos
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS cargos_aux (
+  id            bigserial PRIMARY KEY,
+  cargo         text NOT NULL,
+  descricao     text,
+  criado_em     timestamptz NOT NULL DEFAULT now(),
+  atualizado_em timestamptz NOT NULL DEFAULT now()
+);
+
+-- ---------------------------------------------------------------------
+-- Tabela Auxiliar Setorial 
+-- ---------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS setores_aux (
+  id            bigserial PRIMARY KEY,
+  setor         text NOT NULL,
+  descricao     text,
+  criado_em     timestamptz NOT NULL DEFAULT now(),
+  atualizado_em timestamptz NOT NULL DEFAULT now()
+);
+
+
+-- ---------------------------------------------------------------------
 -- Importações de planilhas (CSV/XLSX): pré-visualização e histórico
 -- ---------------------------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS importacoes (
   id            bigserial PRIMARY KEY,
   tipo          text NOT NULL CHECK (tipo IN ('funcionarios','lancamentos')),

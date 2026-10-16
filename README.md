@@ -4,6 +4,16 @@ Gestão de pessoas da DAGEP: cadastros, afastamentos, jornada, benefícios, remu
 
 **Stack:** Python 3.12, FastAPI, PostgreSQL 16 e JavaScript com módulos ES. O próprio backend serve o frontend; não há bundler ou servidor Node em produção.
 
+## Integração com demandas — versão 1.4.0
+
+O login atende ao Quadro de Pessoal e ao Painel de Demandas em `/demandas/`. Colaboradores consultam os próprios dados; gestores consultam também seus setores e gerenciam suas demandas; somente administradores alteram o RH, metas e modelos. Os perfis antigos `editor` e `leitor` são migrados para `colaborador`, sem associação automática a funcionários.
+
+Antes de liberar os acessos individuais, conferir vínculos e lotações em `/administracao`. Para a homologação inicial no servidor, configurar `ACESSO_SOMENTE_ADMIN=true`. As funcionalidades existentes e a integração com ponto permanecem; seus dados passam a respeitar o alcance autorizado.
+
+- [Contrato de arquitetura e API](docs/arquitetura/INTEGRACAO-DEMANDAS.md)
+- [Homologação, implantação, backup e reversão](docs/operacao/DEMANDAS.md)
+- [Resultados da validação](docs/operacao/VALIDACAO-DEMANDAS-2026-10-15.md)
+
 ## Onde encontrar cada parte
 
 | Pasta | Responsabilidade |
@@ -18,7 +28,7 @@ Gestão de pessoas da DAGEP: cadastros, afastamentos, jornada, benefícios, remu
 | `frontend/scripts/features` | Funcionalidades, telas e formulários por assunto |
 | `frontend/styles` | Estilos compartilhados, das páginas e das funcionalidades |
 | `frontend/assets/images` | Logos e imagens públicas |
-| `db` | Schema PostgreSQL idempotente |
+| `db` | Bootstrap PostgreSQL e migrações versionadas |
 | `docs` | Guias, contratos, diagramas e modelos de planilhas |
 | `ops` | Rotinas operacionais de backup |
 
