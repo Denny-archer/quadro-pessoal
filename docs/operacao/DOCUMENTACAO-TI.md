@@ -1,7 +1,7 @@
-# COFFITO Pass de Pessoal: documentação técnica para a TI
+# COFFITO Pass: documentação técnica para a TI
 
 > Sistema de gestão de pessoas da DAGEP/COFFITO.
-> Pasta do código: `quadro-pessoal/`. Nome exibido: COFFITO Pass de Pessoal.
+> Pasta do código: `quadro-pessoal/`. Nome exibido: COFFITO Pass de.
 > Cookie `qp_sessao`, chaves `qpk_` e banco `quadro` continuam sendo identificadores técnicos.
 > Revisão de 07/10/2026: Docker e API validados com PostgreSQL isolado; schema v3.
 > O produtor de resumos do ponto foi implementado, com ativação opcional e desabilitada por padrão.
@@ -171,7 +171,8 @@ O diagrama ER completo e o dicionário campo a campo estão em [`ESQUEMA-BANCO.m
 
 | Tabela | Para que serve | Pontos importantes |
 |---|---|---|
-| `schema_versao` | controle de versão do schema | hoje há as versões 1, 2 e 3 |
+| `schema_versao` | controle de versão do schema | hoje há as versões 1, 2, 3 e 4 |
+| `auth_sessoes` *(v4)* | sessões individuais | hash do identificador, usuário, último uso e expiração; permite logout efetivo e expiração por inatividade |
 | `usuarios` | quem acessa o sistema | e-mail único (sem diferenciar maiúsculas); `senha_hash` em bcrypt; `papel` admin/editor/leitor; `ativo` |
 | `funcionarios` | cadastro | PK `id` texto; `matricula` única quando preenchida; CHECKs de vínculo, situação, regime, nível etc.; `semana` (grade do híbrido), `beneficios_extras`, `abonos` e `periodos_aquisitivos` em jsonb; restrição `contrato_ordem` |
 | `ocorrencias` | lançamentos | FK para `funcionarios` com `ON DELETE CASCADE`; `tipo` ferias/atestado/abono/viagem/capacitacao/banco; restrição `periodo_ordem` (fim ≥ início); `importacao_id` liga ao lote importado. **Não há coluna de CID/diagnóstico.** |
@@ -185,6 +186,8 @@ O diagrama ER completo e o dicionário campo a campo estão em [`ESQUEMA-BANCO.m
 `ponto_sincronizacao`. A aplicação serializa a aplicação do DDL com lock transacional. O arquivo contém também
 `ALTER TABLE ... ADD COLUMN IF NOT EXISTS` e inserções idempotentes. A reexecução foi testada; alterações futuras
 exigem revisão, backup e homologação. Não editar retroativamente blocos já implantados.
+
+**Schema v4:** cria o registro de sessões e acrescenta `logout` à auditoria, sem remover dados. A atualização exige novo login para sessões antigas. Leia [Sessões e acesso](../SESSOES-E-ACESSO.md).
 
 **Volume atual da carga inicial:** 102 funcionários, 934 ocorrências e 2 configurações.
 
@@ -257,7 +260,8 @@ produção ela deve ficar **desligada**.
 | Método e rota | Perfil mínimo | Função |
 |---|---|---|
 | `POST /api/auth/login` | público | e-mail e senha → cookie de sessão (10 tentativas por IP a cada 15 min) |
-| `POST /api/auth/logout` | — | apaga o cookie |
+| `POST /api/auth/logout` | — | revoga a sessão individual e apaga o cookie; exige cabeçalho de proteção CSRF |
+| `POST /api/auth/atividade` | leitor | registra interação; não reativa uma sessão expirada |
 | `GET /api/auth/eu` | leitor | dados do usuário logado |
 | `POST /api/auth/senha` | leitor | troca a própria senha (mínimo de 10 caracteres) |
 | `GET /api/usuarios` | admin | lista os usuários |
@@ -392,7 +396,7 @@ foram executadas no banco real do ponto durante esta revisão. O roteiro está e
 | Item | Como está |
 |---|---|
 | Autenticação | E-mail e senha, com senha em bcrypt (custo 12) e mínimo de 10 caracteres e no máximo 72 bytes UTF-8. |
-| Sessão | JWT HS256 em cookie `httpOnly`, `SameSite=Strict` e `Secure`, com validade de 10 h (`SESSAO_HORAS`). Usuário desativado perde o acesso na próxima requisição, porque o status é consultado a cada chamada. Troca/reset de senha invalida sessões anteriores pela versão de sessão. |
+| Sessão | JWT HS256 em cookie de sessão `httpOnly`, `SameSite=Strict` e `Secure`, com registro individual no banco. Limite absoluto de 10 h e 30 min sem interação por padrão. Polling não renova a sessão. Logout revoga o registro; troca/reset de senha e desativação revogam os acessos anteriores. Cada API consulta o estado e o perfil atuais. |
 | CSRF | Alterações exigem o cabeçalho `X-Requested-With: quadro-pessoal`, que outro site não consegue enviar com cookie em `SameSite=Strict`. |
 | Força bruta | Limite de 10 falhas de login por IP a cada 15 min, persistido no PostgreSQL e compartilhado pelos workers. |
 | Autorização | Perfis checados no **backend** em cada rota (`exige("editor")` etc.). |
@@ -469,6 +473,7 @@ server {
 | `JWT_SECRET` | **obrigatória (≥32)** | Assina as sessões. Se for trocada, todos os usuários são deslogados. |
 | `COOKIE_SEGURO` | true | Cookie só em HTTPS. Use `false` apenas em teste com http://localhost. |
 | `SESSAO_HORAS` | 10 | Duração da sessão. |
+| `SESSAO_INATIVIDADE_MINUTOS` | 30 | Limite sem interação, validado no servidor; não é renovado por sondagens de dados ou presença. |
 | `TAMANHO_MAX_UPLOAD_MB` | 10 | Tamanho máximo da planilha. |
 | `WEB_CONCURRENCY` | 2 | Processos do uvicorn. |
 | `PORTA` | 127.0.0.1:8000 | Onde a app escuta no host. |

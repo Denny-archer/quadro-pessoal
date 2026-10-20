@@ -14,6 +14,8 @@
 | Histórico da revisão inicial | [Revisão 1.1](historico/REVISAO-2026-10-07.md) |
 | Reorganização e validação | [Revisão 1.2](historico/REORGANIZACAO-2026-10-09.md) |
 | Ponto na ficha do colaborador | [Correção 1.2.1](historico/CORRECAO-PONTO-FICHA-2026-10-13.md) |
+| Histórico, folha estimada e férias | [Guia da versão 1.3](FOLHA-E-FERIAS.md) |
+| Login, logout e troca de senha | [Sessões e acesso](SESSOES-E-ACESSO.md) |
 | Decisão por arquivo | [Inventário](historico/INVENTARIO-ARQUIVOS.csv) |
 
 Cada especificação tem uma versão canônica. Os antigos documentos duplicados foram consolidados neste índice.

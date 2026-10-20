@@ -1,4 +1,3 @@
-/** Infraestrutura compartilhada: render. */
 import { $ } from "./dom.js";
 import { renderKd } from "../features/panorama/detalhes.js";
 import { periodoLabel } from "./colecoes.js";
@@ -7,9 +6,12 @@ import { panoramaMes } from "../features/panorama/mes.js";
 import { panoramaAno } from "../features/panorama/ano.js";
 import { viewFunc } from "../features/funcionarios/ficha.js";
 import { viewBen } from "../features/beneficios.js";
+import { viewFolha } from "../features/folha.js";
 import { viewRem } from "../features/remuneracao.js";
 import { viewLanc } from "../features/ocorrencias/listagem.js";
 import { atualizarPontoFicha } from "../features/funcionarios/ponto.js";
+/** Infraestrutura compartilhada: render. */
+
 function render() {
   if ($("#dlg-kpi")?.open) renderKd();
   $("#period-label").textContent = periodoLabel();
@@ -23,7 +25,7 @@ function render() {
     v.innerHTML = `<div class="panel empty">Carregando o quadro…</div>`;
     return;
   }
-  if (S.tab === "panorama") v.innerHTML = S.mode === "mes" ? panoramaMes() : panoramaAno();else if (S.tab === "func") v.innerHTML = viewFunc();else if (S.tab === "ben") v.innerHTML = viewBen();else if (S.tab === "rem") v.innerHTML = viewRem();else v.innerHTML = viewLanc();
+  if (S.tab === "panorama") v.innerHTML = S.mode === "mes" ? panoramaMes() : panoramaAno();else if (S.tab === "func") v.innerHTML = viewFunc();else if (S.tab === "ben") v.innerHTML = viewBen();else if (S.tab === "rem") v.innerHTML = viewRem();else if (S.tab === "folha") v.innerHTML = viewFolha();else v.innerHTML = viewLanc();
   atualizarPontoFicha();
   const busca = $("#busca-func");
   if (busca && S._focusBusca) {

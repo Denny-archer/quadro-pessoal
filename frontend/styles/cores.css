@@ -238,3 +238,27 @@
 :root .cor-fill-muted:not([hidden]) {
   fill: var(--muted) !important;
 }
+
+:root .cor-background-accent:not([hidden]) { background: var(--accent) !important; }
+
+:root .cor-background-bad:not([hidden]) { background: var(--bad) !important; }
+
+:root .cor-background-c-abono:not([hidden]) { background: var(--c-abono) !important; }
+
+:root .cor-background-c-atestado:not([hidden]) { background: var(--c-atestado) !important; }
+
+:root .cor-background-c-banco:not([hidden]) { background: var(--c-banco) !important; }
+
+:root .cor-background-c-capacitacao:not([hidden]) { background: var(--c-capacitacao) !important; }
+
+:root .cor-background-c-ferias:not([hidden]) { background: var(--c-ferias) !important; }
+
+:root .cor-background-c-ho-strong:not([hidden]) { background: var(--c-ho-strong) !important; }
+
+:root .cor-background-c-viagem:not([hidden]) { background: var(--c-viagem) !important; }
+
+:root .cor-background-good:not([hidden]) { background: var(--good) !important; }
+
+:root .cor-background-inherit:not([hidden]) { background: inherit !important; }
+
+:root .cor-background-muted:not([hidden]) { background: var(--muted) !important; }

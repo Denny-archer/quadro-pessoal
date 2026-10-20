@@ -7,6 +7,14 @@ arquivo em toda subida e o Postgres também o executa na primeira criação do v
 erDiagram
     usuarios ||--o{ importacoes : "faz"
     usuarios ||--o{ auditoria : "registra"
+    usuarios ||--o{ auth_sessoes : "autentica"
+    auth_sessoes {
+        char token_hash PK "SHA-256 do identificador de sessão"
+        bigint usuario_id FK
+        timestamptz criado_em
+        timestamptz ultimo_uso_em
+        timestamptz expira_em
+    }
     funcionarios ||--o{ ocorrencias : "tem"
     importacoes ||--o{ ocorrencias : "originou"
     config {
@@ -55,7 +63,7 @@ erDiagram
     auditoria {
         bigserial id PK
         bigint usuario_id FK
-        text acao "criar | alterar | excluir | importar | login"
+        text acao "criar | alterar | excluir | importar | login | logout"
         jsonb antes
         jsonb depois
     }
@@ -152,6 +160,9 @@ O DDL oficial é `db/schema.sql`. Além das tabelas acima:
 | `ponto_vinculos` (v3) | PK (sistema, colaborador_id); funcionario_id FK e único por sistema. Vínculo estável após identificação inicial por matrícula. |
 | `ponto_resumos` (v3) | PK (sistema, colaborador_id, data), versao > 0, matricula, funcionario_id opcional, dados JSONB e recebido_em. Guarda a versão diária mais recente. |
 | `ponto_sincronizacao` (v3) | sistema PK, sinal_em, pendentes >= 0, ultima_entrega. Diferencia ausência de registro e falha de integração. |
+| `auth_sessoes` (v4) | token_hash SHA-256 como PK, usuario_id FK com exclusão em cascata, criado_em, ultimo_uso_em e expira_em com fuso. Logout remove a sessão individual; inatividade e prazo absoluto são verificados na API. |
+
+O schema v4 também permite `logout` em `auditoria.acao`, preservando os eventos anteriores. Não armazena senhas nem JWTs em `auth_sessoes`. Consulte [Sessões e acesso](../SESSOES-E-ACESSO.md). Os diagramas SVG históricos retratam o schema v3; o relacionamento de sessões está no ER atualizado no início deste documento.
 
 ```mermaid
 erDiagram

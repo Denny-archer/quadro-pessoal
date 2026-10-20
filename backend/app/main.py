@@ -10,6 +10,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from .core import db
+from .core.seguranca import apagar_cookie
 from .core.paths import FRONTEND
 from .api import auth, dados as routes_dados, importacao as routes_importacao, ponto as routes_integracao, usuarios as routes_usuarios
 
@@ -23,7 +24,7 @@ async def lifespan(app):
     yield
 
 
-app = FastAPI(title="COFFITO Pass de Pessoal", version="1.2.2", lifespan=lifespan, redoc_url=None,
+app = FastAPI(title="COFFITO Pass", version="1.3.1", lifespan=lifespan, redoc_url=None,
               docs_url="/api/docs" if DOCS else None, openapi_url="/api/openapi.json" if DOCS else None)
 app.include_router(auth.router)
 app.include_router(routes_usuarios.router)
@@ -49,7 +50,9 @@ async def cabecalhos_seguranca(request: Request, call_next):
     resp.headers["Referrer-Policy"] = "same-origin"
     resp.headers["X-Frame-Options"] = "DENY"
     resp.headers["Content-Security-Policy"] = CSP
-    if request.url.path.startswith("/api/"):
+    if resp.status_code == 401 and request.url.path.startswith('/api/') and request.url.path != '/api/auth/login' and not request.url.path.startswith('/api/integracao/'):
+        apagar_cookie(resp)
+    if request.url.path.startswith("/api/") or request.url.path in ('/', '/index.html', '/login', '/login.html', '/importacao.html'):
         resp.headers["Cache-Control"] = "no-store"
     return resp
 

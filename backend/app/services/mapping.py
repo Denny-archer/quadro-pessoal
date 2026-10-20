@@ -11,6 +11,8 @@ import json
 from decimal import Decimal
 
 from ..core.privacidade import sem_diagnostico
+from ..schemas.folha import CamposFolha, CamposDiaria
+from pydantic import ValidationError
 
 # (campo no documento, coluna, tipo)
 FUNCIONARIOS = [
@@ -124,6 +126,20 @@ def _num(v, campo, inteiro=False):
 def doc_para_linha(colecao: str, doc: dict) -> dict:
     """Documento do painel -> {coluna: valor} pronto para INSERT/UPDATE."""
     doc = sem_diagnostico(doc)
+    try:
+        if colecao == 'funcionarios':
+            folha = CamposFolha.model_validate(doc)
+            if doc.get('admissao'):
+                admissao = _data(doc['admissao'], 'admissao')
+                if any(m.data <= admissao for m in folha.historicoRem):
+                    raise ErroValidacao('A vigência da mudança deve ser posterior à admissão.')
+            doc.update(folha.model_dump(mode='json', exclude_unset=True))
+        elif colecao == 'ocorrencias' and 'valorDiaria' in doc:
+            doc.update(CamposDiaria.model_validate(doc).model_dump(mode='json', exclude_unset=True))
+    except ValidationError as erro:
+        primeiro = erro.errors()[0]
+        campo = '.'.join(str(v) for v in primeiro['loc']) or 'historicoRem'
+        raise ErroValidacao(f"Campo de folha inválido ({campo}): {primeiro['msg']}") from None
     linha, conhecidos = {}, set(CONTROLADOS)
     for campo, col, tipo in SPECS[colecao]:
         conhecidos.add(campo)

@@ -133,3 +133,5 @@ button:disabled {
   min-height:1.2em;
   margin:-4px 0 10px
 }
+/* Motivo de retorno ao login, sem expor informações da sessão. */
+.sessao-info { padding:10px 12px; border:1px solid var(--line); border-radius:8px; font-size:13px; line-height:1.5; }

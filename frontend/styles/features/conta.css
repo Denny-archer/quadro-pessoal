@@ -1,0 +1,171 @@
+/* Troca de senha: campos consistentes com os formulários, sem CSS embutido. */
+#dlg-senha {
+  width:min(520px,calc(100vw - 32px));
+  max-height:calc(100dvh - 32px);
+}
+
+#dlg-senha .conta-senha {
+  gap:16px;
+  padding:24px;
+}
+
+.conta-senha .dlg-head {
+  align-items:flex-start;
+  gap:16px;
+}
+
+.conta-senha .eyebrow {
+  display:block;
+  font-size:11px;
+  letter-spacing:.12em;
+  margin-bottom:6px;
+  color:var(--accent);
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.conta-senha h2 {
+  font-size:23px;
+}
+
+.conta-intro {
+  margin:0;
+  font-size:14px;
+  line-height:1.55;
+  color:var(--muted);
+}
+
+.senha-campo {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:0;
+}
+
+.senha-campo label {
+  font-size:14px;
+  font-weight:600;
+}
+
+.senha-input {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  border:1px solid var(--line-strong);
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--sunk);
+}
+
+.senha-input:focus-within {
+  outline:2px solid var(--accent);
+  outline-offset:2px;
+}
+
+.senha-input:has([aria-invalid="true"]) {
+  border-color:var(--bad);
+}
+
+.senha-input input {
+  width:100%;
+  min-width:0;
+  min-height:46px;
+  padding:11px 12px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--ink);
+  font:inherit;
+}
+
+.senha-input input:focus {
+  outline:none;
+  box-shadow:none;
+}
+
+.senha-mostrar {
+  min-height:44px;
+  min-width:72px;
+  margin:0 2px;
+  border:0;
+  padding:8px;
+  background:transparent;
+  color:var(--accent);
+  font:600 12px var(--f-body);
+  cursor:pointer;
+  border-radius:6px;
+}
+
+.senha-mostrar:hover {
+  background:var(--accent-soft);
+}
+
+.senha-mostrar:focus-visible {
+  outline:2px solid var(--accent);
+  outline-offset:-3px;
+}
+
+.senha-ajuda, .senha-erro, .senha-caps, .senha-feedback {
+  margin:0;
+  font-size:12.5px;
+  line-height:1.5;
+}
+
+.senha-ajuda {
+  color:var(--muted);
+}
+
+.senha-erro {
+  color:var(--bad);
+}
+
+.senha-erro:empty, .conta-senha .err:empty {
+  display:none;
+}
+
+.senha-feedback {
+  min-height:19px;
+  color:var(--muted);
+}
+
+.senha-feedback.conferem {
+  color:var(--good);
+}
+
+.senha-caps {
+  padding:8px 10px;
+  border-radius:6px;
+  background:var(--accent-soft);
+}
+
+.senha-acoes {
+  display:flex;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+  gap:10px;
+  border-top:1px solid var(--line);
+  padding-top:18px;
+}
+
+.senha-acoes .btn {
+  min-height:44px;
+}
+
+.sessao-mensagem {
+  padding:24px;
+  font:inherit;
+  color:var(--ink);
+}
+
+@media (max-width:480px) {
+  #dlg-senha .conta-senha {
+    padding:20px;
+  }
+  .senha-acoes {
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  .senha-acoes .primary {
+    grid-row:1;
+  }
+}

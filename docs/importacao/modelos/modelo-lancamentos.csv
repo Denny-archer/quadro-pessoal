@@ -1,6 +1,6 @@
-﻿matricula;nome;tipo;inicio;fim;periodo;horas;destino;diarias;parcela;abono_pecuniario;aviso_ferias;referencia_abono;status_abono;obs
-157;Maria da Silva Souza;ferias;06/07/2026;20/07/2026;;;;;1ª;0;;;;
-157;;atestado;10/06/2026;;vespertino;;;;;;;;;
-49;;abono;15/06/2026;;;;;;;;;ref2025;gozado;
-49;;viagem;21/09/2026;23/09/2026;;;Fortaleza/CE;2,5;;;;;;
-49;;banco_horas;18/09/2026;;;-8;;;;;;;;folga compensada
+﻿valor_diaria;matricula;nome;tipo;inicio;fim;periodo;horas;destino;diarias;parcela;abono_pecuniario;aviso_ferias;referencia_abono;status_abono;obs
+;157;Maria da Silva Souza;ferias;06/07/2026;20/07/2026;;;;;1ª;0;;;;
+;157;;atestado;10/06/2026;;vespertino;;;;;;;;;
+;49;;abono;15/06/2026;;;;;;;;;ref2025;gozado;
+;49;;viagem;21/09/2026;23/09/2026;;;Fortaleza/CE;2,5;;;;;;
+;49;;banco_horas;18/09/2026;;;-8;;;;;;;;folga compensada

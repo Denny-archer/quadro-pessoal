@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import re
+import math
 import datetime as dt
 
 import pg8000.dbapi
@@ -43,6 +44,13 @@ def gravar_config(chave: str, valor: dict = Body(...), u: Usuario = Depends(exig
         raise HTTPException(404, "Configuração inexistente.")
     if chave in CONFIG_ADMIN and u.papel != "admin":
         raise HTTPException(403, "Somente administradores alteram a tabela salarial.")
+    if chave == 'beneficios':
+        for campo, teto in (('vtPct', 100), ('sindical', None), ('diaria', None)):
+            if campo not in valor:
+                continue
+            numero = valor[campo]
+            if type(numero) not in (int, float) or not math.isfinite(numero) or numero < 0 or (teto is not None and numero > teto):
+                raise HTTPException(400, f'Valor inválido para {campo}.')
     if chave == 'ponto':
         tolerancia, hora = valor.get('tolerancia', 15), valor.get('hora_padrao', '08:00')
         if type(tolerancia) is not int or not 0 <= tolerancia <= 240 or not re.fullmatch(r'\d{2}:\d{2}', str(hora)):

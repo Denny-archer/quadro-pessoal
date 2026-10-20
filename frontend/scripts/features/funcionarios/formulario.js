@@ -1,15 +1,14 @@
-/** Funcionalidade: funcionarios / formulario. */
-import { $, esc, toast, errMsg } from "../../core/dom.js";
-import { DIAS_UTEIS, WD_NOME, mins, horasDia, hN, checaHibrido, addHoras, intervaloDe, semanaDe } from "../../core/jornada.js";
-import { cap, fmt } from "../../core/datas.js";
-import { prazoContrato, duracaoTxt, prazoPill, passaDe2Anos } from "../contratos.js";
-import { nivelPorTempo } from "../remuneracao.js";
+import { DIAS_UTEIS, WD_NOME, addHoras, checaHibrido, hN, horasDia, intervaloDe, mins, semanaDe } from "../../core/jornada.js";
+import { $, errMsg, esc, toast } from "../../core/dom.js";
+import { addDias, cap, fmt, parse } from "../../core/datas.js";
+import { duracaoTxt, passaDe2Anos, prazoContrato, prazoPill } from "../contratos.js";
+import { TIPO_HIST, descGrat, gratChave, gratDe, nivelPorTempo } from "../remuneracao.js";
 import { S } from "../../core/estado.js";
-import { renderFx, nomeExtra } from "../beneficios-extras.js";
-import { ajustaAT } from "../cadastro-transporte.js";
+import { nomeExtra, renderFx } from "../beneficios-extras.js";
 import { r2 } from "../../core/formatacao.js";
 import { store } from "../../core/armazenamento.js";
 import { render } from "../../core/render.js";
+import { ajustaAT } from "../cadastro-transporte.js";
 let df;
 let editF = null;
 const DIA_P = {
@@ -171,60 +170,11 @@ function ajustaRegime() {
   $("#lbl-ent-ho").hidden = $("#lbl-sai-ho").hidden = r !== "Teletrabalho";
   if (r === "Híbrido") syncGrade();
 }
-function openFunc(id) {
-  editF = id ? S.func.find(f => f.id === id) : null;
-  const f = editF || {};
-  $("#func-title").textContent = editF ? "Editar funcionário" : "Novo funcionário";
-  $("#f-nome").value = f.nome || "";
-  $("#f-mat").value = f.matricula || "";
-  $("#f-adm").value = f.admissao || "";
-  $("#f-cargo").value = f.cargo || "";
-  $("#f-setor").value = f.setor || "";
-  $("#f-regime").value = f.regime || "Presencial";
-  $("#f-funcao").value = f.funcao || "";
-  $("#f-ftipo").value = f.funcaoTipo || "";
-  $("#f-nivel").value = f.nivel || "";
-  $("#f-port").value = f.portariaFuncao || "";
-  $("#f-ingresso").value = f.ingresso || "";
-  $("#f-origem").value = f.orgaoOrigem || "";
-  $("#f-cedpara").value = f.cedidoPara || "";
-  $("#f-carga").value = f.carga || 40;
-  $("#f-ent").value = f.entrada || "08:00";
-  $("#f-sai").value = f.saida || "17:00";
-  $("#f-ent-ho").value = f.entradaHO || f.entrada || "08:00";
-  $("#f-sai-ho").value = f.saidaHO || f.saida || "17:00";
-  $("#f-int").value = intervaloDe(f);
-  $("#f-vinc").value = f.vinculo || "efetivo";
-  $("#f-jd").value = f.jornadaDiaria ? String(f.jornadaDiaria) : "";
-  $("#f-prov").value = f.providencia || "";
-  $("#f-inst").value = f.instituicao || "";
-  $("#f-ci").value = f.contratoInicio || "";
-  $("#f-cf").value = f.contratoFim || "";
-  ajustaVinculo();
-  preencheGrade(f.regime === "Híbrido" ? semanaDe(f) : PRESETS.diario);
-  ajustaRegime();
-  $("#f-sit").value = f.situacao || "ativo";
-  $("#f-err").textContent = "";
-  ajustaSit();
-  S.fxItens = JSON.parse(JSON.stringify(f.beneficiosExtras || []));
-  renderFx();
-  $("#f-carreira").value = f.carreira || "";
-  $("#f-nivsal").value = f.nivelSalarial || "";
-  $("#f-fgtipo").value = f.fgTipo || "";
-  $("#f-bolsa").value = f.bolsaTipo || "";
-  ajustaRem();
-  $("#f-usa-at").checked = !!f.usaTransporte;
-  $("#f-at").value = f.valorTransporte ?? "";
-  ajustaAT();
-  $("#setores").innerHTML = [...new Set(S.func.map(x => x.setor).filter(Boolean))].map(s => `<option value="${esc(s)}">`).join("");
-  const del = $("#f-del");
-  del.hidden = !editF;
-  del.classList.remove("armed");
-  del.textContent = "Excluir funcionário";
-  df.showModal();
-  $("#f-nome").focus();
-}
-export function iniciarFeaturesFuncionariosFormulario() {
+function iniciarFeaturesFuncionariosFormulario() {
+  ["#f-nivsal", "#f-fgtipo", "#f-funcao", "#f-ftipo", "#f-nivel", "#f-vinc", "#f-adm"].forEach(sel => {
+    $(sel).addEventListener("input", ajustaMud);
+    $(sel).addEventListener("change", ajustaMud);
+  });
   df = $("#dlg-func");
   $("#f-semana").innerHTML = DIAS_UTEIS.map(d => {
     const n = cap(WD_NOME[d]);
@@ -314,7 +264,7 @@ export function iniciarFeaturesFuncionariosFormulario() {
       orgaoOrigem: vinculo === "cedido" ? $("#f-origem").value.trim() : "",
       cedidoPara: $("#f-sit").value === "cedido" ? $("#f-cedpara").value.trim() : ""
     });
-    for (const k of ["nomeAbreviado", "importado", "linhaPlanilha", "importadoContrato", "periodosAquisitivos", "nomePlanilhaFerias", "abonos", "carreira", "nivelSalarial", "fgTipo", "bolsaTipo", "beneficiosExtras"]) if (editF && editF[k] != null) data[k] = editF[k];
+    for (const k of ["nomeAbreviado", "importado", "linhaPlanilha", "importadoContrato", "periodosAquisitivos", "nomePlanilhaFerias", "abonos", "carreira", "nivelSalarial", "fgTipo", "bolsaTipo", "beneficiosExtras", "titulacaoPct", "anuenioPct", "dependentesIR", "outrosDescontos", "sindicalizado", "codigoFolha"]) if (editF && editF[k] != null) data[k] = editF[k];
     const fxRuim = S.fxItens.find(x => !(Number(x.valor) > 0) || x.recorrencia === "meses" && !(x.meses || []).length || x.inicio && x.fim && x.fim < x.inicio || x.tipo === "outro" && !(x.descricao || "").trim());
     if (fxRuim) return $("#f-err").textContent = `Confira o benefício "${nomeExtra(fxRuim)}": informe o valor${fxRuim.recorrencia === "meses" ? ", marque ao menos um mês" : ""}${fxRuim.tipo === "outro" ? " e a descrição" : ""}, e a vigência final não pode ser antes da inicial.`;
     data.beneficiosExtras = S.fxItens.map(x => ({
@@ -333,6 +283,51 @@ export function iniciarFeaturesFuncionariosFormulario() {
       bolsaTipo: $("#f-bolsa").value
     });
     if (data.nivelSalarial && (data.nivelSalarial < 1 || data.nivelSalarial > 30)) return $("#f-err").textContent = "O nível salarial vai de 1 a 30.";
+    data.historicoRem = (editF?.historicoRem || []).slice();
+    const muds = mudancasForm();
+    if (muds.length) {
+      const dm = $("#f-mud-data").value,
+        agora = new Date().toISOString();
+      let ato = $("#f-mud-ato").value.trim();
+      const gm = muds.find(x => x.tipo === "grat");
+      if (gm) {
+        const portMudou = data.portariaFuncao !== (editF.portariaFuncao || "");
+        if (ato && !portMudou) data.portariaFuncao = ato;else if (!ato && portMudou) ato = data.portariaFuncao;
+        if (!data.portariaFuncao) return $("#f-err").textContent = "Informe a portaria da nova nomeação em “Ato / portaria”.";
+        gm.para.portariaFuncao = data.portariaFuncao;
+      }
+      if (!dm) return $("#f-err").textContent = "Informe a vigência da mudança de nível ou gratificação (primeiro dia com o novo valor).";
+      if (data.admissao && dm <= data.admissao) return $("#f-err").textContent = "A vigência da mudança precisa ser depois da admissão.";
+      for (const x of muds) {
+        const depois = data.historicoRem.find(e => e.tipo === x.tipo && e.data >= dm);
+        if (depois) return $("#f-err").textContent = `Já há ${TIPO_HIST[x.tipo].toLowerCase()} registrada com vigência em ${fmt(depois.data)}. A nova vigência precisa ser posterior; se aquela estiver errada, exclua-a no histórico da ficha.`;
+        const auto = x.tipo === "nivel" && !editF.nivelSalarial;
+        if (auto) x.de = nivelPorTempo(editF.admissao, parse(addDias(dm, -1)));
+        data.historicoRem.push({
+          id: "h" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+          tipo: x.tipo,
+          data: dm,
+          de: x.de,
+          ...(auto ? {
+            deAuto: true
+          } : {}),
+          para: x.para,
+          ato,
+          registradoEm: agora
+        });
+      }
+      data.historicoRem.sort((a, b) => a.data.localeCompare(b.data));
+    }
+    if (!data.historicoRem.length) delete data.historicoRem;
+    Object.assign(data, {
+      titulacaoPct: Number($("#f-tit").value) || 0,
+      anuenioPct: Number($("#f-anu").value) || 0,
+      dependentesIR: Number($("#f-depir").value) || 0,
+      outrosDescontos: r2(Number($("#f-outdesc").value) || 0),
+      sindicalizado: $("#f-sind").checked
+    });
+    if (data.anuenioPct < 0 || data.anuenioPct > 50) return $("#f-err").textContent = "O anuênio vai de 0% a 50%.";
+    if (data.dependentesIR < 0 || !Number.isInteger(data.dependentesIR)) return $("#f-err").textContent = "Informe o número de dependentes para o IR (0 se não houver).";
     data.usaTransporte = $("#f-usa-at").checked;
     data.valorTransporte = data.usaTransporte ? Number($("#f-at").value) || 0 : 0;
     if (data.usaTransporte && !data.valorTransporte) return $("#f-err").textContent = "Informe o valor do auxílio-transporte, ou desmarque se a pessoa não utiliza.";
@@ -386,4 +381,102 @@ export function iniciarFeaturesFuncionariosFormulario() {
   });
   document.querySelectorAll("dialog [data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
 }
-export { df, editF, DIA_P, DIA_M, DIA_H, PRESETS, preencheGrade, leGrade, problemasGrade, syncGrade, ehTemp, syncDur, aplicaJornadaDiaria, ajustaVinculo, ajustaSit, ajustaRem, ajustaRegime, openFunc };
+function mudancasForm() {
+  if (!editF) return [];
+  const out = [],
+    v = $("#f-vinc").value,
+    vAnt = editF.vinculo || "efetivo";
+  if (v !== vAnt) return out;
+  const nsForm = Number($("#f-nivsal").value) || null;
+  if (v === "efetivo" && nsForm !== (editF.nivelSalarial || null)) {
+    const ant = editF.nivelSalarial || nivelPorTempo(editF.admissao),
+      nov = nsForm || nivelPorTempo($("#f-adm").value);
+    if (ant !== nov) out.push({
+      tipo: "nivel",
+      de: ant,
+      para: nov
+    });
+  }
+  const funcao = $("#f-funcao").value.trim();
+  const nov = {
+    funcaoTipo: funcao ? $("#f-ftipo").value || "comissao" : "",
+    fgTipo: $("#f-fgtipo").value,
+    nivel: $("#f-nivel").value,
+    funcao,
+    portariaFuncao: $("#f-port").value.trim()
+  };
+  const ant = gratDe(editF);
+  if (gratChave(ant, v) !== gratChave(nov, v)) out.push({
+    tipo: "grat",
+    de: ant,
+    para: nov
+  });
+  return out;
+}
+function ajustaMud() {
+  const m = mudancasForm();
+  $("#f-mud").hidden = !m.length;
+  $("#f-mud-hint").textContent = m.length ? "Mudança: " + m.map(x => x.tipo === "nivel" ? `nível ${x.de} → ${x.para}` : `${descGrat(x.de)} → ${descGrat(x.para)}`).join(" · ") + ". Ela fica no histórico da ficha e o mês da vigência sai proporcional aos dias." + (m.some(x => x.tipo === "grat") ? " A portaria de nomeação passa a ser a informada em “Ato / portaria”." : "") : "";
+}
+function openFunc(id) {
+  editF = id ? S.func.find(f => f.id === id) : null;
+  const f = editF || {};
+  $("#func-title").textContent = editF ? "Editar funcionário" : "Novo funcionário";
+  $("#f-nome").value = f.nome || "";
+  $("#f-mat").value = f.matricula || "";
+  $("#f-adm").value = f.admissao || "";
+  $("#f-cargo").value = f.cargo || "";
+  $("#f-setor").value = f.setor || "";
+  $("#f-regime").value = f.regime || "Presencial";
+  $("#f-funcao").value = f.funcao || "";
+  $("#f-ftipo").value = f.funcaoTipo || "";
+  $("#f-nivel").value = f.nivel || "";
+  $("#f-port").value = f.portariaFuncao || "";
+  $("#f-ingresso").value = f.ingresso || "";
+  $("#f-origem").value = f.orgaoOrigem || "";
+  $("#f-cedpara").value = f.cedidoPara || "";
+  $("#f-carga").value = f.carga || 40;
+  $("#f-ent").value = f.entrada || "08:00";
+  $("#f-sai").value = f.saida || "17:00";
+  $("#f-ent-ho").value = f.entradaHO || f.entrada || "08:00";
+  $("#f-sai-ho").value = f.saidaHO || f.saida || "17:00";
+  $("#f-int").value = intervaloDe(f);
+  $("#f-vinc").value = f.vinculo || "efetivo";
+  $("#f-jd").value = f.jornadaDiaria ? String(f.jornadaDiaria) : "";
+  $("#f-prov").value = f.providencia || "";
+  $("#f-inst").value = f.instituicao || "";
+  $("#f-ci").value = f.contratoInicio || "";
+  $("#f-cf").value = f.contratoFim || "";
+  ajustaVinculo();
+  preencheGrade(f.regime === "Híbrido" ? semanaDe(f) : PRESETS.diario);
+  ajustaRegime();
+  $("#f-sit").value = f.situacao || "ativo";
+  $("#f-err").textContent = "";
+  ajustaSit();
+  S.fxItens = JSON.parse(JSON.stringify(f.beneficiosExtras || []));
+  renderFx();
+  $("#f-carreira").value = f.carreira || "";
+  $("#f-nivsal").value = f.nivelSalarial || "";
+  $("#f-fgtipo").value = f.fgTipo || "";
+  $("#f-bolsa").value = f.bolsaTipo || "";
+  $("#f-tit").value = f.titulacaoPct ? String(f.titulacaoPct) : "";
+  $("#f-anu").value = f.anuenioPct || "";
+  $("#f-depir").value = f.dependentesIR || "";
+  $("#f-outdesc").value = f.outrosDescontos || "";
+  $("#f-sind").checked = !!f.sindicalizado;
+  ajustaRem();
+  $("#f-usa-at").checked = !!f.usaTransporte;
+  $("#f-at").value = f.valorTransporte ?? "";
+  ajustaAT();
+  $("#f-mud-data").value = "";
+  $("#f-mud-ato").value = "";
+  ajustaMud();
+  $("#setores").innerHTML = [...new Set(S.func.map(x => x.setor).filter(Boolean))].map(s => `<option value="${esc(s)}">`).join("");
+  const del = $("#f-del");
+  del.hidden = !editF;
+  del.classList.remove("armed");
+  del.textContent = "Excluir funcionário";
+  df.showModal();
+  $("#f-nome").focus();
+}
+export { iniciarFeaturesFuncionariosFormulario, df, editF, DIA_P, DIA_M, DIA_H, PRESETS, preencheGrade, leGrade, problemasGrade, syncGrade, ehTemp, syncDur, aplicaJornadaDiaria, ajustaVinculo, ajustaSit, ajustaRem, ajustaRegime, openFunc, mudancasForm, ajustaMud };

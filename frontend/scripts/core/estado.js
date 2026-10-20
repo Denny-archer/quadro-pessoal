@@ -1,5 +1,6 @@
-/** Infraestrutura compartilhada: estado. */
 import { hoje } from "./datas.js";
+/** Infraestrutura compartilhada: estado. */
+
 const S = {
   mode: "mes",
   y: hoje.getFullYear(),
@@ -23,6 +24,9 @@ const CFG_PADRAO = {
   modo: "todos",
   atModo: "mensal",
   atFerias: false,
+  vtPct: 0.1,
+  sindical: 90.35,
+  diaria: 0,
   feriados: []
 };
 S.fxItens = [];

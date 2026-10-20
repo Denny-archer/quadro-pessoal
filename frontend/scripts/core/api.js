@@ -1,10 +1,14 @@
 "use strict";
 
+import { iniciarControleSessao, encerrarTela, sessaoEncerrada } from "./sessao.js";
 const H = {
   "Content-Type": "application/json",
   "X-Requested-With": "quadro-pessoal"
 };
 async function req(metodo, url, corpo) {
+  if (sessaoEncerrada()) throw {
+    code: "revoked"
+  };
   const r = await fetch(url, {
     method: metodo,
     headers: H,
@@ -12,7 +16,7 @@ async function req(metodo, url, corpo) {
     body: corpo === undefined ? undefined : JSON.stringify(corpo)
   });
   if (r.status === 401) {
-    location.href = "/login?volta=" + encodeURIComponent(location.pathname);
+    encerrarTela("expirada");
     throw {
       code: "revoked"
     };
@@ -28,6 +32,9 @@ async function req(metodo, url, corpo) {
     e.mensagem = msg;
     throw e;
   }
+  if (sessaoEncerrada()) throw {
+    code: "revoked"
+  };
   return dados;
 }
 const ouvintes = new Map(); // chave -> Set(callback)
@@ -135,6 +142,15 @@ export function iniciarApi() {
   if (!sessao) {
     sessao = req("GET", "/api/auth/eu").then(u => {
       document.documentElement.dataset.papel = u.papel;
+      iniciarControleSessao({
+        inatividadeMinutos: u.sessao?.inatividade_minutos ?? 30,
+        atividade: () => req("POST", "/api/auth/atividade"),
+        validar: () => req("GET", "/api/auth/eu"),
+        aoEncerrar: () => {
+          cache.clear();
+          ouvintes.clear();
+        }
+      });
       return u;
     });
     setInterval(sondar, 5000);

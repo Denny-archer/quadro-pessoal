@@ -1,4 +1,3 @@
-/** Funcionalidade: exportacao. */
 import { S } from "../core/estado.js";
 import { MESES, VINC, TIPOS } from "../core/constantes.js";
 import { noQuadro, byName, funcMap, range, overlap } from "../core/colecoes.js";
@@ -7,7 +6,10 @@ import { n2 } from "../core/formatacao.js";
 import { pad, fmt } from "../core/datas.js";
 import { $, toast } from "../core/dom.js";
 import { downloads } from "../core/api.js";
+import { csvFolha } from "./folha.js";
 import { csvRem } from "./remuneracao.js";
+/** Funcionalidade: exportacao. */
+
 function csvBen() {
   const q = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
   let head, rows;
@@ -34,11 +36,11 @@ function csvBen() {
 export function iniciarFeaturesExportacao() {
   $("#export").addEventListener("click", async () => {
     if (!downloads) return;
-    if (S.tab === "rem") {
+    if (S.tab === "rem" || S.tab === "folha") {
       const {
         nome,
         data
-      } = csvRem();
+      } = S.tab === "folha" ? csvFolha() : csvRem();
       try {
         await downloads.save({
           filename: nome,
