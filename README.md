@@ -24,7 +24,7 @@ Gestão de pessoas da DAGEP: cadastros, afastamentos, jornada, benefícios, remu
 
 ## Executar com Docker
 
-Na raiz, copie `.env.example` para `.env` e configure as credenciais e `JWT_SECRET`. Em produção, use HTTPS e `COOKIE_SEGURO=true`.
+Na raiz, copie `.env.example` para `.env` e configure as credenciais e `JWT_SECRET` utilizando o comando openssl rand -hex 32 para gerar o segredo JWT. Em produção, use HTTPS e `COOKIE_SEGURO=true`.
 
 ```bash
 docker compose up -d --build
