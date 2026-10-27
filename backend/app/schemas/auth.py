@@ -6,7 +6,7 @@ class Usuario(BaseModel):
     id: int
     email: str
     nome: str
-    papel: Literal['admin','gestor','colaborador']
+    papel: Literal['admin','gestor','colaborador','rh']
     trocar_senha: bool = False
 
 

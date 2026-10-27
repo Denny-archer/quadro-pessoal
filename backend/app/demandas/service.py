@@ -91,7 +91,7 @@ def salvar(u,col,rid,versao,doc=None,parcial=False,excluir=False):
             if not old:
                 raise HTTPException(404,'Registro inexistente.')
             q.execute(f'UPDATE {t} SET excluido_em=now(),atualizado_em=now(),atualizado_por=%s,versao=versao+1 WHERE id=%s',(u.id,rid))
-            invalidar(q,funcionarios=[old.get('funcionario_id')],setores=[old.get('setor_id')],todos=col!='demandas')
+            invalidar(q,dominio='demandas',funcionarios=[old.get('funcionario_id')],setores=[old.get('setor_id')],todos=col!='demandas')
             auditar(q,u.id,'excluir',t,rid,antes)
             return {'ok':True,'versao':versao+1}
         d=mesclar(antes or {},doc) if parcial else dict(doc or {})
@@ -196,7 +196,7 @@ def salvar(u,col,rid,versao,doc=None,parcial=False,excluir=False):
                         raise HTTPException(400,'Situação de etapa inválida.')
                     data(e.get('prazo'))
                     q.execute('INSERT INTO demandas.meta_etapas(meta_id,ordem,dados) VALUES(%s,%s,%s)',(rid,i,json.dumps(e)))
-        invalidar(q,funcionarios=[(old or {}).get('funcionario_id'),d.get('responsavelId')],setores=[(old or {}).get('setor_id'),sid],todos=col!='demandas')
+        invalidar(q,dominio='demandas',funcionarios=[(old or {}).get('funcionario_id'),d.get('responsavelId')],setores=[(old or {}).get('setor_id'),sid],todos=col!='demandas')
         depois=documentos(q,col,ctx,rid)[0]
         auditar(q,u.id,'alterar' if old else 'criar',t,rid,antes,depois)
         return depois

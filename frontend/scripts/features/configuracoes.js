@@ -6,6 +6,7 @@ import { render } from "../core/render.js";
 
 let dr;
 function openRegras() {
+  if (document.documentElement.dataset.alterarRh !== "true") return;
   const c = S.cfg;
   $("#r-aa").value = c.aa;
   $("#r-pct").value = c.pctTemp;
@@ -24,6 +25,7 @@ export function iniciarFeaturesConfiguracoes() {
   dr = $("#dlg-regras");
   $("#form-regras").addEventListener("submit", async e => {
     e.preventDefault();
+    if (document.documentElement.dataset.alterarRh !== "true") return;
     const err = $("#r-err"),
       fer = [],
       ruins = [];

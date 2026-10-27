@@ -74,7 +74,7 @@ def alterar(uid: int, dados: AlteraUsuario, adm: Usuario = Depends(exige("admin"
             raise HTTPException(404, 'Usuário não encontrado.')
         cur.execute(f"UPDATE usuarios SET {', '.join(sets)}, atualizado_em = now() WHERE id = %s", (*params, uid))
         from ..acesso.service import invalidar
-        if dados.papel and dados.papel != 'gestor':
+        if dados.papel and dados.papel not in ('gestor', 'rh'):
             cur.execute('UPDATE gestores_setores SET ativo=false WHERE usuario_id=%s', (uid,))
         invalidar(cur,usuarios=[uid])
         if dados.nova_senha or dados.ativo is False:

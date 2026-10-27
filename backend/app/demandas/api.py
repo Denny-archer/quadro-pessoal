@@ -16,7 +16,7 @@ def estado(u: Usuario=Depends(usuario_atual)):
         # Um snapshot consistente para contexto, coleções e revisão.
         q.execute('SET TRANSACTION ISOLATION LEVEL REPEATABLE READ')
         ctx=contexto(u,q)
-        where, params=ctx.funcionario_sql()
+        where, params=ctx.responsavel_sql()
         dw, dp=ctx.demanda_sql('d')
         q.execute(f'''SELECT f.id,f.nome,f.cargo AS funcao,f.setor_id AS "setorId",f.situacao
             FROM funcionarios f WHERE {where} OR EXISTS(SELECT 1 FROM demandas.demandas d

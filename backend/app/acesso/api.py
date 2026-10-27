@@ -45,8 +45,8 @@ def vincular(uid: int, dados: Vinculo, adm: Usuario = Depends(exige('admin'))):
         row = q.fetchone()
         if not row:
             raise HTTPException(404, 'Conta inexistente.')
-        if dados.setores and row[1] != 'gestor':
-            raise HTTPException(400, 'Somente o perfil gestor recebe setores de gestão.')
+        if dados.setores and row[1] not in ('gestor', 'rh'):
+            raise HTTPException(400, 'Somente os perfis gestor e RH recebem setores de gestão.')
         if dados.funcionario_id:
             q.execute('SELECT id,situacao FROM funcionarios WHERE id=%s FOR UPDATE', (dados.funcionario_id,))
             f = q.fetchone()

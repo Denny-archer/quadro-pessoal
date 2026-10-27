@@ -1,5 +1,6 @@
 """Regressões da entrega HTTP do frontend; não acessam banco nem executam migrações."""
 import re
+import pytest
 from urllib.parse import urljoin
 
 from fastapi.testclient import TestClient
@@ -8,9 +9,21 @@ from app.core import db
 from app.core import frontend
 from app.core.frontend import versao_frontend
 from app.main import app
+from app.core.seguranca import usuario_atual
+from app.schemas.auth import Usuario
 
 
-def test_paginas_carregam_estilos_e_scripts_da_mesma_versao(monkeypatch):
+@pytest.fixture
+def admin_autenticado():
+    # A página administrativa exige sessão; estes testes isolam somente os assets.
+    app.dependency_overrides[usuario_atual] = lambda: Usuario(id=1, email='teste@local', nome='Teste', papel='admin')
+    try:
+        yield
+    finally:
+        app.dependency_overrides.pop(usuario_atual, None)
+
+
+def test_paginas_carregam_estilos_e_scripts_da_mesma_versao(monkeypatch, admin_autenticado):
     def sem_banco(*args, **kwargs):
         raise AssertionError('Uma página ou asset público não deve consultar o banco.')
     monkeypatch.setattr(db, 'consultar', sem_banco)
@@ -33,7 +46,7 @@ def test_paginas_carregam_estilos_e_scripts_da_mesma_versao(monkeypatch):
             assert resposta.headers['cache-control'] == 'no-store'
 
 
-def test_imports_internos_tambem_usam_urls_versionadas():
+def test_imports_internos_tambem_usam_urls_versionadas(admin_autenticado):
     cliente = TestClient(app)
     pendentes = []
     for rota in ('/', '/demandas/', '/administracao', '/primeiro-acesso', '/login', '/importacao.html'):

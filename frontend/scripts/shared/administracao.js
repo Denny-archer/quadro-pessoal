@@ -264,7 +264,7 @@ $('#criar-conta').addEventListener('submit', async e => {
     await carregar();
 
     $('#mensagem').textContent =
-      'Conta criada. Confira o vínculo e configure os setores quando o perfil for gestor.';
+      'Conta criada. Confira o vínculo e configure os setores quando o perfil for Gestor ou RH.';
   } catch (e) {
     aviso(e);
   } finally {

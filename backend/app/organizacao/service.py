@@ -60,4 +60,4 @@ def aplicar_referencias(cur, fid, valores, autor=None, anterior=NAO_INFORMADO):
         cur.execute('UPDATE funcionario_lotacoes SET fim=now() WHERE funcionario_id=%s AND fim IS NULL', (fid,))
         if novo is not None:
             cur.execute('INSERT INTO funcionario_lotacoes(funcionario_id,setor_id,usuario_id) VALUES(%s,%s,%s)', (fid,novo,autor))
-    invalidar(cur, funcionarios=[fid],setores=[antigo,novo])
+    invalidar(cur,dominio='rh', funcionarios=[fid],setores=[antigo,novo])

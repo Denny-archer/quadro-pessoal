@@ -98,4 +98,4 @@ def gravar(cur, colecao: str, rid: str, doc: dict, autor=None):
     else:
         cur.execute('SELECT setor_id FROM funcionarios WHERE id=%s', (linha['funcionario_id'],))
         f=cur.fetchone()
-        invalidar(cur,funcionarios=[linha['funcionario_id']],setores=[f[0]] if f else [])
+        invalidar(cur,dominio='rh',funcionarios=[linha['funcionario_id']],setores=[f[0]] if f else [])

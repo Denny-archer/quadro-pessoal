@@ -7,12 +7,12 @@ import asyncio
 from contextlib import suppress
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Depends
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from .core import db
-from .core.seguranca import apagar_cookie
+from .core.seguranca import apagar_cookie, exige
 from .core.paths import FRONTEND
 from .core.frontend import PASTAS_PUBLICAS, PREFIXO_FRONTEND, VERSAO_FRONTEND, pagina_frontend
 from .api import auth, dados as routes_dados, importacao as routes_importacao, ponto as routes_integracao, usuarios as routes_usuarios
@@ -108,7 +108,7 @@ def pagina_demandas():
 
 
 @app.get('/administracao', include_in_schema=False)
-def pagina_administracao():
+def pagina_administracao(_=Depends(exige('admin'))):
     return pagina_frontend('administracao.html')
 
 

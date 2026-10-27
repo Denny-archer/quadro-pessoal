@@ -8,15 +8,16 @@ with db.conexao() as c:
     q.execute('TRUNCATE usuarios,funcionarios,ocorrencias,config,importacoes,auditoria,integracao_chaves,ponto_marcacoes,ponto_resumos,ponto_vinculos,ponto_sincronizacao,login_tentativas,setores_aux,cargos_aux RESTART IDENTITY CASCADE')
     for nome in ('Administração','Tecnologia','Financeiro'):
         q.execute('INSERT INTO setores_aux(setor,codigo) VALUES(%s,%s)',(nome,nome[:3].upper()))
-    for fid,nome,setor in [('ana','Ana Teste',1),('bruno','Bruno Teste',2),('carla','Carla Teste',3)]:
+    for fid,nome,setor in [('ana','Ana Teste',1),('bruno','Bruno Teste',2),('carla','Carla Teste',3),('dora','Dora RH Teste',1)]:
         q.execute('INSERT INTO funcionarios(id,nome,matricula,setor_id,setor) SELECT %s,%s,%s,%s,setor FROM setores_aux WHERE id=%s',(fid,nome,fid,setor,setor))
         q.execute('INSERT INTO funcionario_lotacoes(funcionario_id,setor_id) VALUES(%s,%s)',(fid,setor))
-    for email,nome,papel,fid in [('admin@teste.local','Admin Teste','admin',None),('ana@teste.local','Ana Teste','colaborador','ana'),('gestor@teste.local','Gestor Teste','gestor','carla')]:
+    for email,nome,papel,fid in [('admin@teste.local','Admin Teste','admin',None),('ana@teste.local','Ana Teste','colaborador','ana'),('gestor@teste.local','Gestor Teste','gestor','carla'),('rh@teste.local','RH Teste','rh','dora')]:
         q.execute('INSERT INTO usuarios(email,nome,papel,senha_hash) VALUES(%s,%s,%s,%s) RETURNING id',(email,nome,papel,seguranca.hash_senha('Validacao-local!2026')))
         uid=q.fetchone()[0]
         if fid:q.execute('INSERT INTO usuario_funcionario(usuario_id,funcionario_id) VALUES(%s,%s)',(uid,fid))
         if papel=='gestor':
             for sid in (1,2):q.execute('INSERT INTO gestores_setores(usuario_id,setor_id) VALUES(%s,%s)',(uid,sid))
+    q.execute("UPDATE funcionarios SET admissao='2025-01-01',vinculo='estagiario',contrato_inicio='2025-01-01',contrato_fim='2027-12-31' WHERE id='ana'")
     q.execute("INSERT INTO acesso_revisoes(usuario_id) SELECT id FROM usuarios ON CONFLICT DO NOTHING")
 from app.demandas.service import salvar
 from app.schemas.auth import Usuario

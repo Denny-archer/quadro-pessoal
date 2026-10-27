@@ -9,6 +9,7 @@ import { openKd } from "../features/panorama/detalhes.js";
 import { store } from "./armazenamento.js";
 import { openRegras } from "../features/configuracoes.js";
 import { tabelaSalarial } from "../features/remuneracao.js";
+import { abrirSaldos } from "../features/funcionarios/saldos.js";
 function shift(n) {
   if (S.mode === "mes") {
     const d = new Date(S.y, S.m + n, 1);
@@ -64,10 +65,11 @@ export function iniciarCoreNavegacao() {
   document.addEventListener("click", async e => {
     const kp = e.target.closest("[data-kpi]");
     if (kp && !e.target.closest("dialog")) return openKd(kp.dataset.kpi);
-    const t = e.target.closest("[data-f],[data-ficha],[data-sel],[data-oc-open],[data-edit-func],[data-new-for],[data-act],[data-ben],[data-grupo],#rm-ex");
+    const t = e.target.closest("[data-f],[data-ficha],[data-sel],[data-oc-open],[data-edit-func],[data-saldos],[data-new-for],[data-act],[data-ben],[data-grupo],#rm-ex");
     if (t && t.dataset.ficha && t.closest("#dlg-kpi")) $("#dlg-kpi").close();
     if (!t) return;
     if (t.id === "rm-ex") {
+      if (document.documentElement.dataset.alterarRh !== "true") return;
       if (!t.classList.contains("armed")) {
         t.classList.add("armed");
         t.textContent = "Confirmar: remover todos os exemplos";
@@ -121,6 +123,7 @@ export function iniciarCoreNavegacao() {
       return;
     }
     if (t.dataset.ocOpen) return openLanc(t.dataset.ocOpen);
+    if (t.dataset.saldos) return abrirSaldos(t.dataset.saldos);
     if (t.dataset.editFunc) return openFunc(t.dataset.editFunc);
     if (t.dataset.newFor) return openLanc(null, {
       func: t.dataset.newFor

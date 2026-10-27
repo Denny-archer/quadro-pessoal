@@ -27,7 +27,7 @@
                         maxlength="120"></label><label>E-mail<input name="email" type="email" required
                         maxlength="200"></label><label>Perfil<select name="papel">
                         <option value="colaborador">Colaborador</option>
-                        <option value="gestor">Gestor</option>
+                        <option value="gestor">Gestor</option><option value="rh">RH</option>
                         <option value="admin">Administrador</option>
                     </select></label><label>Funcionário<select name="funcionario_id"
                         id="novo-funcionario"></select></label><button class="btn primary">Criar acesso</button></form>
@@ -36,12 +36,12 @@
         <section class="painel-integracao contas-painel" aria-labelledby="contas-titulo">
             <div class="contas-cabecalho">
                 <div><h2 id="contas-titulo">Contas, vínculos e gestão de setores</h2>
-                    <p class="contas-ajuda">Selecione uma conta para editar o acesso, vincular um funcionário ou definir os setores do gestor.</p></div>
+                    <p class="contas-ajuda">Selecione uma conta para editar o acesso, vincular um funcionário ou definir os setores geridos por Gestor ou RH no Painel de Demandas.</p></div>
                 <span id="contas-total" class="conta-tag"></span>
             </div>
             <div class="contas-filtros">
                 <label for="buscar-conta">Buscar conta<input id="buscar-conta" type="search" placeholder="Nome, e-mail ou funcionário" autocomplete="off"></label>
-                <label for="filtrar-perfil">Perfil<select id="filtrar-perfil"><option value="">Todos os perfis</option><option value="admin">Administrador</option><option value="gestor">Gestor</option><option value="colaborador">Colaborador</option></select></label>
+                <label for="filtrar-perfil">Perfil<select id="filtrar-perfil"><option value="">Todos os perfis</option><option value="admin">Administrador</option><option value="gestor">Gestor</option><option value="rh">RH</option><option value="colaborador">Colaborador</option></select></label>
             </div>
             <p id="contas-contagem" class="contas-ajuda" role="status"></p>
             <div id="contas" class="contas-lista"></div>

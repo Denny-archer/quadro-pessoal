@@ -7,6 +7,8 @@ const ouvintes = new Map(); // chave -> Set(callback)
 const cache = new Map(); // chave -> dados
 const assinaturas = {};
 let geracao=0;
+let assinaturaAcesso;
+const acesso = ctx => JSON.stringify([ctx.perfil, ctx.funcionario_id, ctx.setores_geridos, ctx.capacidades]);
 async function carregar(chave) {
   const token=geracao;
   if (chave.startsWith("config/")) {
@@ -51,7 +53,7 @@ async function sondar() {
   try {
     const v = await req("GET", "/api/dados/versoes");
     for (const [chave, assinatura] of Object.entries(v)) {
-      if (assinaturas[chave] !== undefined && assinaturas[chave] !== assinatura && ouvintes.has(chave)) carregar(chave).catch(() => {});
+      if (assinaturas[chave] !== undefined && assinaturas[chave] !== assinatura && ouvintes.has(chave)) carregar(chave).catch(e => window.dispatchEvent(new CustomEvent('qp-erro-carga', {detail:e})));
       assinaturas[chave] = assinatura;
     }
   } catch (e) {}
@@ -116,7 +118,8 @@ export function iniciarApi() {
       aplicarContexto(ctx);
       const permitidos=await req('GET','/api/dados/funcionarios');
       const ids=new Set(permitidos.map(f=>f.id));
-      const perdeu=S.func.some(f=>!ids.has(f.id))||papelAnterior!==ctx.perfil;
+      const perdeu=S.func.some(f=>!ids.has(f.id))||papelAnterior!==ctx.perfil||assinaturaAcesso!==acesso(ctx);
+      assinaturaAcesso=acesso(ctx);
       if(perdeu){
         geracao++;
         S.func=[];S.ocs=[];S.sel=null;
@@ -132,6 +135,7 @@ export function iniciarApi() {
     };
     const ctx=await req('GET','/api/acesso/contexto');
     aplicarContexto(ctx);
+    assinaturaAcesso=acesso(ctx);
     abrirEventos(ctx.revisao_acesso,atualizar);
     setInterval(sondar,5000);
     return u;

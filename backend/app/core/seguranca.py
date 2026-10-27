@@ -105,3 +105,10 @@ def exige(papel: str):
             raise HTTPException(403, "Seu perfil não permite esta ação.")
         return u
     return dep
+
+def exige_papeis(*papeis: str):
+    def dep(u: Usuario = Depends(usuario_atual)) -> Usuario:
+        if u.papel not in papeis:
+            raise HTTPException(403, "Seu perfil não permite esta ação.")
+        return u
+    return dep

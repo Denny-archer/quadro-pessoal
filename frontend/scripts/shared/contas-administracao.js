@@ -1,7 +1,7 @@
 import { req } from './http.js';
 
 const $ = s => document.querySelector(s);
-const perfis = { colaborador: 'Colaborador', gestor: 'Gestor', admin: 'Administrador' };
+const perfis = { colaborador: 'Colaborador', gestor: 'Gestor', rh: 'RH', admin: 'Administrador' };
 const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const normalizar = v => String(v ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 let base;
@@ -16,7 +16,7 @@ function dadosConta(card) {
     papel,
     ativo: f.elements.ativo.checked,
     funcionario_id: f.elements.funcionario_id.value || null,
-    setores: papel === 'gestor'
+    setores: ['gestor', 'rh'].includes(papel)
       ? [...f.querySelectorAll('[name="setores"]:checked')].map(x => Number(x.value)).sort((a, b) => a - b)
       : [],
   };
@@ -37,7 +37,7 @@ function cartao(u) {
         <small>${f ? `Vínculo: ${esc(f.nome)}` : 'Sem funcionário vinculado'}</small></span>
       <span class="conta-indicadores"><span class="conta-tag">${perfis[u.papel] || esc(u.papel)}</span>
         <span class="conta-status ${u.ativo ? 'conta-status-ativa' : ''}">${u.ativo ? 'Ativa' : 'Inativa'}</span>
-        ${u.papel === 'gestor' ? `<small>${u.setores.length} setor(es) gerido(s)</small>` : ''}
+        ${['gestor', 'rh'].includes(u.papel) ? `<small>${u.setores.length} setor(es) gerido(s)</small>` : ''}
         <small class="conta-pendente" hidden>Alterações pendentes</small></span>
       <span class="conta-editar" aria-hidden="true">Editar <span class="conta-chevron">⌄</span></span>
     </summary>
@@ -48,9 +48,9 @@ function cartao(u) {
         <label class="conta-ativo"><input name="ativo" type="checkbox" ${u.ativo ? 'checked' : ''}><span>Conta ativa<small>Permite entrar no sistema</small></span></label>
       </div>
       <p class="contas-ajuda" data-perfil-ajuda></p>
-      <fieldset class="conta-setores" ${u.papel !== 'gestor' ? 'hidden' : ''}>
+      <fieldset class="conta-setores" ${!['gestor', 'rh'].includes(u.papel) ? 'hidden' : ''}>
         <legend>Setores sob gestão</legend>
-        <div class="conta-setores-topo"><p class="contas-ajuda">Marque os setores que este gestor pode acompanhar.</p><span class="conta-tag" data-setores-total></span></div>
+        <div class="conta-setores-topo"><p class="contas-ajuda">Marque os setores que esta conta pode gerenciar no Painel de Demandas.</p><span class="conta-tag" data-setores-total></span></div>
         <label class="conta-buscar-setor">Buscar setor<input type="search" data-buscar-setor placeholder="Digite o nome do setor" autocomplete="off"></label>
         <div class="conta-setores-lista">${setores.map(s => `<label class="conta-setor" data-setor-nome="${esc(normalizar(s.setor))}"><input type="checkbox" name="setores" value="${s.id}" ${u.setores.includes(s.id) ? 'checked' : ''}><span>${esc(s.setor)}${s.ativo ? '' : ' (inativo)'}</span></label>`).join('')}</div>
         <p class="contas-ajuda" data-setores-vazio ${setores.length ? 'hidden' : ''}>Nenhum setor encontrado.</p>
@@ -71,15 +71,16 @@ function atualizarEdicao(card) {
   card.dataset.alterada = String(alterada);
   card.querySelector('[data-salvar-conta]').disabled = !alterada;
   card.querySelector('.conta-pendente').hidden = !alterada;
-  card.querySelector('.conta-setores').hidden = dados.papel !== 'gestor';
+  card.querySelector('.conta-setores').hidden = !['gestor', 'rh'].includes(dados.papel);
   card.querySelector('[data-setores-total]').textContent = `${dados.setores.length} selecionado(s)`;
   const textos = {
     admin: 'Administrador: administra o Quadro de Pessoal e as Demandas de todos os setores.',
+    rh: 'RH: consulta todo o quadro, opera lançamentos e saldos; gerencia demandas somente dos setores selecionados.',
     gestor: 'Gestor: consulta os dados da equipe e gerencia demandas dos setores selecionados.',
     colaborador: 'Colaborador: consulta os próprios dados e as demandas atribuídas a ele.',
   };
   card.querySelector('[data-perfil-ajuda]').textContent = textos[dados.papel] +
-    (dados.papel !== 'gestor' && JSON.parse(card.dataset.original).setores.length ? ' Ao salvar, os setores de gestão anteriores serão removidos.' : '');
+    (!['gestor', 'rh'].includes(dados.papel) && JSON.parse(card.dataset.original).setores.length ? ' Ao salvar, os setores de gestão anteriores serão removidos.' : '');
 }
 
 function filtrar() {
@@ -143,7 +144,7 @@ $('#contas').addEventListener('submit', async e => {
     perfilSalvo = true;
     const salvo = base.usuarios.find(u => String(u.id) === card.dataset.conta);
     Object.assign(salvo, { papel: dados.papel, ativo: dados.ativo });
-    if (dados.papel !== 'gestor') salvo.setores = [];
+    if (!['gestor', 'rh'].includes(dados.papel)) salvo.setores = [];
     await req('PUT', `/api/acesso/usuarios/${card.dataset.conta}/vinculo`, { funcionario_id: dados.funcionario_id, setores: dados.setores });
     const u = base.usuarios.find(u => String(u.id) === card.dataset.conta);
     Object.assign(u, dados);

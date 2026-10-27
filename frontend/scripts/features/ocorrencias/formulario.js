@@ -1,3 +1,4 @@
+import { salvarSaldos } from "../funcionarios/saldos.js";
 import { $, errMsg, esc, toast } from "../../core/dom.js";
 import { TIPOS } from "../../core/constantes.js";
 import { S } from "../../core/estado.js";
@@ -27,6 +28,7 @@ function iniciarFeaturesOcorrenciasFormulario() {
   });
   $("#form-lanc").addEventListener("submit", async e => {
     e.preventDefault();
+    if (document.documentElement.dataset.lancarRh !== "true") return;
     const t = $("#l-tipo").value,
       ini = $("#l-inicio").value,
       parcial = t === "atestado" && $("#l-parcial").checked;
@@ -93,6 +95,7 @@ function iniciarFeaturesOcorrenciasFormulario() {
     }
     const btn = $("#l-save");
     btn.disabled = true;
+    let etapa = gravarPa ? "período aquisitivo" : "lançamento";
     try {
       if (gravarPa) {
         // período calculado pela admissão passa a ficar gravado no cadastro
@@ -104,21 +107,22 @@ function iniciarFeaturesOcorrenciasFormulario() {
           gerado,
           ...pa
         } = gravarPa.c.pa;
-        await store.set("funcionarios", id, {
-          ...doc,
+        await salvarSaldos(gravarPa.f, {
           periodosAquisitivos: [...(doc.periodosAquisitivos || []), pa].sort((a, b) => a.inicio.localeCompare(b.inicio))
         });
       }
+      etapa = "lançamento";
       await store.set("ocorrencias", editOc?.id || store.newId("ocorrencias"), data);
       dl.close();
       toast(editOc ? "Lançamento atualizado" : "Lançamento salvo");
     } catch (x) {
-      err.textContent = errMsg(x);
+      err.textContent = `Não foi possível salvar o ${etapa}. ` + errMsg(x);
     } finally {
       btn.disabled = false;
     }
   });
   $("#l-del").addEventListener("click", async e => {
+    if (document.documentElement.dataset.lancarRh !== "true") return;
     const b = e.currentTarget;
     if (!b.classList.contains("armed")) {
       b.classList.add("armed");
@@ -223,11 +227,11 @@ function calcLanc() {
   };
 }
 function openLanc(id, pre = {}) {
-  const leitura=document.documentElement.dataset.alterarRh!=='true';
+  const leitura=document.documentElement.dataset.lancarRh!=='true';
   if(leitura&&!id)return;
   if (!S.func.length) {
-    openFunc();
-    toast("Cadastre um funcionário antes de lançar.");
+    if (document.documentElement.dataset.alterarRh === "true") openFunc();
+    toast("Nenhum funcionário disponível. Solicite o cadastro ao administrador.");
     return;
   }
   editOc = id ? S.ocs.find(o => o.id === id) : null;
