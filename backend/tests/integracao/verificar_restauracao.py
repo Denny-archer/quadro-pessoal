@@ -1,11 +1,19 @@
 """Compara o dump restaurado dos dois módulos e seus vínculos."""
+import os
+from urllib.parse import urlparse
+
 import pg8000.dbapi
 from app.core import config
-if not config.DATABASE_URL.endswith('/rh_demandas_test'):
-    raise SystemExit('Somente ambiente descartável.')
+
+url = urlparse(config.DATABASE_URL)
+base_restaurada = os.getenv('RH_TEST_RESTORE_DB', 'rh_restauracao_test')
+if (os.getenv('DB_HOST') or url.path != '/rh_demandas_test'
+        or url.hostname not in {'db', 'localhost', '127.0.0.1'}
+        or base_restaurada not in {'rh_restauracao_test', 'rh_test'}):
+    raise SystemExit('Somente bancos de teste locais.')
 params=config.parametros_conexao()
 origem=pg8000.dbapi.connect(**params)
-params['database']='rh_restauracao_test'
+params['database']=base_restaurada
 destino=pg8000.dbapi.connect(**params)
 tabelas=['usuarios','funcionarios','usuario_funcionario','setores_aux','cargos_aux','gestores_setores',
          'funcionario_lotacoes','auditoria','acesso_revisoes','demandas.demandas','demandas.checklist_itens',
