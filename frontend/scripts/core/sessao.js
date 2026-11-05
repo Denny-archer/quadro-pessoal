@@ -31,7 +31,7 @@ export function encerrarTela(motivo = "expirada", avisar = false) {
     className: "sessao-mensagem",
     textContent: "Sessão encerrada. Redirecionando para o login…"
   }));
-  location.replace("/login?motivo=" + encodeURIComponent(motivo));
+  location.replace("/login?motivo=" + encodeURIComponent(motivo)+"&volta="+encodeURIComponent(location.pathname));
 }
 export function iniciarControleSessao({
   atividade,
@@ -120,7 +120,7 @@ export function destinoAposLogin(valor, origem) {
   try {
     if (!valor?.startsWith("/") || valor.startsWith("//") || valor.includes("\\")) return "/";
     const url = new URL(valor, origem);
-    return url.origin === origem && ["/", "/index.html", "/importacao.html"].includes(url.pathname) ? url.pathname + url.search + url.hash : "/";
+    return url.origin === origem && ["/", "/index.html", "/importacao.html", "/demandas/", "/administracao"].includes(url.pathname) ? url.pathname + url.search + url.hash : "/";
   } catch {
     return "/";
   }

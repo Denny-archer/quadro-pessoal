@@ -9,6 +9,7 @@ import { openKd } from "../features/panorama/detalhes.js";
 import { store } from "./armazenamento.js";
 import { openRegras } from "../features/configuracoes.js";
 import { tabelaSalarial } from "../features/remuneracao.js";
+import { abrirSaldos } from "../features/funcionarios/saldos.js";
 function shift(n) {
   if (S.mode === "mes") {
     const d = new Date(S.y, S.m + n, 1);
@@ -23,7 +24,7 @@ function setPriv(on) {
   b.setAttribute("aria-pressed", on);
   b.textContent = on ? "Nomes ocultos" : "Nomes visíveis";
   try {
-    localStorage.setItem("qp-priv", on ? "1" : "0");
+    localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-priv'}`, on ? "1" : "0");
   } catch (e) {}
 }
 export function iniciarCoreNavegacao() {
@@ -45,7 +46,7 @@ export function iniciarCoreNavegacao() {
   document.querySelectorAll("[data-tab]").forEach(b => b.addEventListener("click", () => {
     S.tab = b.dataset.tab;
     try {
-      localStorage.setItem("qp-tab", S.tab);
+      localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`, S.tab);
     } catch (e) {}
     render();
   }));
@@ -56,7 +57,7 @@ export function iniciarCoreNavegacao() {
   {
     let on = true;
     try {
-      on = localStorage.getItem("qp-priv") !== "0";
+      on = localStorage.getItem(`rh:${document.documentElement.dataset.usuario}:${'qp-priv'}`) !== "0";
     } catch (e) {}
     setPriv(on);
   }
@@ -64,10 +65,11 @@ export function iniciarCoreNavegacao() {
   document.addEventListener("click", async e => {
     const kp = e.target.closest("[data-kpi]");
     if (kp && !e.target.closest("dialog")) return openKd(kp.dataset.kpi);
-    const t = e.target.closest("[data-f],[data-ficha],[data-sel],[data-oc-open],[data-edit-func],[data-new-for],[data-act],[data-ben],[data-grupo],#rm-ex");
+    const t = e.target.closest("[data-f],[data-ficha],[data-sel],[data-oc-open],[data-edit-func],[data-saldos],[data-new-for],[data-act],[data-ben],[data-grupo],#rm-ex");
     if (t && t.dataset.ficha && t.closest("#dlg-kpi")) $("#dlg-kpi").close();
     if (!t) return;
     if (t.id === "rm-ex") {
+      if (document.documentElement.dataset.alterarRh !== "true") return;
       if (!t.classList.contains("armed")) {
         t.classList.add("armed");
         t.textContent = "Confirmar: remover todos os exemplos";
@@ -93,7 +95,7 @@ export function iniciarCoreNavegacao() {
       S.sel = t.dataset.ficha;
       S.tab = "func";
       try {
-        localStorage.setItem("qp-tab", "func");
+        localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`, "func");
       } catch (e) {}
       render();
       window.scrollTo({
@@ -112,7 +114,7 @@ export function iniciarCoreNavegacao() {
       S.sel = null;
       S.tab = "func";
       try {
-        localStorage.setItem("qp-tab", "func");
+        localStorage.setItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`, "func");
       } catch (e) {}
       render();
       window.scrollTo({
@@ -121,6 +123,7 @@ export function iniciarCoreNavegacao() {
       return;
     }
     if (t.dataset.ocOpen) return openLanc(t.dataset.ocOpen);
+    if (t.dataset.saldos) return abrirSaldos(t.dataset.saldos);
     if (t.dataset.editFunc) return openFunc(t.dataset.editFunc);
     if (t.dataset.newFor) return openLanc(null, {
       func: t.dataset.newFor

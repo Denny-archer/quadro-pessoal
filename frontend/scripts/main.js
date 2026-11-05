@@ -1,5 +1,5 @@
 import { iniciarEstilosDinamicos } from "./core/estilos-dinamicos.js";
-import { iniciarApi, db, downloads } from "./core/api.js";
+import { iniciarApi, db, downloads, req } from "./core/api.js";
 import { S, CFG_PADRAO, iniciarCoreEstado } from "./core/estado.js";
 import { render } from "./core/render.js";
 import { $ } from "./core/dom.js";
@@ -15,9 +15,26 @@ import { iniciarFeaturesPanoramaDetalhes } from "./features/panorama/detalhes.js
 import { iniciarFeaturesRemuneracao } from "./features/remuneracao.js";
 import { iniciarFolha } from "./features/folha/controlador.js";
 import { iniciarCoreNavegacao } from "./core/navegacao.js";
+function erroCarregamento(erro) {
+  if (erro?.code === 'revoked') return;
+  S.erroCarregamento = 'Não foi possível carregar os dados. Verifique a conexão e tente novamente.';
+  render();
+}
+document.addEventListener('click', e => { if (e.target.closest('[data-repetir-carga]')) location.reload(); });
+window.addEventListener('qp-erro-carga', e => erroCarregamento(e.detail));
 async function iniciar() {
   try {
     const usuario = await iniciarApi();
+    if(usuario.papel==='admin'){
+      const org=await req('GET','/api/acesso/organizacao');
+      for(const [id,lista,campo] of [['f-setor',org.setores,'setor'],['f-cargo',org.cargos,'cargo']]){
+        const el=document.getElementById(id);
+        if(!el)continue;
+        const dl=document.createElement('datalist');dl.id=id+'-catalogo';
+        for(const item of lista.filter(x=>x.ativo))dl.append(Object.assign(document.createElement('option'),{value:item[campo]}));
+        el.setAttribute('list',dl.id);document.body.append(dl);
+      }
+    }
     iniciarEstilosDinamicos();
     iniciarCoreEstado();
     iniciarFeaturesBeneficiosExtras();
@@ -41,9 +58,7 @@ async function iniciar() {
       S.ready = fOk && oOk;
       render();
     };
-    const falhou = e => {
-      if (e?.code === "revoked") return; // Controle de sessão já ocultou os dados e redirecionou.
-    };
+    const falhou = erroCarregamento;
     const linhas = snap => snap.docs.map(d => ({
       ...d.data(),
       id: d.id
@@ -71,9 +86,7 @@ async function iniciar() {
     }, falhou);
   } catch (erro) {
     if (erro?.code !== "revoked") {
-      S.offline = true;
-      S.ready = true;
-      render();
+      erroCarregamento(erro);
       console.error("Não foi possível iniciar o painel.", erro);
     }
   }

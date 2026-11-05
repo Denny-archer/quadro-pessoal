@@ -136,6 +136,11 @@ h1 {
   font-size:14px
 }
 
+a.btn {
+  color:var(--ink);
+  text-decoration:none
+}
+
 .btn:hover {
   border-color:var(--line-strong)
 }

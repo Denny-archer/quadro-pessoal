@@ -68,6 +68,8 @@ def aplicar_schema():
         cur.execute("SELECT pg_advisory_xact_lock(424242)")
         for comando in _separar(sql):
             cur.execute(comando)
+        from .migracoes import aplicar
+        aplicar(cur)
 
 
 def _separar(sql: str):

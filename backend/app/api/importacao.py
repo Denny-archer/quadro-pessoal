@@ -26,7 +26,7 @@ def _tipo(t):
 
 
 @router.get("/modelos/{arquivo}")
-def baixar_modelo(arquivo: str, _: Usuario = Depends(exige("leitor"))):
+def baixar_modelo(arquivo: str, _: Usuario = Depends(exige("admin"))):
     tipo, _, ext = arquivo.partition(".")
     _tipo(tipo)
     if ext == "csv":
@@ -40,7 +40,7 @@ def baixar_modelo(arquivo: str, _: Usuario = Depends(exige("leitor"))):
 
 
 @router.get("/estrutura/{tipo}")
-def estrutura(tipo: str, _: Usuario = Depends(exige("leitor"))):
+def estrutura(tipo: str, _: Usuario = Depends(exige("admin"))):
     return [{"coluna": c.nome, "obrigatoria": c.obrigatoria, "descricao": c.descricao, "exemplo": c.exemplo,
              "aceita_tambem": c.apelidos} for c in modelos.ESPEC[_tipo(tipo)]]
 
@@ -50,7 +50,7 @@ def _docs(colecao):
 
 
 @router.post("/{tipo}/validar")
-async def validar(tipo: str, arquivo: UploadFile = File(...), u: Usuario = Depends(exige("editor"))):
+async def validar(tipo: str, arquivo: UploadFile = File(...), u: Usuario = Depends(exige("admin"))):
     _tipo(tipo)
     dados = await arquivo.read(config.TAMANHO_MAX_UPLOAD_MB * 1024 * 1024 + 1)
     if len(dados) > config.TAMANHO_MAX_UPLOAD_MB * 1024 * 1024:
@@ -85,7 +85,7 @@ async def validar(tipo: str, arquivo: UploadFile = File(...), u: Usuario = Depen
 
 
 @router.post("/{imp_id}/confirmar")
-def confirmar(imp_id: int, u: Usuario = Depends(exige("editor"))):
+def confirmar(imp_id: int, u: Usuario = Depends(exige("admin"))):
     r = db.consultar("SELECT *, criado_em < now() - interval '1 day' AS expirado FROM importacoes WHERE id = %s", (imp_id,))
     if not r:
         raise HTTPException(404, "Importação não encontrada.")
@@ -123,7 +123,7 @@ def confirmar(imp_id: int, u: Usuario = Depends(exige("editor"))):
                     if cur.fetchone():
                         ignorados += 1
                         continue
-                gravar(cur, o["colecao"], o["id"], doc)
+                gravar(cur, o["colecao"], o["id"], doc, autor=u.id)
                 gravados += 1
                 atualizados += bool(antes)
                 inseridos += not bool(antes)
@@ -142,7 +142,7 @@ def confirmar(imp_id: int, u: Usuario = Depends(exige("editor"))):
 
 
 @router.post("/{imp_id}/descartar")
-def descartar(imp_id: int, u: Usuario = Depends(exige("editor"))):
+def descartar(imp_id: int, u: Usuario = Depends(exige("admin"))):
     with db.conexao() as c:
         cur = c.cursor()
         cur.execute("UPDATE importacoes SET status = 'descartada', plano = NULL WHERE id = %s AND status = 'pendente'", (imp_id,))
@@ -152,7 +152,7 @@ def descartar(imp_id: int, u: Usuario = Depends(exige("editor"))):
 
 
 @router.get("/historico")
-def historico(_: Usuario = Depends(exige("leitor"))):
+def historico(_: Usuario = Depends(exige("admin"))):
     return db.consultar("""SELECT i.id, i.tipo, i.arquivo, i.status, i.total_linhas, i.inseridos, i.atualizados,
                                   i.ignorados, i.com_erro, i.criado_em, i.concluido_em, u.nome AS usuario
                            FROM importacoes i LEFT JOIN usuarios u ON u.id = i.usuario_id

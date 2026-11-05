@@ -1,0 +1,55 @@
+name: rh-demandas-validacao
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: teste
+      POSTGRES_PASSWORD: teste-descartavel
+      POSTGRES_DB: rh_demandas_test
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U teste -d rh_demandas_test]
+      interval: 1s
+      timeout: 3s
+      retries: 30
+  testes:
+    build:
+      context: .
+      dockerfile: Dockerfile.testes
+    image: coffito/rh-demandas-testes:local
+    user: '0:0'
+    working_dir: /projeto/backend
+    entrypoint: []
+    command: [python, -m, pytest, -q, --disable-warnings]
+    environment:
+      DATABASE_URL: postgresql://teste:teste-descartavel@db:5432/rh_demandas_test
+      JWT_SECRET: segredo-apenas-testes-descartaveis-demandas-2026
+      COOKIE_SEGURO: 'false'
+      RH_TEST_DB: '1'
+      PYTHONPATH: /projeto/backend
+      PYTHONDONTWRITEBYTECODE: '1'
+    volumes:
+      - .:/projeto
+    depends_on:
+      db:
+        condition: service_healthy
+  web:
+    image: coffito/rh-demandas-testes:local
+    user: '0:0'
+    working_dir: /projeto/backend
+    entrypoint: []
+    command: [python, -m, uvicorn, servidor:app, --app-dir, tests/integracao, --host, 0.0.0.0, --port, '8000', --workers, '2']
+    environment:
+      DATABASE_URL: postgresql://teste:teste-descartavel@db:5432/rh_demandas_test
+      JWT_SECRET: segredo-apenas-testes-descartaveis-demandas-2026
+      COOKIE_SEGURO: 'false'
+      PYTHONPATH: /projeto/backend
+      PYTHONDONTWRITEBYTECODE: '1'
+    volumes:
+      - .:/projeto
+    ports:
+      - 127.0.0.1:18043:8000
+    depends_on:
+      db:
+        condition: service_healthy

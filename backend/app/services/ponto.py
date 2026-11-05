@@ -86,7 +86,7 @@ def sincronizacao():
 
 
 def completar_quadro(out, funcs, ocorrencias, data, agora, feriados, tolerancia, padrao):
-    rows = db.consultar('SELECT funcionario_id, dados, recebido_em FROM ponto_resumos WHERE data=%s AND funcionario_id IS NOT NULL', (data,))
+    rows = db.consultar('SELECT funcionario_id, dados, recebido_em FROM ponto_resumos WHERE data=%s AND funcionario_id=ANY(%s::text[])', (data,[f['id'] for f in funcs]))
     por_func = {f['id']: f for f in funcs}
     pessoas = {p['id']: p for p in out['pessoas']}
     for row in rows:

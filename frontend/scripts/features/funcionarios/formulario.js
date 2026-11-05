@@ -419,6 +419,7 @@ function ajustaMud() {
   $("#f-mud-hint").textContent = m.length ? "Mudança: " + m.map(x => x.tipo === "nivel" ? `nível ${x.de} → ${x.para}` : `${descGrat(x.de)} → ${descGrat(x.para)}`).join(" · ") + ". Ela fica no histórico da ficha e o mês da vigência sai proporcional aos dias." + (m.some(x => x.tipo === "grat") ? " A portaria de nomeação passa a ser a informada em “Ato / portaria”." : "") : "";
 }
 function openFunc(id) {
+  if(document.documentElement.dataset.alterarRh!=='true')return;
   editF = id ? S.func.find(f => f.id === id) : null;
   const f = editF || {};
   $("#func-title").textContent = editF ? "Editar funcionário" : "Novo funcionário";

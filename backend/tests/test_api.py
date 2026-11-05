@@ -23,7 +23,7 @@ SENHA = 'Senha-teste!12345'
 def cliente():
     with TestClient(app) as c:
         with db.conexao() as conn:
-            conn.cursor().execute('TRUNCATE usuarios, funcionarios, ocorrencias, config, importacoes, auditoria, integracao_chaves, ponto_marcacoes, ponto_resumos, ponto_vinculos, ponto_sincronizacao, login_tentativas RESTART IDENTITY CASCADE')
+            conn.cursor().execute('TRUNCATE usuarios, funcionarios, ocorrencias, config, importacoes, auditoria, integracao_chaves, ponto_marcacoes, ponto_resumos, ponto_vinculos, ponto_sincronizacao, login_tentativas, setores_aux, cargos_aux RESTART IDENTITY CASCADE')
             conn.cursor().execute("INSERT INTO usuarios(email,nome,papel,senha_hash) VALUES ('admin@test','Administrador Teste','admin',%s)", (auth.hash_senha(SENHA),))
         c.headers.update(H)
         yield c
@@ -224,7 +224,7 @@ def test_perfis_e_configuracao(cliente):
     assert cliente.put('/api/dados/config/ponto', json={'hora_padrao': '99:99'}).status_code == 400
     assert cliente.put('/api/dados/config/ponto', json={'tolerancia': 10, 'hora_padrao': '08:00'}).status_code == 200
     with db.conexao() as conn:
-        conn.cursor().execute("UPDATE usuarios SET papel='leitor'")
+        conn.cursor().execute("UPDATE usuarios SET papel='colaborador'")
     assert cliente.put('/api/dados/config/ponto', json={}).status_code == 403
     assert cliente.post('/api/integracao/chaves', json={'nome': 'Recusar'}).status_code == 403
 

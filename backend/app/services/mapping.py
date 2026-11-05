@@ -21,6 +21,8 @@ FUNCIONARIOS = [
     ("admissao", "admissao", "date"),
     ("cargo", "cargo", "text"),
     ("setor", "setor", "text"),
+    ("setorId", "setor_id", "int"),
+    ("cargoId", "cargo_id", "int"),
     ("vinculo", "vinculo", "text"),
     ("situacao", "situacao", "text"),
     ("regime", "regime", "text"),
@@ -80,7 +82,7 @@ OCORRENCIAS = [
 
 SPECS = {"funcionarios": FUNCIONARIOS, "ocorrencias": OCORRENCIAS}
 # campos que o servidor controla e nunca vão para `extra`
-CONTROLADOS = {"id", "atualizadoEm", "criadoEm"}
+CONTROLADOS = {"id", "atualizadoEm", "criadoEm", "setor_id", "cargo_id"}
 # defaults das colunas NOT NULL quando o documento não traz o campo
 DEFAULTS = {
     "funcionarios": {"vinculo": "efetivo", "situacao": "ativo", "regime": "Presencial", "intervalo": 60,

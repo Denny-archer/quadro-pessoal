@@ -13,6 +13,10 @@ import { atualizarPontoFicha } from "../features/funcionarios/ponto.js";
 /** Infraestrutura compartilhada: render. */
 
 function render() {
+  const colaborador = document.documentElement.dataset.papel === "colaborador";
+  const abaPanorama = document.querySelector('[data-tab="panorama"]');
+  if (abaPanorama) abaPanorama.hidden = colaborador;
+  if (colaborador && S.tab === "panorama") S.tab = "func";
   if ($("#dlg-kpi")?.open) renderKd();
   $("#period-label").textContent = periodoLabel();
   $("#mode-mes").setAttribute("aria-pressed", S.mode === "mes");
@@ -20,6 +24,10 @@ function render() {
   document.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === S.tab));
   renderBanners();
   const v = $("#view");
+  if (S.erroCarregamento) {
+    v.innerHTML = '<div class="panel empty" role="alert"><p>Não foi possível carregar os dados. Verifique a conexão e tente novamente.</p><button class="btn primary" type="button" data-repetir-carga>Tentar novamente</button></div>';
+    return;
+  }
   if (!S.ready) {
     atualizarPontoFicha();
     v.innerHTML = `<div class="panel empty">Carregando o quadro…</div>`;

@@ -1,10 +1,12 @@
 # Allowlist: somente código de execução e dependências de produção.
 **
 !Dockerfile
+!Dockerfile.testes
 !.dockerignore
 !backend/
 backend/**
 !backend/requirements.txt
+!backend/requirements-dev.txt
 !backend/app/
 !backend/app/**
 !frontend/
@@ -19,6 +21,10 @@ frontend/**
 !db/
 db/**
 !db/schema.sql
+!db/migrations/
+!db/migrations/*.py
+!frontend/demandas/
+!frontend/demandas/**
 **/__pycache__/
 **/*.py[cod]
 **/.env
