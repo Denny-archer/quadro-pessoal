@@ -10,13 +10,13 @@ import { viewFolha } from "../features/folha.js";
 import { viewRem } from "../features/remuneracao.js";
 import { viewLanc } from "../features/ocorrencias/listagem.js";
 import { atualizarPontoFicha } from "../features/funcionarios/ponto.js";
+import { atualizarAbaPonto } from "../features/ponto/controlador.js";
 /** Infraestrutura compartilhada: render. */
 
 function render() {
   const colaborador = document.documentElement.dataset.papel === "colaborador";
-  const abaPanorama = document.querySelector('[data-tab="panorama"]');
-  if (abaPanorama) abaPanorama.hidden = colaborador;
-  if (colaborador && S.tab === "panorama") S.tab = "func";
+  document.querySelectorAll('[data-tab="panorama"], [data-tab="ponto"]').forEach(aba => { aba.hidden = colaborador; });
+  if (colaborador && ["panorama", "ponto"].includes(S.tab)) S.tab = "func";
   if ($("#dlg-kpi")?.open) renderKd();
   $("#period-label").textContent = periodoLabel();
   $("#mode-mes").setAttribute("aria-pressed", S.mode === "mes");
@@ -24,6 +24,14 @@ function render() {
   document.querySelectorAll("[data-tab]").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === S.tab));
   renderBanners();
   const v = $("#view");
+  const ponto = S.tab === "ponto";
+  atualizarAbaPonto(S.tab, document.documentElement.dataset.papel);
+  v.hidden = ponto;
+  if (ponto) {
+    v.replaceChildren();
+    atualizarPontoFicha();
+    return;
+  }
   if (S.erroCarregamento) {
     v.innerHTML = '<div class="panel empty" role="alert"><p>Não foi possível carregar os dados. Verifique a conexão e tente novamente.</p><button class="btn primary" type="button" data-repetir-carga>Tentar novamente</button></div>';
     return;

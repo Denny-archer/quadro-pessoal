@@ -32,13 +32,8 @@ const CFG_PADRAO = {
 S.fxItens = [];
 export function iniciarCoreEstado() {
   hoje.setHours(0, 0, 0, 0);
-  try {
-    const t = localStorage.getItem(`rh:${document.documentElement.dataset.usuario}:${'qp-tab'}`);
-    if (t) S.tab = t;
-  } catch (e) {}
-  if (document.documentElement.dataset.papel === "colaborador" && S.tab === "panorama") {
-    S.tab = "func";
-  }
+  // A entrada sempre começa no Panorama; a navegação durante a sessão é preservada em S.tab.
+  S.tab = document.documentElement.dataset.papel === "colaborador" ? "func" : "panorama";
   S.cfg = {
     ...CFG_PADRAO
   };

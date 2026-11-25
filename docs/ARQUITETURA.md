@@ -14,11 +14,13 @@ Na versão 1.3.1, `auth_sessoes` (schema v4) controla revogação individual, pr
 
 As páginas usam `<script type="module">`. `scripts/main.js` autentica a sessão, inicializa controles uma vez e assina os dados. Os módulos declaram suas dependências com imports; não há fachada global `window.claude` ou variáveis `window.qp*`.
 
-`core/api` centraliza requisições, sessão, assinaturas e downloads. A sondagem dos dados continua a cada cinco segundos, respeitando a visibilidade da página. A presença do ponto é consultada a cada quinze segundos enquanto o Panorama está ativo.
+`core/api` centraliza requisições, sessão, assinaturas e downloads. A sondagem dos dados continua a cada cinco segundos, respeitando a visibilidade da página. A presença do ponto é consultada imediatamente ao abrir a aba Ponto e a cada quinze segundos enquanto essa aba está ativa e a página está visível. Ao sair, o intervalo é interrompido e respostas pendentes são descartadas.
+
+O painel Ponto usa estrutura e modelos `<template>` no `frontend/index.html`, estilos em `styles/features/presenca.css`, consultas e estado em `scripts/features/ponto/controlador.js` e apresentação por DOM/textContent em `scripts/features/ponto/tela.js`. A coluna Setor reutiliza o campo já fornecido pela API. `scripts/features/integracao-ponto.js` administra as chaves de integração, exclusivamente para administradores, com o diálogo definido no HTML. Não há CSS ou marcação HTML gerados por esses módulos JavaScript.
 
 `core/estado` guarda o estado compartilhado; `core/render` orquestra a tela selecionada. Os módulos de funcionalidades oferecem views, cálculos, formulários e inicializadores. Funções de renderização são declaradas antes da inicialização dos controles para evitar dependência de efeitos na ordem dos imports.
 
-As preferências `qp-tab` e `qp-priv` no localStorage permanecem compatíveis.
+A preferência `qp-priv` permanece compatível. A chave legada `qp-tab` pode continuar sendo gravada, mas não é restaurada na entrada: Admin, RH e Gestor começam sempre no Panorama; Colaborador começa em Funcionários e não recebe as abas Panorama e Ponto. A aba escolhida permanece ativa durante a navegação da sessão.
 
 ## Estilos
 

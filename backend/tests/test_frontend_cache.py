@@ -68,7 +68,7 @@ def test_imports_internos_tambem_usam_urls_versionadas(admin_autenticado):
 
 def test_urls_antigas_de_scripts_e_estilos_exigem_nova_resposta():
     cliente = TestClient(app)
-    for url in ('/scripts/core/estado.js', '/scripts/core/render.js', '/scripts/features/presenca.js', '/styles/features/administracao.css'):
+    for url in ('/scripts/core/estado.js', '/scripts/core/render.js', '/scripts/features/ponto/controlador.js', '/scripts/features/ponto/tela.js', '/scripts/features/integracao-ponto.js', '/styles/features/presenca.css', '/styles/features/administracao.css'):
         resposta = cliente.get(url)
         assert resposta.status_code == 200
         assert resposta.headers['cache-control'] == 'no-store'

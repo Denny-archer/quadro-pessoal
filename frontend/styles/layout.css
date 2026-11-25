@@ -73,8 +73,15 @@ h1 {
 
 .period {
   display:flex;
+  min-width:0;
+  max-width:100%;
   align-items:center;
   gap:8px;
+  flex-wrap:wrap
+}
+
+.period .qp-user {
+  max-width:100%;
   flex-wrap:wrap
 }
 
