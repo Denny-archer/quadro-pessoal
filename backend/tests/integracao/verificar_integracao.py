@@ -1,8 +1,10 @@
 """PostgreSQL do ponto -> worker -> HTTP -> PostgreSQL do RH, só dados sintéticos."""
 import os
 import sys
+from contextlib import chdir
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from uuid import uuid4
 from urllib.parse import urlparse
 
@@ -10,7 +12,9 @@ PONTO_API = Path(os.getenv('PONTO_API_DIR', '/ponto')).resolve()
 RH_ROOT = next(p for p in [Path(os.getenv('RH_PROJECT_DIR', '/rh')), *Path(__file__).resolve().parents]
                if (p / 'backend/app').is_dir())
 sys.path[:0] = [str(PONTO_API / 'tests'), str(PONTO_API), str(RH_ROOT / 'backend')]
-import support
+# O Ponto procura ../.env ao importar; não ler o .env de nenhum checkout.
+with TemporaryDirectory() as diretorio_isolado, chdir(diretorio_isolado):
+    import support
 import httpx
 from sqlalchemy import create_engine, select, text
 from sqlalchemy.orm import Session
@@ -21,11 +25,12 @@ from ponto.models.batidas import Batida
 from ponto.models.pontos_diarios import PontoDiario
 from ponto.models.integracao_rh import RHOutbox
 from ponto.integracao_rh.outbox import verificar_schema
-from ponto.integracao_rh.worker import enviar_pendentes, sinalizar
+from ponto.integracao_rh.worker import enviar_http, enviar_pendentes, sinalizar
 from ponto.settings import settings
 from app.core import db, seguranca as auth
 
 url = os.environ['TEST_PG_URL']
+assert not os.getenv('DB_HOST'), 'Não usar sobreposição de conexão do Compose real.'
 for endereco, base in ((url, 'ponto_integracao_test'), (os.environ['DATABASE_URL'], 'rh_test')):
     destino = urlparse(endereco)
     assert destino.path == '/' + base and destino.hostname in {'db', '127.0.0.1', 'localhost'}, 'Somente bancos locais descartáveis.'
@@ -49,8 +54,9 @@ try:
     settings.RH_INTEGRACAO_ENABLED = True
     verificar_schema(engine)
     db.aplicar_schema()
-    with db.conexao() as c:
-        c.cursor().execute('TRUNCATE usuarios, funcionarios, ocorrencias, config, importacoes, auditoria, integracao_chaves, ponto_marcacoes, ponto_resumos, ponto_vinculos, ponto_sincronizacao, login_tentativas RESTART IDENTITY CASCADE')
+    if os.getenv('RH_TEST_PRESERVAR_DADOS') != '1':
+        with db.conexao() as c:
+            c.cursor().execute('TRUNCATE usuarios, funcionarios, ocorrencias, config, importacoes, auditoria, integracao_chaves, ponto_marcacoes, ponto_resumos, ponto_vinculos, ponto_sincronizacao, login_tentativas RESTART IDENTITY CASCADE')
     senha, email, matricula = 'Teste-isolado!123456', uuid4().hex + '@test', uuid4().hex[:8]
     with db.conexao() as c:
         c.cursor().execute('INSERT INTO usuarios(email,nome,papel,senha_hash) VALUES(%s,%s,%s,%s)',
@@ -60,11 +66,9 @@ try:
     fid = uuid4().hex
     cliente.put('/api/dados/funcionarios/'+fid, json={'nome':'Pessoa Sintética','vinculo':'efetivo','matricula':matricula}).raise_for_status()
     r = cliente.post('/api/integracao/chaves', json={'nome':'Integração descartável'}); r.raise_for_status()
-    cabecalho = {'Authorization':'Bearer '+r.json()['chave']}
-    def transporte(caminho, corpo):
-        resposta = cliente.post(caminho, headers=cabecalho, json=corpo)
-        resposta.raise_for_status()
-        return resposta.json()
+    settings.RH_URL = RH_TEST_URL
+    settings.RH_API_KEY = r.json()['chave']
+    cabecalho = {'Authorization':'Bearer '+settings.RH_API_KEY}
     dia = date(2026,10,5)
     with Session(engine) as sessao:
         settings.RH_INTEGRACAO_ENABLED = False
@@ -86,15 +90,15 @@ try:
         def falha(*args): raise ConnectionError('simulada')
         assert enviar_pendentes(sessao, falha) == 0
         evento.proxima_tentativa = datetime.now(timezone.utc)-timedelta(seconds=1); sessao.commit()
-        assert enviar_pendentes(sessao, transporte) == 1
-        assert transporte('/api/integracao/ponto/resumos', {'resumos':[original]})['repetidos'] == 1
+        assert enviar_pendentes(sessao) == 1
+        assert enviar_http('/api/integracao/ponto/resumos', {'resumos':[original]})['repetidos'] == 1
         ultima = sessao.scalar(select(Batida).order_by(Batida.data_batida.desc()).limit(1))
         sessao.delete(ultima)
         oficial.tempo_trabalhado = timedelta(hours=4); oficial.saldo_dia = timedelta(hours=-4); oficial.qtd_batidas = 3
         sessao.commit()
-        assert enviar_pendentes(sessao, transporte) == 1
-        assert transporte('/api/integracao/ponto/resumos', {'resumos':[original]})['antigos'] == 1
-        sinalizar(sessao, transporte)
+        assert enviar_pendentes(sessao) == 1
+        assert enviar_http('/api/integracao/ponto/resumos', {'resumos':[original]})['antigos'] == 1
+        sinalizar(sessao)
         r = cliente.get('/api/jornada/'+fid, params={'de':str(dia),'ate':str(dia)}); r.raise_for_status()
         dados = r.json()
         assert len(dados) == 1 and dados[0]['dados']['versao'] == 2, dados
